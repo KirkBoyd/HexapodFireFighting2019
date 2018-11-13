@@ -1,5 +1,12 @@
+const int flameDigitalPort = 0;
+const int flameAnalogPort = 0;
+const int tempPort = 0;
+const int thermistorPort = 0;
+
+
+
 void setup() {
-  // put your setup code here, to run once:
+  
 
 }
 
