@@ -4,6 +4,8 @@ const int tempPort = 0;
 const int thermistorPort = 0;
 
 
+//TEST
+
 
 void setup() {
   pinMode(flameDigitalPort, INPUT);
