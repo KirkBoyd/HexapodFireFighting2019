@@ -6,11 +6,14 @@ const int thermistorPort = 0;
 
 
 void setup() {
-  
+  pinMode(flameDigitalPort, INPUT);
+  pinMode(flameAnalogPort, INPUT);
+  pinMode(tempPort, INPUT);
+  pinMode(thermistorPort, INPUT);
 
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop() {// main loop of central code
+  
 
 }
