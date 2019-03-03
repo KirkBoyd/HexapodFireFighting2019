@@ -9,6 +9,10 @@
 #define videoLEDport 4 //green LED
 #define pwrLEDport 5 //yellow LED
 #define startButtonPort 6 //green button
+#define button2 7//
+#define button3 8
+#define button4 9
+#define button5 10
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
 #define CMR 2 //ID num for Coxa Middle Right Dynamixel AX12-A Servo
 #define CRR 3 //ID num for Coxa Rear Right Dynamixel AX12-A Servo
