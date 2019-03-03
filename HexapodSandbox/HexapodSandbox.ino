@@ -13,6 +13,11 @@
 #define button3 8
 #define button4 9
 #define button5 10
+#define versa 11
+#define mic1port 12
+#define mic2port 13
+#define flameSensor1 14
+#define flameSensor2 15
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
 #define CMR 2 //ID num for Coxa Middle Right Dynamixel AX12-A Servo
 #define CRR 3 //ID num for Coxa Rear Right Dynamixel AX12-A Servo
