@@ -44,10 +44,16 @@ void setup() {
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
   pinMode(startButtonPort,INPUT);
+  
+  
+  while(!soundSystem()){
+  }
 }
 
 void loop() {
-  if (startButton()){
-    fetal();
-  }
+  
+  
+//  if (startButton()){
+//    fetal();
+//  }
 }
