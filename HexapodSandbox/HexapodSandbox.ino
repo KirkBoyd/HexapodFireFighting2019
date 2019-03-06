@@ -46,14 +46,17 @@ void setup() {
   pinMode(startButtonPort,INPUT);
   
   
-  while(!soundSystem()){
-  }
+//  while(!soundSystem()){
+//  }
 }
 
 void loop() {
+
   
-  
-//  if (startButton()){
-//    fetal();
-//  }
+  if (startButton()){
+    walkA(500);
+    walkB(500);
+    walkC(500);
+
+  }
 }
