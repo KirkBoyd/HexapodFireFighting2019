@@ -1,7 +1,7 @@
 /***********************************************************
 *  Test code for hexapod bits and bobs
 *  Evan Neu, Hunter Badey, Kirk Boyd and Mark Morales
-*  Last edit: 02/10/2019 KB
+*  Last edit: 03/07/2019 KB
 ************************************************************/
 #include <ax12.h>
 #define soundLEDport 2 //blue LED
@@ -44,7 +44,7 @@ void setup() {
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
   pinMode(startButtonPort,INPUT);
-  
+  stand(1000);
   
 //  while(!soundSystem()){
 //  }
@@ -54,9 +54,14 @@ void loop() {
 
   
   if (startButton()){
+    walkStance(1000);
     walkA(500);
-    walkB(500);
-    walkC(500);
-
+    delay(1000);
+    while(!startButton()){
+      walkB(500);
+      walkC(500);
+      walkD(500);
+      walkE(500);
+    }
   }
 }

@@ -1,7 +1,7 @@
 /***********************************************************
 *  Test code for hexapod bits and bobs
 *  Evan Neu, Hunter Badey, Kirk Boyd and Mark Morales
-*  Last edit: 02/10/2019 KB
+*  Last edit: 03/07/2019 KB
 ************************************************************/
 #include <ax12.h>
 #define soundLEDport 2 //blue LED
