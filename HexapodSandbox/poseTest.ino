@@ -48,7 +48,7 @@ void walkA(int t){//same as walkStance with raised CFL, CMR, CRL
   SetPosition(1,700);
   SetPosition(2,512);
   SetPosition(3,590);
-  SetPosition(4,450);
+  SetPosition(4,620);// changed from 450
   SetPosition(5,330);
   SetPosition(6,375);//
   SetPosition(7,680);//CFR down
@@ -93,7 +93,7 @@ void walkD(int t){
   SetPosition(1,450);
   SetPosition(2,680);
   SetPosition(3,330);
-  SetPosition(4,450);
+  SetPosition(4,450);//changed from 450
   SetPosition(5,680);
   SetPosition(6,330);
   SetPosition(7,680);
