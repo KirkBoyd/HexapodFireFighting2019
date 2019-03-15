@@ -4,6 +4,7 @@
 *  Last edit: 03/07/2019 KB
 ************************************************************/
 #include <ax12.h>
+#include <math.h>
 #define soundLEDport 2 //blue LED
 #define flameLEDport 3 //red LED
 #define videoLEDport 4 //green LED
@@ -16,8 +17,8 @@
 #define versa 11//port for versa valve solenoid
 #define mic1port 12//1st mic for start sequence
 #define mic2port 13 //2nd mic for start sequence
-#define flameSensor1 14 //port for 1st flame sensor
-#define flameSensor2 15 //2nd flame sensor port, for now unused
+#define flameSensor1 14 //port for flame sensor 1, on the left from robot's perspective
+#define flameSensor2 15 //2nd flame sensor port, 
 #define sharp1port 16 //sharp sensor 1 port for navigation
 #define sharp2port 17 //sharp sensor 2 port for navigation
 #define vidPort 18 //for now unused port, but dedicated to the video detection for later
@@ -35,6 +36,8 @@
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
 
 void setup() {
+  Serial.begin(9600);
+  
   pinMode(soundLEDport,OUTPUT);
   digitalWrite(soundLEDport,LOW);
   pinMode(flameLEDport,OUTPUT);
@@ -45,13 +48,13 @@ void setup() {
   digitalWrite(pwrLEDport,HIGH);
   pinMode(startButtonPort,INPUT);
   stand(1000);
-  
+  Serial.println(
 //  while(!soundSystem()){
 //  }
 }
 
 void loop() {
-
+  
   
   if (startButton()){
     walkStance(1000);
