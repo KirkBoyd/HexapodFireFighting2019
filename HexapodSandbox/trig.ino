@@ -29,13 +29,31 @@ float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180
   return 180 - ang;
 }
 
-//void setup() { //this can be put into the arduino loop to test an alpha angle of 10 degrees
-//  Serial.begin(9600);
-//}
-//
-//void loop() {
-//  alpha = toRad(10);
-//  getBeta(alpha);
-//  Serial.println(toDeg(beta));
-//  delay(5000);
-//}
+              //void setup() { //this can be put into the arduino loop to test an alpha angle of 10 degrees
+              //  Serial.begin(9600);
+              //}
+              //
+              //void loop() {
+              //  alpha = toRad(10);
+              //  getBeta(alpha);
+              //  Serial.println(toDeg(beta));
+              //  delay(5000);
+              //}
+/*************************************************************************/
+#define numSteps 1023 //max value to set AX-12A servos to
+#define centered 512  //centered position of AX-12A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
