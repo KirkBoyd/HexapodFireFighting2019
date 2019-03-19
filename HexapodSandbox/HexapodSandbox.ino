@@ -4,6 +4,7 @@
 *  Last edit: 03/07/2019 KB
 ************************************************************/
 #include <ax12.h>
+#include <math.h>
 #define soundLEDport 2 //blue LED
 #define flameLEDport 3 //red LED
 #define videoLEDport 4 //green LED
@@ -35,6 +36,8 @@
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
 
 void setup() {
+  Serial.begin(9600);
+  
   pinMode(soundLEDport,OUTPUT);
   digitalWrite(soundLEDport,LOW);
   pinMode(flameLEDport,OUTPUT);
@@ -45,13 +48,13 @@ void setup() {
   digitalWrite(pwrLEDport,HIGH);
   pinMode(startButtonPort,INPUT);
   stand(1000);
-  
+  Serial.println(
 //  while(!soundSystem()){
 //  }
 }
 
 void loop() {
-
+  
   
   if (startButton()){
     walkStance(1000);
