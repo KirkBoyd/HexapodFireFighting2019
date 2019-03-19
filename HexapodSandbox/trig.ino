@@ -22,16 +22,8 @@ float toRad(float ang){ //converts degree float values to radian float values
 }
 float getBeta(float ang){ //UNIT: RADIANS takes an alpha float value
   delta = asin((D*sin(alpha))/r);
-  Bpos = sqrt((D*D)-(r*r)+(D*D)*(cos(delta)*cos(delta)) + D*cos(delta));
-  Bneg = Bpos*(-1);
-  if(Bpos>0){
-    beta = asin((Bpos*sin(delta)/D));
-    return beta;
-  }
-  else{
-    beta = asin((Bneg*sin(delta)/D));
-    return beta;
-  }
+  beta = toRad(180) - alpha - delta;
+  B = (r*sin(beta)/sin(alpha);
 }
 
 //void setup() { //this can be put into the arduino loop to test an alpha angle of 10 degrees
