@@ -20,10 +20,13 @@ float toDeg(float ang){ //converts RADIAN float values to DEGREE float values
 float toRad(float ang){ //converts DEGREE float values to RADIAN float values
   return ang*1000/57296;  //for calculation speed (avoiding decimals) use this fraction to approximate pi
 }
-float getBeta(float ang){ //UNIT: RADIANS takes an alpha float value
+float getBeta(float ang){ //RADIANS; takes an alpha float value
   delta = asin((D*sin(alpha))/r); //law of sines to find delta
   beta = toRad(180) - alpha - delta; //property of triangles (sum == 180) to find beta
   B = (r*sin(beta)/sin(alpha); //law of sines to find B
+}
+float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180 - beta; finds angle that we want to set the leg to
+  return 180 - ang;
 }
 
 //void setup() { //this can be put into the arduino loop to test an alpha angle of 10 degrees
