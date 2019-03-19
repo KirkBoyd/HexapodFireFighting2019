@@ -45,7 +45,7 @@ float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180
 #define dynaMax 804 //maximum allowed position of AX-12A for current Hexapod
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
-
+int dynaNum;
 
 
 
