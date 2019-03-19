@@ -11,8 +11,7 @@ int r = 30.31;  //in mm
 int D = 72; //in mm
 
 float delta; //angle opposite length D in triangle
-float Bpos; //length opposite angle beta (equals r+D when leg is not rotated, and decreases as leg turns further) *positive value from quadratic formula*
-float Bneg; //length opposite angle beta (equals r+D when leg is not rotated, and decreases as leg turns further) *negative value from quadratic formula*
+float B; //third leg of triangle. changes in length as angle phi increases (or beta decreases)
 float beta; //third angle in trangle, opposite length B
 
 float toDeg(float ang){ //converts radian float values to degree float values
