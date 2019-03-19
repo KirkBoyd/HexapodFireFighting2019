@@ -40,9 +40,10 @@ float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180
               //  delay(5000);
               //}
 /*************************************************************************/
-#define numSteps 1023 //max value to set AX-12A servos to
+#define numSteps 1023 //max value to set AX-12A servos could possibly reach
 #define centered 512  //centered position of AX-12A
-
+#define dynaMax 804 //maximum allowed position of AX-12A for current Hexapod
+#define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
 
 
