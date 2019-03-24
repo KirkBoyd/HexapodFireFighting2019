@@ -32,6 +32,10 @@ bool firstFlameCheck(){
  * Logic for aiming at the flame using IR phototransistors
  */
  bool secondFlameCheck(){
-  if(f1Read() > 
+  if(f1Read() == f2Read()){ 
+    aimed = true;
+    return true;
+  }
+  else if(f1Read() > f2Read()){//reading is higher on the ____ turn ____
  }
 
