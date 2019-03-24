@@ -22,6 +22,7 @@
 #define sharp1port 16 //sharp sensor 1 port for navigation
 #define sharp2port 17 //sharp sensor 2 port for navigation
 #define vidPort 18 //for now unused port, but dedicated to the video detection for later
+#define runningLED 19 //white LED. indicates the code is running and started
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
 #define CMR 2 //ID num for Coxa Middle Right Dynamixel AX12-A Servo
 #define CRR 3 //ID num for Coxa Rear Right Dynamixel AX12-A Servo
@@ -35,7 +36,9 @@
 #define FML 11 //ID num for Femur Middle Left Dynamixel AX12-A Servo
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
 
+bool started = true; //boolean for keeping an LED on while code is running
 bool flameSeen = false; //boolean for checking if hammamatsu has seen a the room with the flame in it
+
 
 void setup() {
   Serial.begin(9600);
