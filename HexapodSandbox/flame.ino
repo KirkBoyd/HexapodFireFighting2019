@@ -38,5 +38,12 @@ bool firstFlameCheck(){
     return true;
   }
   else if(f1Read() > f2Read()){//reading is higher on the LEFT turn LEFT
+    turnSlowL();
+    return false;
+  }
+  else{//correct to the RIGHT if previous statement was not triggered
+    turnSlowR();
+    return false;
+  }
  }
 
