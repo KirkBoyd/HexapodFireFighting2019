@@ -5,25 +5,31 @@
 **********************************************************************/
 #include <ax12.h> //library for controlling Dynamixel AX12-A Servo
 #include <math.h> //extra functions like inverse trig needed
+
+/****I/O****/
 #define soundLEDport 2 //blue LED
 #define flameLEDport 3 //red LED
 #define videoLEDport 4 //green LED
 #define pwrLEDport 5 //yellow LED
-#define startButtonPort 6 //green button
-#define button2 7 //undefined button for future functionality
-#define button3 8 //undefined button for future functionality
-#define button4 9 //undefined button for future functionality
-#define button5 10  //undefined button for future functionality
-#define versa 11//port for versa valve solenoid
-#define mic1port 12//1st mic for start sequence
-#define mic2port 13 //2nd mic for start sequence
-#define flameSensor1 14 //port for flame sensor 1, on the left from robot's perspective
-#define flameSensor2 15 //2nd flame sensor port, opposite side from above ^
-#define sharp1port 16 //sharp sensor 1 port for navigation
-#define sharp2port 17 //sharp sensor 2 port for navigation
-#define vidPort 18 //for now unused port, but dedicated to the video detection for later
-#define runningLED 19 //white LED. indicates the code is running and started
-#define uvTronPort 20 //port for Hammamatsu UVtron sensor
+#define runningLED 6 //white LED. indicates the code is running and started
+#define startButtonPort 7 //green button
+#define button2 8 //undefined button for future functionality
+#define button3 9 //undefined button for future functionality
+#define button4 10 //undefined button for future functionality
+#define button5 11  //undefined button for future functionality
+#define versa 12//port for versa valve solenoid
+
+/****SENSORS****/
+#define mic1port 13 //1st mic for start sequence
+#define mic2port 14 //2nd mic for start sequence
+#define flameSensor1 15 //port for flame sensor 1, on the left from robot's perspective
+#define flameSensor2 16 //2nd flame sensor port, opposite side from above ^
+#define sharp1port 17 //sharp sensor 1 port for navigation
+#define sharp2port 18 //sharp sensor 2 port for navigation
+#define uvTronPort 19 //port for Hammamatsu UVtron sensor
+#define vidPort 20 //for now unused port, but dedicated to the video detection for later
+
+/****JOINTS****/
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
 #define CMR 2 //ID num for Coxa Middle Right Dynamixel AX12-A Servo
 #define CRR 3 //ID num for Coxa Rear Right Dynamixel AX12-A Servo
@@ -43,7 +49,6 @@ bool babySeen = false;  //boolean for checking if baby was detected with vision
 
 void setup() {
   Serial.begin(9600);
-  
   pinMode(soundLEDport,OUTPUT);
   digitalWrite(soundLEDport,LOW);
   pinMode(flameLEDport,OUTPUT);
@@ -60,8 +65,6 @@ void setup() {
 }
 
 void loop() {
-  
-  
   if (startButton()){
     walkStance(1000);
     walkA(500);

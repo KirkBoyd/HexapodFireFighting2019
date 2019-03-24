@@ -5,6 +5,6 @@
 #define uvtronMax 1023  //chosen value for when we can stop checking with uvtron and move to IR phototransistors for aiming
 
 bool firstFlame(){
-  if(digitalRead(
+  if(digitalRead(u
 }
 
