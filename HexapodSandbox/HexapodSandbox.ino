@@ -1,19 +1,19 @@
-/***********************************************************
+/**********************************************************************
 *  Test code for hexapod bits and bobs
-*  Evan Neu, Hunter Badey, Kirk Boyd and Mark Morales
-*  Last edit: 03/07/2019 KB
-************************************************************/
-#include <ax12.h>
-#include <math.h>
+*  Evan Neu, Hunter Badey, Kirk Boyd, Mark Morales, and Evan Neu.
+*  Last edit: 03/24/2019 KB
+**********************************************************************/
+#include <ax12.h> //library for controlling Dynamixel AX12-A Servo
+#include <math.h> //extra functions like inverse trig needed
 #define soundLEDport 2 //blue LED
 #define flameLEDport 3 //red LED
 #define videoLEDport 4 //green LED
 #define pwrLEDport 5 //yellow LED
 #define startButtonPort 6 //green button
-#define button2 7//
-#define button3 8
-#define button4 9
-#define button5 10//
+#define button2 7 //undefined button for future functionality
+#define button3 8 //undefined button for future functionality
+#define button4 9 //undefined button for future functionality
+#define button5 10  //undefined button for future functionality
 #define versa 11//port for versa valve solenoid
 #define mic1port 12//1st mic for start sequence
 #define mic2port 13 //2nd mic for start sequence
@@ -34,6 +34,8 @@
 #define FRL 10 //ID num for Femur Rear Left Dynamixel AX12-A Servo
 #define FML 11 //ID num for Femur Middle Left Dynamixel AX12-A Servo
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
+
+bool flameSeen = false; //boolean for checking if hammamatsu has seen a the room with the flame in it
 
 void setup() {
   Serial.begin(9600);
