@@ -21,10 +21,10 @@ void lightCheck(){
   if(started){digitalWrite(runningLED,HIGH);}
   else{digitalWrite(runningLED,LOW);}
   
-  if(flameSeen){{digitalWrite(flameLED,HIGH);}
-  else{digitalWrite(flameLED,LOW);}
+  if(flameSeen){flameLED(true);}
+  else{flameLED(false);}
   
-  if(babySeen){{digitalWrite(videoLEDport,HIGH);}
-  else{digitalWrite(videoLEDport,LOW);}
+  if(babySeen){videoLED(true);}
+  else{videoLED(false);}
 }
 

@@ -11,7 +11,7 @@
 #define flameLEDport 3 //red LED
 #define videoLEDport 4 //green LED
 #define pwrLEDport 5 //yellow LED
-#define runningLED 6 //white LED. indicates the code is running and started
+#define runningLEDport 6 //white LED. indicates the code is running and started
 #define startButtonPort 7 //green button
 #define button2 8 //undefined button for future functionality
 #define button3 9 //undefined button for future functionality
