@@ -6,7 +6,10 @@
 #define uvTronMax 1023  //oversaturated value for uvTron
 
 int f1Read(){ //shortening the call to read one flame sensor
-  return analogRead(flameSensor1port)
+  return analogRead(flameSensor1port);
+}
+int f2Read(){ //shortening the call to read one flame sensor
+  return analogRead(flameSensor2port);
 }
 
 /*
@@ -29,6 +32,6 @@ bool firstFlameCheck(){
  * Logic for aiming at the flame using IR phototransistors
  */
  bool secondFlameCheck(){
-  if(
+  if(f1Read() > 
  }
 
