@@ -27,3 +27,17 @@ void triadGo(int a, int posA, int b, int posB, int c, int posC, int d, int posD,
   while(GetPosition(e) != posE){};
   while(GetPosition(f) != posF){};
 }
+
+void turnFastR(){// make big steps in circle to turn RIGHT
+  
+}
+void turnFastL(){//make big steps in circle to turn LEFT
+  
+}
+void turnSlowR(){//make small steps in circle to turn RIGHT
+  
+}
+void turnSlowL(){//make small steps in circle to turn LEFT
+  
+}
+
