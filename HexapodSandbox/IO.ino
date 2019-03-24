@@ -15,7 +15,14 @@ boolean startButton(){ // returns true when green start button is depressed
 //   return false;
 // }
 //}
-void lightCheck(){
-  if(
+void lightCheck(){//checks status of the system. Turns LED's on/off accordingly
+  if(started){digitalWrite(runningLED,HIGH);}
+  else{digitalWrite(runningLED,LOW);}
+  
+  if(flameSeen){{digitalWrite(flameLED,HIGH);}
+  else{digitalWrite(flameLED,LOW);}
+  
+  if(babySeen){{digitalWrite(videoLEDport,HIGH);}
+  else{digitalWrite(videoLEDport,LOW);}
 }
 
