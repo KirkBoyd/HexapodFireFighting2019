@@ -1,5 +1,5 @@
-#define flameSmallMin 1023 //furthest a small IR phototransistor can be for consistent reading
-#define flameSmallMax 0  //closest a small IR phototransistor should be to extinguish the flame
+#define flameMin 1023 //furthest a small IR phototransistor can be for consistent reading
+#define flameMax 0  //closest a small IR phototransistor should be to extinguish the flame
 /** NOTE ^^^ for above values, high == far away. low == very close. **/
 
 #define uvTronMin 0 //smallest value that we can say uvtron has seen the flame
@@ -32,10 +32,11 @@ bool firstFlameCheck(){
  * Logic for aiming at the flame using IR phototransistors
  */
  bool secondFlameCheck(){
+  if(f1Read()<flameSmall
   if(f1Read() == f2Read()){ 
     aimed = true;
     return true;
   }
-  else if(f1Read() > f2Read()){//reading is higher on the ____ turn ____
+  else if(f1Read() > f2Read()){//reading is higher on the LEFT turn LEFT
  }
 
