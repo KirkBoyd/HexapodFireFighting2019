@@ -5,6 +5,13 @@
 #define uvTronMin 0 //smallest value that we can say uvtron has seen the flame
 #define uvTronMax 1023  //oversaturated value for uvTron
 
+int f1Read(){ //shortening the call to read one flame sensor
+  return analogRead(flameSensor1port)
+}
+
+/*
+ * Logic for checking for the flame with the Hammamatsu uvTron
+ */
 bool firstFlameCheck(){
   if(analogRead(uvTronPort) >= uvTronMin && !flameSeen){//if the flame has not been detected yet, and the readings show that a flame is now present, store the fact that a flame has been seen.
     flameSeen = true;
@@ -17,4 +24,11 @@ bool firstFlameCheck(){
   }
   else{return false;}
 }
+
+/*
+ * Logic for aiming at the flame using IR phototransistors
+ */
+ bool secondFlameCheck(){
+  if(
+ }
 

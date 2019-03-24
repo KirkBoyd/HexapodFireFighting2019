@@ -22,8 +22,8 @@
 /****SENSORS****/
 #define mic1port 13 //1st mic for start sequence
 #define mic2port 14 //2nd mic for start sequence
-#define flameSensor1 15 //port for flame sensor 1, on the left from robot's perspective
-#define flameSensor2 16 //2nd flame sensor port, opposite side from above ^
+#define flameSensor1port 15 //port for flame sensor 1, on the left from robot's perspective
+#define flameSensor2port 16 //2nd flame sensor port, opposite side from above ^
 #define sharp1port 17 //sharp sensor 1 port for navigation
 #define sharp2port 18 //sharp sensor 2 port for navigation
 #define uvTronPort 19 //port for Hammamatsu UVtron sensor
