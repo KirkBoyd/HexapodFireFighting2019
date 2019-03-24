@@ -4,5 +4,7 @@
 #define uvtronMin 0 //smallest value that we can say uvtron has seen the flame
 #define uvtronMax 1023  //chosen value for when we can stop checking with uvtron and move to IR phototransistors for aiming
 
-
+bool firstFlame(){
+  if(digitalRead(
+}
 

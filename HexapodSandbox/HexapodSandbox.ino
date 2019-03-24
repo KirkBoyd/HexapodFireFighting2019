@@ -18,11 +18,12 @@
 #define mic1port 12//1st mic for start sequence
 #define mic2port 13 //2nd mic for start sequence
 #define flameSensor1 14 //port for flame sensor 1, on the left from robot's perspective
-#define flameSensor2 15 //2nd flame sensor port, 
+#define flameSensor2 15 //2nd flame sensor port, opposite side from above ^
 #define sharp1port 16 //sharp sensor 1 port for navigation
 #define sharp2port 17 //sharp sensor 2 port for navigation
 #define vidPort 18 //for now unused port, but dedicated to the video detection for later
 #define runningLED 19 //white LED. indicates the code is running and started
+#define uvTronPort 20 //port for Hammamatsu UVtron sensor
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
 #define CMR 2 //ID num for Coxa Middle Right Dynamixel AX12-A Servo
 #define CRR 3 //ID num for Coxa Rear Right Dynamixel AX12-A Servo
