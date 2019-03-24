@@ -46,6 +46,7 @@
 bool started = false; //boolean for keeping an LED on while code is running
 bool flameSeen = false; //boolean for checking if hammamatsu has seen a the room with the flame in it
 bool babySeen = false;  //boolean for checking if baby was detected with vision
+bool uvTronDone = false; //boolean for indicating completed use of uvTron
 
 void setup() {
   Serial.begin(9600);
