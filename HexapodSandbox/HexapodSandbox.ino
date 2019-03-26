@@ -1,7 +1,7 @@
 /**********************************************************************
 *  Test code for hexapod bits and bobs
 *  Evan Neu, Hunter Badey, Kirk Boyd, Mark Morales, and Evan Neu.
-*  Last edit: 03/24/2019 KB
+*  Last edit: 03/26/2019 KB
 **********************************************************************/
 #include <ax12.h> //library for controlling Dynamixel AX12-A Servo
 #include <math.h> //extra functions like inverse trig needed
