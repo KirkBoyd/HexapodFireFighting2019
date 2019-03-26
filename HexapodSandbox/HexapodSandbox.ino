@@ -3,6 +3,7 @@
 *  Evan Neu, Hunter Badey, Kirk Boyd, Mark Morales, and Evan Neu.
 *  Last edit: 03/26/2019 KB
 **********************************************************************/
+/**LIBRARIES**/
 #include <ax12.h> //library for controlling Dynamixel AX12-A Servo
 #include <math.h> //extra functions like inverse trig needed
 
@@ -43,11 +44,21 @@
 #define FML 11 //ID num for Femur Middle Left Dynamixel AX12-A Servo
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
 
+/**CHECKS**/
 boolean started = false; //boolean for keeping an LED on while code is running
 boolean flameSeen = false; //boolean for checking if hammamatsu has seen a the room with the flame in it
 boolean babySeen = false;  //boolean for checking if baby was detected with vision
 boolean uvTronDone = false; //boolean for indicating completed use of uvTron
 boolean aimed = false; //this should be true when the nozzle is aimed on center with the candle
+
+/**TRIG**/
+float alpha = 0;  //RADIANS; angle of deflection from center of circle to default leg position to new angle
+int r = 30.31;  //(in mm) length of coxa from outer circle of base to outside of motor clip
+int D = 72; //(in mm) radius of the base from center to outermost circle 
+
+float delta; //RADIANS; angle opposite length D in triangle
+float B; //(in mm)third leg of triangle. changes in length as angle phi increases (or beta decreases)
+float beta; //RADIANS; third angle in trangle, opposite length B, decreases as phi increases (supplementary angles)
 
 void setup() {
   Serial.begin(9600);
@@ -68,7 +79,10 @@ void setup() {
 
 void loop() {
   if (startButton()){
-    
+    alpha = toRad(10);
+    getBeta(alpha);
+    Serial.println(toDeg(beta));
+    delay(5000);
   }
 }
 
