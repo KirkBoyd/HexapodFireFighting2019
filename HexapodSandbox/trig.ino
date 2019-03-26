@@ -30,7 +30,7 @@ float toDynum(float ang){ //converts DEGREE float values of Phi to DYNUM, which 
 float getBeta(float ang){ //RADIANS; takes an alpha float value
   delta = asin((D*sin(alpha))/r); //law of sines to find delta
   beta = toRad(180) - alpha - delta; //property of triangles (sum == 180) to find beta
-  B = (r*sin(beta)/sin(alpha); //law of sines to find B
+  B = (r*sin(beta)/sin(alpha)); //law of sines to find B
 }
 float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180 - beta; finds angle that we want to set the leg to
   return 180 - ang;

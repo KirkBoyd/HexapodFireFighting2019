@@ -32,7 +32,7 @@ boolean firstFlameCheck(){
  * Logic for aiming at the flame using IR phototransistors
  */
 boolean secondFlameCheck(){
-  if(f1Read()<flameSmall){
+  if(f1Read()<flameMin){//if the sensors are reading too low, do something [TBD]
     
   }
   if(f1Read() == f2Read()){ 
