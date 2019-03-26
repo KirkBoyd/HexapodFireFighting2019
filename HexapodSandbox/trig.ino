@@ -4,9 +4,6 @@
  * Last Edit: 03/17/2019 KB    
  * Notes: see image(s) that should accompany this sketch for visual representation of the triangle
  */
- 
-
-
 
 /**CONVERSIONS**/
 float toDeg(float ang){ //converts RADIAN float values to DEGREE float values
@@ -40,11 +37,3 @@ float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180
               //  delay(5000);
               //}
 /*************************************************************************/
-#define numSteps 1023 //max value to set AX-12A servos could possibly reach
-#define centered 512  //centered position of AX-12A
-#define dynaMax 804 //maximum allowed position of AX-12A for current Hexapod
-#define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
-
-int dynaNum;
-
-
