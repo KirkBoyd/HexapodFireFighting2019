@@ -18,13 +18,25 @@ boolean startButton(){ // returns true when green start button is depressed
 
 /** lightCheck() checks status of the system. Turns LED's on/off accordingly **/
 void lightCheck(){
-  if(started){digitalWrite(runningLED,HIGH);}
-  else{digitalWrite(runningLED,LOW);}
+  /*if(started == true){
+   *  digitalWrite(runningLED,HIGH);
+   *}
+   *else{
+   *  digitalWrite(runningLED,LOW);
+   *}
+   */
+  if(flameSeen){
+    flameLED(true);
+  }
+  else{
+    flameLED(false);
+  }
   
-  if(flameSeen){flameLED(true);}
-  else{flameLED(false);}
-  
-  if(babySeen){videoLED(true);}
-  else{videoLED(false);}
+  if(babySeen){
+    videoLED(true);
+  }
+  else{
+    videoLED(false);
+  }
 }
 

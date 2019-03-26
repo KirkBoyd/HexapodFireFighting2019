@@ -15,7 +15,7 @@ int f2Read(){ //shortening the call to read one flame sensor
 /*
  * Logic for checking for the flame with the Hammamatsu uvTron
  */
-bool firstFlameCheck(){
+boolean firstFlameCheck(){
   if(analogRead(uvTronPort) >= uvTronMin && !flameSeen){//if the flame has not been detected yet, and the readings show that a flame is now present, store the fact that a flame has been seen.
     flameSeen = true;
   }
@@ -31,8 +31,10 @@ bool firstFlameCheck(){
 /*
  * Logic for aiming at the flame using IR phototransistors
  */
- bool secondFlameCheck(){
-  if(f1Read()<flameSmall
+boolean secondFlameCheck(){
+  if(f1Read()<flameSmall){
+    
+  }
   if(f1Read() == f2Read()){ 
     aimed = true;
     return true;
