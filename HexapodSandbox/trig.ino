@@ -14,12 +14,17 @@ float delta; //RADIANS; angle opposite length D in triangle
 float B; //(in mm)third leg of triangle. changes in length as angle phi increases (or beta decreases)
 float beta; //RADIANS; third angle in trangle, opposite length B, decreases as phi increases (supplementary angles)
 
+
+/**CONVERSIONS**/
 float toDeg(float ang){ //converts RADIAN float values to DEGREE float values
   return ang*57296/1000; //for calculation speed (avoiding decimals) use this fraction to approximate pi
 }
 float toRad(float ang){ //converts DEGREE float values to RADIAN float values
   return ang*1000/57296;  //for calculation speed (avoiding decimals) use this fraction to approximate pi
 }
+
+
+/**MAIN TRIG**/
 float getBeta(float ang){ //RADIANS; takes an alpha float value
   delta = asin((D*sin(alpha))/r); //law of sines to find delta
   beta = toRad(180) - alpha - delta; //property of triangles (sum == 180) to find beta

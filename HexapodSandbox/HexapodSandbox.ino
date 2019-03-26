@@ -17,17 +17,17 @@
 #define button3 9 //undefined button for future functionality
 #define button4 10 //undefined button for future functionality
 #define button5 11  //undefined button for future functionality
-#define versa 12//port for versa valve solenoid
+#define versa 16//port for versa valve solenoid
 
 /****SENSORS****/
-#define mic1port 13 //1st mic for start sequence
-#define mic2port 14 //2nd mic for start sequence
-#define flameSensor1port 15 //port for flame sensor 1, on the left from robot's perspective
-#define flameSensor2port 16 //2nd flame sensor port, opposite side from above ^
-#define sharp1port 17 //sharp sensor 1 port for navigation
-#define sharp2port 18 //sharp sensor 2 port for navigation
-#define uvTronPort 19 //port for Hammamatsu UVtron sensor
-#define vidPort 20 //for now unused port, but dedicated to the video detection for later
+#define mic1port 17 //1st mic for start sequence
+#define mic2port 18 //2nd mic for start sequence
+#define flameSensor1port 19 //port for flame sensor 1, on the left from robot's perspective
+#define flameSensor2port 20 //2nd flame sensor port, opposite side from above ^
+#define sharp1port 21 //sharp sensor 1 port for navigation
+#define sharp2port 22 //sharp sensor 2 port for navigation
+#define uvTronPort 23 //port for Hammamatsu UVtron sensor
+#define vidPort 12 //for now unused port, but dedicated to the video detection for later
 
 /****JOINTS****/
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
