@@ -55,13 +55,3 @@ float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180
 int dynaNum;
 
 
-
-
-
-
-
-
-
-
-
-
