@@ -22,7 +22,9 @@ float toDeg(float ang){ //converts RADIAN float values to DEGREE float values
 float toRad(float ang){ //converts DEGREE float values to RADIAN float values
   return ang*1000/57296;  //for calculation speed (avoiding decimals) use this fraction to approximate pi
 }
-
+float toDynum(float ang){ //converts DEGREE float values of Phi to DYNUM, which can be written to the servo
+  return ang/0.2929;  //one integer value of Dynum corresponds to 0.2929 degrees
+}
 
 /**MAIN TRIG**/
 float getBeta(float ang){ //RADIANS; takes an alpha float value
