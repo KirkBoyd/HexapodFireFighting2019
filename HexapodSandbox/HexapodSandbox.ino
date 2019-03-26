@@ -43,11 +43,11 @@
 #define FML 11 //ID num for Femur Middle Left Dynamixel AX12-A Servo
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
 
-bool started = false; //boolean for keeping an LED on while code is running
-bool flameSeen = false; //boolean for checking if hammamatsu has seen a the room with the flame in it
-bool babySeen = false;  //boolean for checking if baby was detected with vision
-bool uvTronDone = false; //boolean for indicating completed use of uvTron
-bool aimed = false; //this should be true when the nozzle is aimed on center with the candle
+boolean started = false; //boolean for keeping an LED on while code is running
+boolean flameSeen = false; //boolean for checking if hammamatsu has seen a the room with the flame in it
+boolean babySeen = false;  //boolean for checking if baby was detected with vision
+boolean uvTronDone = false; //boolean for indicating completed use of uvTron
+boolean aimed = false; //this should be true when the nozzle is aimed on center with the candle
 
 void setup() {
   Serial.begin(9600);
@@ -61,21 +61,24 @@ void setup() {
   digitalWrite(pwrLEDport,HIGH);
   pinMode(startButtonPort,INPUT);
   stand(1000);
-  Serial.println(
+  Serial.println("init");
 //  while(!soundSystem()){
 //  }
 }
 
 void loop() {
   if (startButton()){
-    walkStance(1000);
-    walkA(500);
-    delay(1000);
-    while(!startButton()){
-      walkB(500);
-      walkC(500);
-      walkD(500);
-      walkE(500);
-    }
+    
   }
 }
+
+/* Main walk (add back later after testing new trig and such if desired) */
+//    walkStance(1000);
+//    walkA(500);
+//    delay(1000);
+//    while(!startButton()){
+//      walkB(500);
+//      walkC(500);
+//      walkD(500);
+//      walkE(500);
+//    }
