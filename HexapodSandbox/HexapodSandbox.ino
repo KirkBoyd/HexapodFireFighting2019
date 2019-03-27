@@ -43,6 +43,8 @@
 #define FRL 10 //ID num for Femur Rear Left Dynamixel AX12-A Servo
 #define FML 11 //ID num for Femur Middle Left Dynamixel AX12-A Servo
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
+#define fDown 680
+#define fUp 470
 
 /**CHECKS**/
 boolean started = false; //boolean for keeping an LED on while code is running
@@ -87,6 +89,11 @@ void loop() {
   if (startButton()){
     alpha = toRad(24);
     getBeta(alpha);
+    getPhi(beta);
+    Serial.print("phi: ");
+    Serial.println(toDeg(phi));
+    Serial.print("dynum ");
+    Serial.println(toDynum(toDeg(phi)));
     //phi = getPhi(beta);
     //Serial.println(toDeg(phi));
     delay(5000);

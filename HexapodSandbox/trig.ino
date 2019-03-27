@@ -15,26 +15,27 @@ float toRad(float ang){ //converts DEGREE float values to RADIAN float values
     //return ang*1000/57296;  //for calculation speed (avoiding decimals) use this fraction to approximate pi
 }
 float toDynum(float ang){ //converts DEGREE float values of Phi to DYNUM, which can be written to the servo
-  return ang/0.2929;  //one integer value of Dynum corresponds to 0.2929 degrees
+  return (ang/0.2929)+512;  //one integer value of Dynum corresponds to 0.2929 degrees
 }
 
 /**MAIN TRIG**/
 float getBeta(float ang){ //RADIANS; takes an alpha float value
-  Serial.print("alpha: ");
-  Serial.println(toDeg(ang));
+  //Serial.print("alpha: ");  //for debug only
+  //Serial.println(toDeg(ang));  //for debug only
   delta = asin((D*sin(alpha))/r); //law of sines to find delta
-  Serial.print("delta: ");
-  Serial.println(toDeg(delta));
+  //Serial.print("delta: ");  //for debug only
+  //Serial.println(toDeg(delta));  //for debug only
   beta = toRad(180) - alpha - delta; //property of triangles (sum == 180) to find beta
-  Serial.print("beta: ");
-  Serial.println(toDeg(beta));
+  //Serial.print("beta: ");  //for debug only
+  //Serial.println(toDeg(beta));  //for debug only
   B = (r*sin(beta)/sin(alpha)); //law of sines to find B
-  Serial.print("B: ");
-  Serial.println(B);
+  //Serial.print("B: ");  //for debug only
+  //Serial.println(B);  //for debug only
   return beta;
 }
 float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180 - beta; finds angle that we want to set the leg to
-  return 180 - ang;
+  phi = M_PI - ang;
+  return phi;
 }
 
               //void setup() { //this can be put into the arduino loop to test an alpha angle of 10 degrees

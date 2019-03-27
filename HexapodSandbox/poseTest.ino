@@ -13,7 +13,7 @@ void stand(int t){
   SetPosition(12,680);
   delay(t);
 }
-//poop
+
 void fetal(int t){
   SetPosition(1,512);
   SetPosition(2,512);
