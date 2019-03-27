@@ -53,11 +53,12 @@ boolean aimed = false; //this should be true when the nozzle is aimed on center 
 
 /**TRIG**/
 float alpha = 0;  //RADIANS; angle of deflection from center of circle to default leg position to new angle
-int r = 30.31;  //(in mm) length of coxa from outer circle of base to outside of motor clip
-int D = 72; //(in mm) radius of the base from center to outermost circle 
+float r = 30.31;  //(in mm) length of coxa from outer circle of base to outside of motor clip
+float D = 72; //(in mm) radius of the base from center to outermost circle 
 float delta; //RADIANS; angle opposite length D in triangle
 float B; //(in mm)third leg of triangle. changes in length as angle phi increases (or beta decreases)
 float beta; //RADIANS; third angle in trangle, opposite length B, decreases as phi increases (supplementary angles)
+float phi;
 #define numSteps 1023 //max value to set AX-12A servos could possibly reach
 #define centered 512  //centered position of AX-12A
 #define dynaMax 804 //maximum allowed position of AX-12A for current Hexapod
@@ -86,7 +87,8 @@ void loop() {
   if (startButton()){
     alpha = toRad(24);
     getBeta(alpha);
-    Serial.println(toDeg(beta));
+    //phi = getPhi(beta);
+    //Serial.println(toDeg(phi));
     delay(5000);
   }
 }

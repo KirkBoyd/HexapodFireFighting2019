@@ -20,9 +20,18 @@ float toDynum(float ang){ //converts DEGREE float values of Phi to DYNUM, which 
 
 /**MAIN TRIG**/
 float getBeta(float ang){ //RADIANS; takes an alpha float value
+  Serial.print("alpha: ");
+  Serial.println(toDeg(ang));
   delta = asin((D*sin(alpha))/r); //law of sines to find delta
+  Serial.print("delta: ");
+  Serial.println(toDeg(delta));
   beta = toRad(180) - alpha - delta; //property of triangles (sum == 180) to find beta
+  Serial.print("beta: ");
+  Serial.println(toDeg(beta));
   B = (r*sin(beta)/sin(alpha)); //law of sines to find B
+  Serial.print("B: ");
+  Serial.println(B);
+  return beta;
 }
 float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180 - beta; finds angle that we want to set the leg to
   return 180 - ang;
