@@ -43,8 +43,8 @@
 #define FRL 10 //ID num for Femur Rear Left Dynamixel AX12-A Servo
 #define FML 11 //ID num for Femur Middle Left Dynamixel AX12-A Servo
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
-#define fDown 680
-#define fUp 470
+#define fDown 680 //femur down to support weight servo value
+#define fUp 470  //femur up to move coxa, servo value
 
 /**CHECKS**/
 boolean started = false; //boolean for keeping an LED on while code is running
@@ -61,11 +61,11 @@ float delta; //RADIANS; angle opposite length D in triangle
 float B; //(in mm)third leg of triangle. changes in length as angle phi increases (or beta decreases)
 float beta; //RADIANS; third angle in trangle, opposite length B, decreases as phi increases (supplementary angles)
 float phi;
+int dynum;
 #define numSteps 1023 //max value to set AX-12A servos could possibly reach
 #define centered 512  //centered position of AX-12A
 #define dynaMax 804 //maximum allowed position of AX-12A for current Hexapod
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
-int dynaNum;
 
 /**MAIN**/
 void setup() {
@@ -87,13 +87,11 @@ void setup() {
 
 void loop() {
   if (startButton()){
-    alpha = toRad(24);
+    alpha = toRad(3);
     getBeta(alpha);
     getPhi(beta);
-    Serial.print("phi: ");
-    Serial.println(toDeg(phi));
-    Serial.print("dynum ");
-    Serial.println(toDynum(toDeg(phi)));
+    toDynum(toDeg(phi));
+    printAngles();
     //phi = getPhi(beta);
     //Serial.println(toDeg(phi));
     delay(5000);
