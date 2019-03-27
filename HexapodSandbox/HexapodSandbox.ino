@@ -69,7 +69,7 @@ int dynum;
 
 /**MAIN**/
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(38400);
   pinMode(soundLEDport,OUTPUT);
   digitalWrite(soundLEDport,LOW);
   pinMode(flameLEDport,OUTPUT);
