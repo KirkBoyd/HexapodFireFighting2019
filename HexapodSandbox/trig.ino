@@ -38,8 +38,14 @@ float getPhi(float ang){ //RADIANS; takes beta as parameter to use literally 180
   phi = M_PI - ang;
   return M_PI - ang;
 }
-int fullTrig(float ang){ //RADIANS --> dynum; takes alpha and calculates to needed dynum
+int fullTrig(float ang){ //DEGREES --> dynum; takes alpha (in DEGREES) and calculates to needed dynum
+  alpha = toRad(ang);
+  getBeta(alpha);
+  getPhi(beta);
+  toDynum(toDeg(phi));
+  return dynum;
 }
+
 void printAngles(){
   Serial.println("ANGLES...");
   Serial.print("alpha: ");

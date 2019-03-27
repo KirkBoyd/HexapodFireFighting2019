@@ -92,6 +92,8 @@ void loop() {
     getPhi(beta);
     toDynum(toDeg(phi));
     printAngles();
+    Serial.print("FINAL ANSWER: ");
+    Serial.println(fullTrig(3));
     //phi = getPhi(beta);
     //Serial.println(toDeg(phi));
     delay(5000);
