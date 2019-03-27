@@ -69,7 +69,7 @@ int dynum;
 
 /**MAIN**/
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(9600);
   pinMode(soundLEDport,OUTPUT);
   digitalWrite(soundLEDport,LOW);
   pinMode(flameLEDport,OUTPUT);
@@ -81,31 +81,31 @@ void setup() {
   pinMode(startButtonPort,INPUT);
   stand(1000);
   Serial.println("init");
-//  while(!soundSystem()){
-//  }
+      //  while(!soundSystem()){}
 }
-
-void loop() {
-  Serial.println(startButton());
-  if (startButton()){
-//    alpha = toRad(3);
-//    getBeta(alpha);
-//    getPhi(beta);
-//    toDynum(toDeg(phi));
-//    printAngles();
-//    Serial.print("FINAL ANSWER: ");
-//    Serial.println(fullTrig(3));
-    //phi = getPhi(beta);
-    //Serial.println(toDeg(phi));
-    while(!startButton()){
+boolean startButton(){ // returns true when green start button is depressed
+  if(digitalRead(startButtonPort) == LOW){ 
+    started = true;
+    return true;
+  }
+  else{return false;}
+}
+void loop(){
+  if(startButton()){//initiates code within loop at button press
+    delay(500);//wait a half second to release the button
+    while(!startButton()){//continues to execute this code until the button is pressed again
+      Serial.println("in Loop");
       SetPosition(7,fUp);
       delay(500);
       SetPosition(1,fullTrig(3));
       delay(500);
       SetPosition(1,fullTrig(0));
     }
+    while(startButton()){}//wait with the button down until it goes back up
+    delay(1000);//if button was pressed again wait to release it so the loop exits
   }
 }
+
 
 /* Main walk (add back later after testing new trig and such if desired) */
 //    walkStance(1000);
@@ -117,3 +117,15 @@ void loop() {
 //      walkD(500);
 //      walkE(500);
 //    }
+
+
+/*moved out 03/27/19
+//    alpha = toRad(3);
+//    getBeta(alpha);
+//    getPhi(beta);
+//    toDynum(toDeg(phi));
+//    printAngles();
+//    Serial.print("FINAL ANSWER: ");
+//    Serial.println(fullTrig(3));
+    //phi = getPhi(beta);
+    //Serial.println(toDeg(phi));
