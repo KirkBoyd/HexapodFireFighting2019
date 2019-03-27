@@ -84,7 +84,7 @@ void setup() {
 
 void loop() {
   if (startButton()){
-    alpha = toRad(10);
+    alpha = toRad(24);
     getBeta(alpha);
     Serial.println(toDeg(beta));
     delay(5000);

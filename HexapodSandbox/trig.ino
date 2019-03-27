@@ -7,10 +7,12 @@
 
 /**CONVERSIONS**/
 float toDeg(float ang){ //converts RADIAN float values to DEGREE float values
-  return ang*57296/1000; //for calculation speed (avoiding decimals) use this fraction to approximate pi
+  return ang*(180/M_PI);    
+    //return ang*57296/1000; //for calculation speed (avoiding decimals) use this fraction to approximate pi
 }
 float toRad(float ang){ //converts DEGREE float values to RADIAN float values
-  return ang*1000/57296;  //for calculation speed (avoiding decimals) use this fraction to approximate pi
+  return ang*(M_PI/180);
+    //return ang*1000/57296;  //for calculation speed (avoiding decimals) use this fraction to approximate pi
 }
 float toDynum(float ang){ //converts DEGREE float values of Phi to DYNUM, which can be written to the servo
   return ang/0.2929;  //one integer value of Dynum corresponds to 0.2929 degrees
