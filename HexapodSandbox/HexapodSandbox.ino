@@ -86,17 +86,24 @@ void setup() {
 }
 
 void loop() {
+  Serial.println(startButton());
   if (startButton()){
-    alpha = toRad(3);
-    getBeta(alpha);
-    getPhi(beta);
-    toDynum(toDeg(phi));
-    printAngles();
-    Serial.print("FINAL ANSWER: ");
-    Serial.println(fullTrig(3));
+//    alpha = toRad(3);
+//    getBeta(alpha);
+//    getPhi(beta);
+//    toDynum(toDeg(phi));
+//    printAngles();
+//    Serial.print("FINAL ANSWER: ");
+//    Serial.println(fullTrig(3));
     //phi = getPhi(beta);
     //Serial.println(toDeg(phi));
-    delay(5000);
+    while(!startButton()){
+      SetPosition(7,fUp);
+      delay(500);
+      SetPosition(1,fullTrig(3));
+      delay(500);
+      SetPosition(1,fullTrig(0));
+    }
   }
 }
 
