@@ -6,7 +6,7 @@
 /**LIBRARIES**/
 #include <ax12.h> //library for controlling Dynamixel AX12-A Servo
 #include <math.h> //extra functions like inverse trig needed
-
+#include <IRremote.h> //ir remote library to use for pose debugging
 /****I/O****/
 #define soundLEDport 2 //blue LED
 #define flameLEDport 3 //red LED
@@ -104,34 +104,10 @@ void loop(){
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
-      turnSlowR();
-      //fwd();
+      //turnSlowR();
+      fwd();
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
   }
 }
-
-
-/* Main walk (add back later after testing new trig and such if desired) */
-//    walkStance(1000);
-//    walkA(500);
-//    delay(1000);
-//    while(!startButton()){
-//      walkB(500);
-//      walkC(500);
-//      walkD(500);
-//      walkE(500);
-//    }
-
-
-/*moved out 03/27/19
-//    alpha = toRad(3);
-//    getBeta(alpha);
-//    getPhi(beta);
-//    toDynum(toDeg(phi));
-//    printAngles();
-//    Serial.print("FINAL ANSWER: ");
-//    Serial.println(fullTrig(3));
-    //phi = getPhi(beta);
-    //Serial.println(toDeg(phi));
