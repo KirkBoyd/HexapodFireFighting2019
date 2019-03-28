@@ -67,6 +67,7 @@ int dynum;
 #define dynaMax 804 //maximum allowed position of AX-12A for current Hexapod
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
+#define tim 200 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 /**MAIN**/
 void setup() {
   Serial.begin(9600);
@@ -82,6 +83,9 @@ void setup() {
   stand(1000);
   Serial.println("init");
       //  while(!soundSystem()){}
+      
+  /*TEST ONE TIME AT INIT*/
+  fwd();
 }
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
@@ -91,15 +95,11 @@ boolean startButton(){ // returns true when green start button is depressed
   else{return false;}
 }
 void loop(){
+  
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
-      Serial.println("in Loop");
-      SetPosition(7,fUp);
-      delay(500);
-      SetPosition(1,fullTrig(3));
-      delay(500);
-      SetPosition(1,fullTrig(0));
+      
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
