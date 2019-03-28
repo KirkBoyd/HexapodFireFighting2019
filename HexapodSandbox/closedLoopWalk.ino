@@ -9,38 +9,38 @@ void fwd(){
   delay(tim);
   oddsFwd();
   evensBack();
-  delay(tim);
+      //delay(tim); dont think we need a delay here
   oddsDown();
   delay(tim);
   evensUp();
   delay(tim);
   evensFwd();
   oddsBack();
-  delay(tim);
+      //delay(tim);  dont think we need a delay here
   evensDown();
   delay(tim);
 }
 
 
 void evensFwd(){
-  SetPosition(CMR,fullTrig(-5));
-  SetPosition(CRL,fullTrig(5));
-  SetPosition(CFL,fullTrig(5));
+  SetPosition(CMR,fullTrig(-stepSize));
+  SetPosition(CRL,fullTrig(stepSize));
+  SetPosition(CFL,fullTrig(stepSize));
 }
 void evensBack(){
-  SetPosition(CMR,fullTrig(5));
-  SetPosition(CRL,fullTrig(-5));
-  SetPosition(CFL,fullTrig(-5));
+  SetPosition(CMR,fullTrig(stepSize));
+  SetPosition(CRL,fullTrig(-stepSize));
+  SetPosition(CFL,fullTrig(-stepSize));
 }
 void oddsFwd(){
-  SetPosition(CML,fullTrig(5));
-  SetPosition(CRR,fullTrig(-5));
-  SetPosition(CFR,fullTrig(-5));
+  SetPosition(CML,fullTrig(stepSize));
+  SetPosition(CRR,fullTrig(-stepSize));
+  SetPosition(CFR,fullTrig(-stepSize));
 }
 void oddsBack(){
-  SetPosition(CML,fullTrig(-5));
-  SetPosition(CRR,fullTrig(5));
-  SetPosition(CFR,fullTrig(5));
+  SetPosition(CML,fullTrig(-stepSize));
+  SetPosition(CRR,fullTrig(stepSize));
+  SetPosition(CFR,fullTrig(stepSize));
 }
 void evensUp(){//puts even numbered femurs up
   //while(GetPosition(FFL) != fUp){

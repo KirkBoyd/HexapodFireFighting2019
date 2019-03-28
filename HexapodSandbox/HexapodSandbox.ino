@@ -68,6 +68,8 @@ int dynum;
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
 #define tim 200 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
+#define stepSize 3//DEGREES; sets the alpha value for how much to step
+
 /**MAIN**/
 void setup() {
   Serial.begin(9600);
