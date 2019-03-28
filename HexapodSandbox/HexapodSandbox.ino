@@ -30,7 +30,7 @@
 #define sharp2port 22 //sharp sensor 2 port for navigation
 #define uvTronPort 23 //port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
-#define irReceiverPin 24 //port for ir receiver module
+#define irReceiverPin 0 //port for ir receiver module
 
 /****JOINTS****/
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
