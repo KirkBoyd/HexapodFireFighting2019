@@ -44,7 +44,7 @@
 #define FML 11 //ID num for Femur Middle Left Dynamixel AX12-A Servo
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
 #define fDown 680 //femur down to support weight servo value
-#define fUp 470  //femur up to move coxa, servo value
+#define fUp 600  //femur up to move coxa, servo value
 
 /**CHECKS**/
 boolean started = false; //boolean for keeping an LED on while code is running
@@ -67,8 +67,12 @@ int dynum;
 #define dynaMax 804 //maximum allowed position of AX-12A for current Hexapod
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
-#define tim 200 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
-#define stepSize 3//DEGREES; sets the alpha value for how much to step
+#define timSm 50 //small value of below
+#define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
+#define timLg 250 //large value of above
+#define stepSm 3//DEGREES; smaller value of below for turning
+#define stepSize 5//DEGREES; sets the alpha value for how much to step
+#define stepLg 15//DEGREES; larger value of below for turning
 
 /**MAIN**/
 void setup() {
@@ -82,12 +86,11 @@ void setup() {
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
   pinMode(startButtonPort,INPUT);
-  stand(1000);
+  stand(3000);
   Serial.println("init");
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
-  fwd();
 }
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
@@ -101,7 +104,8 @@ void loop(){
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
-      
+      turnSlowR();
+      //fwd();
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits

@@ -6,19 +6,19 @@ void closedGoTo(int motor,int ang){//WIP WIP try to just write a system where th
 
 void fwd(){
   oddsUp();
-  delay(tim);
+  delay(tim); //needed
   oddsFwd();
   evensBack();
       //delay(tim); dont think we need a delay here
   oddsDown();
-  delay(tim);
+  delay(tim);  //short as possible so feet are on the ground at all times
   evensUp();
-  delay(tim);
+  delay(tim);  //needed
   evensFwd();
   oddsBack();
       //delay(tim);  dont think we need a delay here
   evensDown();
-  delay(tim);
+  delay(tim);  //short as possible so feet are on the ground at all times
 }
 
 
@@ -70,6 +70,26 @@ void oddsDown(){//puts even numbered femurs up
     SetPosition(FFR,fDown);
   //}
 }
+void evensSame(){
+  SetPosition(CMR,fullTrig(stepSize));
+  SetPosition(CRL,fullTrig(stepSize));
+  SetPosition(CFL,fullTrig(stepSize));
+}
+void evensSameRev(){
+  SetPosition(CMR,fullTrig(-stepSize));
+  SetPosition(CRL,fullTrig(-stepSize));
+  SetPosition(CFL,fullTrig(-stepSize));
+}
+void oddsSame(){
+  SetPosition(CML,fullTrig(stepSize));
+  SetPosition(CRR,fullTrig(stepSize));
+  SetPosition(CFR,fullTrig(stepSize));
+}
+void oddsSameRev(){
+  SetPosition(CML,fullTrig(-stepSize));
+  SetPosition(CRR,fullTrig(-stepSize));
+  SetPosition(CFR,fullTrig(-stepSize));
+}
 void turnFastR(){// make big steps in place in circle to turn RIGHT
   
 }
@@ -77,7 +97,22 @@ void turnFastL(){//make big steps in place in circle to turn LEFT
   
 }
 void turnSlowR(){//make small steps in place in circle to turn RIGHT
-  
+  evensUp();//femurs up
+  //delay(tim);
+  evensSame();//
+  delay(tim);
+  evensDown();//femurs down
+  delay(tim);
+  oddsUp();
+  //delay(tim);
+  evensSameRev();//with contact, move to pull itself 
+  //delay(tim);
+  oddsSame();
+  delay(tim);
+  oddsDown();
+  delay(tim);
+  oddsSameRev();
+  //delay(tim);
 }
 void turnSlowL(){//make small steps in place in circle to turn LEFT
   
