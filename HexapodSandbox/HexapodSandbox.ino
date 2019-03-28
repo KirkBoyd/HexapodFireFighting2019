@@ -7,6 +7,7 @@
 #include <ax12.h> //library for controlling Dynamixel AX12-A Servo
 #include <math.h> //extra functions like inverse trig needed
 #include <IRremote.h> //ir remote library to use for pose debugging
+
 /****I/O****/
 #define soundLEDport 2 //blue LED
 #define flameLEDport 3 //red LED
@@ -29,6 +30,7 @@
 #define sharp2port 22 //sharp sensor 2 port for navigation
 #define uvTronPort 23 //port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
+#define irReceiverPin 24 //port for ir receiver module
 
 /****JOINTS****/
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
@@ -67,12 +69,17 @@ int dynum;
 #define dynaMax 804 //maximum allowed position of AX-12A for current Hexapod
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
+/**GAIT CONTROL**/
 #define timSm 50 //small value of below
 #define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 #define timLg 250 //large value of above
 #define stepSm 3//DEGREES; smaller value of below for turning
 #define stepSize 5//DEGREES; sets the alpha value for how much to step
 #define stepLg 15//DEGREES; larger value of below for turning
+
+/**IR REMOTE**/
+IRrecv irrecv(irReceiverPin);//create variable of type IRrecv
+decode_results results;
 
 /**MAIN**/
 void setup() {
@@ -86,6 +93,7 @@ void setup() {
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
   pinMode(startButtonPort,INPUT);
+  irrecv.enableIRIn(); //enable ir receiver module
   stand(3000);
   Serial.println("init");
       //  while(!soundSystem()){}
@@ -109,5 +117,8 @@ void loop(){
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
+  }
+  if(irrecv.decode(&results)){//if the IR module gets data
+    Serial.println(results.value); //print the raw data received
   }
 }
