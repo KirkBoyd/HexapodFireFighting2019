@@ -20,6 +20,22 @@ void fwd(){
   evensDown();
   delay(tim);  //short as possible so feet are on the ground at all times
 }
+void back(){
+  oddsUp();
+  delay(tim); //needed
+  oddsBack();
+  evensFwd();
+      //delay(tim); dont think we need a delay here
+  oddsDown();
+  delay(tim);  //short as possible so feet are on the ground at all times
+  evensUp();
+  delay(tim);  //needed
+  evensBack();
+  oddsFwd();
+      //delay(tim);  dont think we need a delay here
+  evensDown();
+  delay(tim);  //short as possible so feet are on the ground at all times
+}
 
 
 void evensFwd(){
@@ -100,20 +116,35 @@ void turnSlowR(){//make small steps in place in circle to turn RIGHT
   evensUp();//femurs up
   //delay(tim);
   evensSame();//
-  delay(tim);
+  delay(turnTim);
   evensDown();//femurs down
-  delay(tim);
+  delay(turnTim);
   oddsUp();
   //delay(tim);
   evensSameRev();//with contact, move to pull itself 
   //delay(tim);
   oddsSame();
-  delay(tim);
+  delay(turnTim);
   oddsDown();
-  delay(tim);
+  delay(turnTim);
   oddsSameRev();
   //delay(tim);
 }
 void turnSlowL(){//make small steps in place in circle to turn LEFT
-  
+  evensUp();//femurs up
+  //delay(tim);
+  evensSameRev();//
+  delay(turnTim);
+  evensDown();//femurs down
+  delay(turnTim);
+  oddsUp();
+  //delay(tim);
+  evensSame();//with contact, move to pull itself 
+  //delay(tim);
+  oddsSameRev();
+  delay(turnTim);
+  oddsDown();
+  delay(turnTim);
+  oddsSame();
+  //delay(tim);
 }

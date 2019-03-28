@@ -20,6 +20,8 @@
 #define button4 10 //undefined button for future functionality
 #define button5 11  //undefined button for future functionality
 #define versa 16//port for versa valve solenoid
+#define joyX 0//analog 0 for joystick
+#define joyY 1//analog 1 for joystick
 
 /****SENSORS****/
 #define mic1port 17 //1st mic for start sequence
@@ -73,6 +75,7 @@ int dynum;
 #define timSm 50 //small value of below
 #define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 #define timLg 250 //large value of above
+#define turnTim 50
 #define stepSm 3//DEGREES; smaller value of below for turning
 #define stepSize 5//DEGREES; sets the alpha value for how much to step
 #define stepLg 15//DEGREES; larger value of below for turning
@@ -92,7 +95,7 @@ void setup() {
   digitalWrite(videoLEDport,LOW);
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
-  pinMode(startButtonPort,INPUT);
+  //pinMode(startButtonPort,INPUT);
   irrecv.enableIRIn(); //enable ir receiver module
   stand(3000);
   Serial.println("init");
@@ -108,17 +111,31 @@ boolean startButton(){ // returns true when green start button is depressed
   else{return false;}
 }
 void loop(){
-  
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
+    if(irrecv.decode(&results)){
+      Serial.println(results.value, HEX);
+      irrecv.resume();
+    }
     while(!startButton()){//continues to execute this code until the button is pressed again
-      //turnSlowR();
-      fwd();
+      if(analogRead(joyX) >= 1022){
+        fwd();
+      }
+      if(analogRead(joyX) <= 1){
+        back();
+      }
+      if(analogRead(joyY) >= 1022){
+        turnSlowR();
+      }
+      if(analogRead(joyY) <= 0){
+        turnSlowL();
+      }
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
   }
-  if(irrecv.decode(&results)){//if the IR module gets data
-    Serial.println(results.value); //print the raw data received
-  }
 }
+/*
+  
+}
+*/
