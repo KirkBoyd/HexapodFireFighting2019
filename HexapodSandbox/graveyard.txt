@@ -1,0 +1,58 @@
+
+
+/* Main walk (add back later after testing new trig and such if desired) */
+//    walkStance(1000);
+//    walkA(500);
+//    delay(1000);
+//    while(!startButton()){
+//      walkB(500);
+//      walkC(500);
+//      walkD(500);
+//      walkE(500);
+//    }
+
+
+/*moved out 03/27/19
+//    alpha = toRad(3);
+//    getBeta(alpha);
+//    getPhi(beta);
+//    toDynum(toDeg(phi));
+//    printAngles();
+//    Serial.print("FINAL ANSWER: ");
+//    Serial.println(fullTrig(3));
+    //phi = getPhi(beta);
+    //Serial.println(toDeg(phi));
+
+
+
+
+/*OLD
+void axGo(int id, int pos)    //sets motor at given ID to given position then stalls until it gets there
+  {
+  while(GetPosition(id) != pos){};
+}
+void triadGo(int a, int posA, int b, int posB, int c, int posC)  //same as axGo, but takes three motor ID's and Positions at a time and stalls after all three are called
+{
+  SetPosition(a,posA);
+  SetPosition(b,posB);
+  SetPosition(c,posC);
+  while(GetPosition(a) != posA){};
+  while(GetPosition(b) != posB){};
+  while(GetPosition(c) != posC){};
+}
+void triadGo(int a, int posA, int b, int posB, int c, int posC, int d, int posD, int e, int posE, int f, int posF)//axGo for 6 motors
+{
+  SetPosition(a,posA);
+  SetPosition(b,posB);
+  SetPosition(c,posC);
+  SetPosition(d,posD);
+  SetPosition(e,posE);
+  SetPosition(f,posF);
+  while(GetPosition(a) != posA){};
+  while(GetPosition(b) != posB){};
+  while(GetPosition(c) != posC){};
+  while(GetPosition(d) != posD){};
+  while(GetPosition(e) != posE){};
+  while(GetPosition(f) != posF){};
+}
+*/
