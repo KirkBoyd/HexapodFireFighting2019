@@ -165,22 +165,22 @@ void turn90R(){//make small steps in place in circle to turn RIGHT
   }
 }
 void evensSameSlow(){
-  SetPosition(CMR,fullTrig(stepSizeLg));
-  SetPosition(CRL,fullTrig(stepSizeLg));
-  SetPosition(CFL,fullTrig(stepSizeLg));
+  SetPosition(CMR,fullTrig(stepLg));
+  SetPosition(CRL,fullTrig(stepLg));
+  SetPosition(CFL,fullTrig(stepLg));
 }
 void evensSameRevSlow(){
-  SetPosition(CMR,fullTrig(-stepSizeLg));
-  SetPosition(CRL,fullTrig(-stepSizeLg));
-  SetPosition(CFL,fullTrig(-stepSizeLg));
+  SetPosition(CMR,fullTrig(-stepLg));
+  SetPosition(CRL,fullTrig(-stepLg));
+  SetPosition(CFL,fullTrig(-stepLg));
 }
 void oddsSameSlow(){
-  SetPosition(CML,fullTrig(stepSizeLg));
-  SetPosition(CRR,fullTrig(stepSizeLg));
-  SetPosition(CFR,fullTrig(stepSizeLg));
+  SetPosition(CML,fullTrig(stepLg));
+  SetPosition(CRR,fullTrig(stepLg));
+  SetPosition(CFR,fullTrig(stepLg));
 }
 void oddsSameRevSlow(){
-  SetPosition(CML,fullTrig(-stepSizeLg));
-  SetPosition(CRR,fullTrig(-stepSizeLg));
-  SetPosition(CFR,fullTrig(-stepSizeLg));
+  SetPosition(CML,fullTrig(-stepLg));
+  SetPosition(CRR,fullTrig(-stepLg));
+  SetPosition(CFR,fullTrig(-stepLg));
 }
