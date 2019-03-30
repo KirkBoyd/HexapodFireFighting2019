@@ -132,12 +132,12 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  Serial.println(analogRead(6));
+  //Serial.println(analogRead(6)); //for testing
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
       /** PUT MAIN CODE HERE**/
-      
+      navigate();
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
