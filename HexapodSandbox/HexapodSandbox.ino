@@ -26,11 +26,12 @@
 /****SENSORS****/
 #define mic1port 17 //1st mic for start sequence
 #define mic2port 18 //2nd mic for start sequence
-#define flameSensor1port 19 //port for flame sensor 1, on the left from robot's perspective
-#define flameSensor2port 20 //2nd flame sensor port, opposite side from above ^
-#define sharp1port 21 //sharp sensor 1 port for navigation
-#define sharp2port 22 //sharp sensor 2 port for navigation
-#define uvTronPort 23 //port for Hammamatsu UVtron sensor
+#define flameSensor1port 3 //ANALOG; port for flame sensor 1, on the left from robot's perspective
+#define flameSensor2port 2 //ANALOG; 2nd flame sensor port, opposite side from above ^
+#define sharp1port 7 //ANALOG; sharp sensor 1 port for navigation
+#define sharp2port 6 //ANALOG; sharp sensor 2 port for navigation
+#define sharp3port 5 //ANALOG; sharp sensor 2 port for navigation (too close>450)
+#define uvTronPort 4 //ANALOG; port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
 #define irReceiverPin 0 //port for ir receiver module
 
@@ -81,8 +82,8 @@ int dynum;
 #define stepLg 15//DEGREES; larger value of below for turning
 
 /**IR REMOTE**/
-IRrecv irrecv(irReceiverPin);//create variable of type IRrecv
-decode_results results;
+//IRrecv irrecv(irReceiverPin);//create variable of type IRrecv
+//decode_results results;
 
 /**MAIN**/
 void setup() {
@@ -96,7 +97,7 @@ void setup() {
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
   //pinMode(startButtonPort,INPUT);
-  irrecv.enableIRIn(); //enable ir receiver module
+  //irrecv.enableIRIn(); //enable ir receiver module
   stand(3000);
   Serial.println("init");
       //  while(!soundSystem()){}
@@ -111,12 +112,13 @@ boolean startButton(){ // returns true when green start button is depressed
   else{return false;}
 }
 void loop(){
+  Serial.println(analogRead(6));
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
-    if(irrecv.decode(&results)){
-      Serial.println(results.value, HEX);
-      irrecv.resume();
-    }
+    //if(irrecv.decode(&results)){
+      //Serial.println(results.value, HEX);
+      //irrecv.resume();
+    //}
     while(!startButton()){//continues to execute this code until the button is pressed again
       if(analogRead(joyX) >= 1022){
         fwd();
