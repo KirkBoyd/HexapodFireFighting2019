@@ -31,7 +31,7 @@
 #define flameSensor2port 2 //ANALOG; 2nd flame sensor port, opposite side from above ^
 #define sharp1port 7 //ANALOG; sharp sensor 1 port for navigation
 #define sharp2port 6 //ANALOG; sharp sensor 2 port for navigation
-#define sharp3port 5 //ANALOG; straight forward facing sharp sensor 3 port for navigation (too close>450)
+#define sharp3port 5 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
 #define uvTronPort 4 //ANALOG; port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
 #define irReceiverPin 0 //port for ir receiver module
@@ -127,11 +127,11 @@ void joystick(){//control the hexapod via joystick
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
-  if(analogRead(sharp3port)> 450){turnSlowR();}//if something is too close in front, turn right
+  if(analogRead(sharp3port)> 300){turnSlowR();}//if something is too close in front, turn right
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  //Serial.println(analogRead(6)); //for testing
+  //Serial.println(analogRead(sharp3port)); //for testing
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
