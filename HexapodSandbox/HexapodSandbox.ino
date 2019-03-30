@@ -127,7 +127,8 @@ void joystick(){//control the hexapod via joystick
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
-  if(analogRead(
+  if(analogRead(sharp3port)> 450){turnSlowR();}//if something is too close in front, turn right
+  else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
   Serial.println(analogRead(6));
