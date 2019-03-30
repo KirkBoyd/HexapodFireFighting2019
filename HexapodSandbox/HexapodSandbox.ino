@@ -104,6 +104,7 @@ void setup() {
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
+  
 }
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
@@ -127,7 +128,7 @@ void joystick(){//control the hexapod via joystick
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
-  if(analogRead(sharp3port)> 300){turnSlowR();}//if something is too close in front, turn right
+  if(analogRead(sharp3port)> 270){turn90R();}//if something is too close in front, turn right
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
@@ -136,7 +137,8 @@ void loop(){
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
       /** PUT MAIN CODE HERE**/
-      navigate();
+      //navigate();
+      turn90R();
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
