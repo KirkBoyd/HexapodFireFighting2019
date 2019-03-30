@@ -148,39 +148,4 @@ void turnSlowL(){//make small steps in place in circle to turn LEFT
   oddsSame();
   //delay(tim);
 }
-void turn90R(){//make small steps in place in circle to turn RIGHT
-  for(int i=0;i++;i<1){
-    evensUp();//femurs up
-    evensSameSlow();//
-    delay(tim);
-    evensDown();//femurs down
-    delay(tim);
-    oddsUp();
-    evensSameRevSlow();//with contact, move to pull itself 
-    oddsSameSlow();
-    delay(tim);
-    oddsDown();
-    delay(tim);
-    oddsSameRevSlow();
-  }
-}
-void evensSameSlow(){
-  SetPosition(CMR,fullTrig(stepLg));
-  SetPosition(CRL,fullTrig(stepLg));
-  SetPosition(CFL,fullTrig(stepLg));
-}
-void evensSameRevSlow(){
-  SetPosition(CMR,fullTrig(-stepLg));
-  SetPosition(CRL,fullTrig(-stepLg));
-  SetPosition(CFL,fullTrig(-stepLg));
-}
-void oddsSameSlow(){
-  SetPosition(CML,fullTrig(stepLg));
-  SetPosition(CRR,fullTrig(stepLg));
-  SetPosition(CFR,fullTrig(stepLg));
-}
-void oddsSameRevSlow(){
-  SetPosition(CML,fullTrig(-stepLg));
-  SetPosition(CRR,fullTrig(-stepLg));
-  SetPosition(CFR,fullTrig(-stepLg));
-}
+

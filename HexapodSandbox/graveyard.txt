@@ -1,4 +1,41 @@
-
+void turn90R(){//make small steps in place in circle to turn RIGHT
+  //for(int i=0;i++;i<2){
+    evensUp();//femurs up
+    evensSameSlow();//
+    delay(tim);
+    evensDown();//femurs down
+    delay(tim);
+    oddsUp();
+    evensSameRevSlow();//with contact, move to pull itself 
+    oddsSameSlow();
+    delay(tim);
+    oddsDown();
+    delay(tim);
+    oddsSameRevSlow();
+    delay(tim);
+    stand(tim);//straighten legs back
+  //}
+}
+void evensSameSlow(){
+  SetPosition(CMR,fullTrig(stepLg));
+  SetPosition(CRL,fullTrig(stepLg));
+  SetPosition(CFL,fullTrig(stepLg));
+}
+void evensSameRevSlow(){
+  SetPosition(CMR,fullTrig(-stepLg));
+  SetPosition(CRL,fullTrig(-stepLg));
+  SetPosition(CFL,fullTrig(-stepLg));
+}
+void oddsSameSlow(){
+  SetPosition(CML,fullTrig(stepLg));
+  SetPosition(CRR,fullTrig(stepLg));
+  SetPosition(CFR,fullTrig(stepLg));
+}
+void oddsSameRevSlow(){
+  SetPosition(CML,fullTrig(-stepLg));
+  SetPosition(CRR,fullTrig(-stepLg));
+  SetPosition(CFR,fullTrig(-stepLg));
+}
 
 /* Main walk (add back later after testing new trig and such if desired) */
 //    walkStance(1000);

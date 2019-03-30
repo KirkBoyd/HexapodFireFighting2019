@@ -104,7 +104,8 @@ void setup() {
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
-  
+  turnSlowR();
+  turnSlowR();
 }
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
@@ -138,7 +139,7 @@ void loop(){
     while(!startButton()){//continues to execute this code until the button is pressed again
       /** PUT MAIN CODE HERE**/
       //navigate();
-      turn90R();
+      
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
