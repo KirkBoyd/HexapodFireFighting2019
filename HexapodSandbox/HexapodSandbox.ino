@@ -1,6 +1,7 @@
 /**********************************************************************
 *  Test code for hexapod bits and bobs
 *  Evan Neu, Hunter Badey, Kirk Boyd, Mark Morales, and Evan Neu.
+*  Board: https://learn.trossenrobotics.com/arbotix/arbotix-getting-started/38-arbotix-m-hardware-overview
 *  Last edit: 03/26/2019 KB
 **********************************************************************/
 /**LIBRARIES**/
