@@ -114,17 +114,16 @@ boolean startButton(){ // returns true when green start button is depressed
 }
 void joystick(){//control the hexapod via joystick
   if(analogRead(joyX) >= 1022){
-        fwd();
-      }
-      if(analogRead(joyX) <= 1){
-        back();
-      }
-      if(analogRead(joyY) >= 1022){
-        turnSlowR();
-      }
-      if(analogRead(joyY) <= 0){
-        turnSlowL();
-      }
+      fwd();
+  }
+  if(analogRead(joyX) <= 1){
+      back();
+  }
+  if(analogRead(joyY) >= 1022){
+      turnSlowR();
+  }
+  if(analogRead(joyY) <= 0){
+      turnSlowL();
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
