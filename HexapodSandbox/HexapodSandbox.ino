@@ -30,7 +30,7 @@
 #define flameSensor2port 2 //ANALOG; 2nd flame sensor port, opposite side from above ^
 #define sharp1port 7 //ANALOG; sharp sensor 1 port for navigation
 #define sharp2port 6 //ANALOG; sharp sensor 2 port for navigation
-#define sharp3port 5 //ANALOG; sharp sensor 2 port for navigation (too close>450)
+#define sharp3port 5 //ANALOG; straight forward facing sharp sensor 3 port for navigation (too close>450)
 #define uvTronPort 4 //ANALOG; port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
 #define irReceiverPin 0 //port for ir receiver module
@@ -111,16 +111,8 @@ boolean startButton(){ // returns true when green start button is depressed
   }
   else{return false;}
 }
-void loop(){
-  Serial.println(analogRead(6));
-  if(startButton()){//initiates code within loop at button press
-    delay(500);//wait a half second to release the button
-    //if(irrecv.decode(&results)){
-      //Serial.println(results.value, HEX);
-      //irrecv.resume();
-    //}
-    while(!startButton()){//continues to execute this code until the button is pressed again
-      if(analogRead(joyX) >= 1022){
+void joystick(){//control the hexapod via joystick
+  if(analogRead(joyX) >= 1022){
         fwd();
       }
       if(analogRead(joyX) <= 1){
@@ -132,12 +124,20 @@ void loop(){
       if(analogRead(joyY) <= 0){
         turnSlowL();
       }
+  }
+}
+void navigate(){//use the sharp sensors to search the maze by avoiding walls 
+  if(analogRead(
+}
+void loop(){
+  Serial.println(analogRead(6));
+  if(startButton()){//initiates code within loop at button press
+    delay(500);//wait a half second to release the button
+    while(!startButton()){//continues to execute this code until the button is pressed again
+      /** PUT MAIN CODE HERE**/
+      
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
   }
 }
-/*
-  
-}
-*/
