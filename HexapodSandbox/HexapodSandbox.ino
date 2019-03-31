@@ -16,18 +16,18 @@
 #define runningLEDport 6 //white LED. indicates the code is running and started
 #define startButtonPort 7 //green button
 #define versa 16//port for versa valve solenoid
-#define joyX 0//analog A0 for joystick
-#define joyY 1//analog A1 for joystick
+#define joyX 0//(PURP)analog A0 for joystick
+#define joyY 1//(GREY)analog A1 for joystick
 
 /****SENSORS****/
 #define mic1port 17 //1st mic for start sequence
 #define mic2port 18 //2nd mic for start sequence
-#define flameSensor1port 3 //ANALOG; (YLW)port for flame sensor 1, on the left from robot's perspective
-#define flameSensor2port 2 //ANALOG; (ORNG)2nd flame sensor port, opposite side from above ^
+#define flameSensor1port 3 //ANALOG; (GRN)port for flame sensor 1, on the left from robot's perspective
+#define flameSensor2port 2 //ANALOG; (BLU)2nd flame sensor port, opposite side from above ^
 #define sharp1port 7 //ANALOG; (too close>250)?sharp sensor 1 port for navigation
 #define sharp2port 6 //ANALOG; (too close>350)sharp sensor 2 port for navigation
 #define sharp3port 5 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
-#define uvTronPort 4 //ANALOG; port for Hammamatsu UVtron sensor
+#define uvTronPort 4 //ANALOG; (YLW)port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
 
 /****JOINTS****/
