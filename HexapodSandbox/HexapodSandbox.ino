@@ -22,8 +22,8 @@
 /****SENSORS****/
 #define mic1port 17 //1st mic for start sequence
 #define mic2port 18 //2nd mic for start sequence
-#define flameSensor1port 3 //ANALOG; port for flame sensor 1, on the left from robot's perspective
-#define flameSensor2port 2 //ANALOG; 2nd flame sensor port, opposite side from above ^
+#define flameSensor1port 3 //ANALOG; (YLW)port for flame sensor 1, on the left from robot's perspective
+#define flameSensor2port 2 //ANALOG; (ORNG)2nd flame sensor port, opposite side from above ^
 #define sharp1port 7 //ANALOG; (too close>250)?sharp sensor 1 port for navigation
 #define sharp2port 6 //ANALOG; (too close>350)sharp sensor 2 port for navigation
 #define sharp3port 5 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
