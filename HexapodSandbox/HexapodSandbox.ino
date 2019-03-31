@@ -27,6 +27,7 @@
 #define sharp1port 7 //ANALOG; (too close>350)?sharp sensor 1 port for navigation
 #define sharp2port 6 //ANALOG; (too close>350)sharp sensor 2 port for navigation
 #define sharp3port 5 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
+#define sharp4port 1 //ANALOG; 
 #define uvTronPort 4 //ANALOG; (YLW)port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
 
@@ -113,10 +114,11 @@ void joystick(){//control the hexapod via joystick
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
-  if(analogRead(sharp3port)> 300){turn90R();}//if something is too close in front, turn right
-  else if(analogRead(sharp1port)> 350){turnSlowR();}
-  else if(analogRead(sharp2port)> 350){turnSlowL();}
-  else if(analogRead(sharp1port)<80){//if there is nothing close on left, turn towards opening
+  if(analogRead(sharp3port)> 270){turn90R();}//if something is too close in front, turn right
+  else if(analogRead(sharp1port)> 300){turnSlowR();}
+  else if(analogRead(sharp2port)> 300){turnSlowL();}
+  else if(analogRead(sharp4port)<110){//if there is nothing close on left, turn towards opening
+   digitalWrite(videoLEDport, HIGH);
    fwd();
    fwd();
    fwd();
@@ -126,11 +128,12 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
    fwd();
    fwd();
    turn90L();
+   digitalWrite(videoLEDport, LOW);
   }
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  Serial.println(analogRead(sharp1port)); //for testing
+  Serial.println(analogRead(sharp4port)); //for testing
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
