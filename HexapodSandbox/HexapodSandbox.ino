@@ -24,7 +24,7 @@
 #define mic2port 18 //2nd mic for start sequence
 #define flameSensor1port 3 //ANALOG; (GRN)port for flame sensor 1, on the left from robot's perspective
 #define flameSensor2port 2 //ANALOG; (BLU)2nd flame sensor port, opposite side from above ^
-#define sharp1port 7 //ANALOG; (too close>250)?sharp sensor 1 port for navigation
+#define sharp1port 7 //ANALOG; (too close>350)?sharp sensor 1 port for navigation
 #define sharp2port 6 //ANALOG; (too close>350)sharp sensor 2 port for navigation
 #define sharp3port 5 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
 #define uvTronPort 4 //ANALOG; (YLW)port for Hammamatsu UVtron sensor
@@ -113,34 +113,24 @@ void joystick(){//control the hexapod via joystick
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
-  if(analogRead(sharp3port)> 270){turn90R();}//if something is too close in front, turn right
-  else if(analogRead(sharp1port)> 250){turnSlowR();}
+  if(analogRead(sharp3port)> 300){turn90R();}//if something is too close in front, turn right
+  else if(analogRead(sharp1port)> 350){turnSlowR();}
   else if(analogRead(sharp2port)> 350){turnSlowL();}
-  else if(analogRead(sharp1port)<100){//if there is nothing close on left, turn towards opening
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    turn90L();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
+  else if(analogRead(sharp1port)<80){//if there is nothing close on left, turn towards opening
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   turn90L();
   }
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  Serial.println(analogRead(4)); //for testing
+  Serial.println(analogRead(sharp1port)); //for testing
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again

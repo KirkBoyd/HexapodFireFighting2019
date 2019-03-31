@@ -114,21 +114,17 @@ void turnFastL(){//make big steps in place in circle to turn LEFT
 }
 void turnSlowR(){//make small steps in place in circle to turn RIGHT
   evensUp();//femurs up
-  //delay(tim);
   evensSame();//
   delay(turnTim);
   evensDown();//femurs down
   delay(turnTim);
   oddsUp();
-  //delay(tim);
   evensSameRev();//with contact, move to pull itself 
-  //delay(tim);
   oddsSame();
   delay(turnTim);
   oddsDown();
   delay(turnTim);
   oddsSameRev();
-  //delay(tim);
 }
 void turnSlowL(){//make small steps in place in circle to turn LEFT
   evensUp();//femurs up
