@@ -7,7 +7,6 @@
 /**LIBRARIES**/
 #include <ax12.h> //library for controlling Dynamixel AX12-A Servo
 #include <math.h> //extra functions like inverse trig needed
-#include <IRremote.h> //ir remote library to use for pose debugging
 
 /****I/O****/
 #define soundLEDport 2 //blue LED
@@ -16,13 +15,9 @@
 #define pwrLEDport 5 //yellow LED
 #define runningLEDport 6 //white LED. indicates the code is running and started
 #define startButtonPort 7 //green button
-#define button2 8 //undefined button for future functionality
-#define button3 9 //undefined button for future functionality
-#define button4 10 //undefined button for future functionality
-#define button5 11  //undefined button for future functionality
 #define versa 16//port for versa valve solenoid
-#define joyX 0//analog 0 for joystick
-#define joyY 1//analog 1 for joystick
+#define joyX 0//analog A0 for joystick
+#define joyY 1//analog A1 for joystick
 
 /****SENSORS****/
 #define mic1port 17 //1st mic for start sequence
@@ -34,7 +29,6 @@
 #define sharp3port 5 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
 #define uvTronPort 4 //ANALOG; port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
-#define irReceiverPin 0 //port for ir receiver module
 
 /****JOINTS****/
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
@@ -74,17 +68,11 @@ int dynum;
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
 /**GAIT CONTROL**/
-#define timSm 100 //small value of below
 #define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 #define timLg 250 //large value of above
 #define turnTim 50
 #define stepSm 3//DEGREES; smaller value of below for turning
 #define stepSize 5//DEGREES; sets the alpha value for how much to step
-#define stepLg 15//DEGREES; larger value of below for turning
-
-/**IR REMOTE**/
-//IRrecv irrecv(irReceiverPin);//create variable of type IRrecv
-//decode_results results;
 
 /**MAIN**/
 void setup() {
@@ -97,14 +85,11 @@ void setup() {
   digitalWrite(videoLEDport,LOW);
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
-  //pinMode(startButtonPort,INPUT);
-  //irrecv.enableIRIn(); //enable ir receiver module
+  pinMode(startButtonPort,INPUT);
   stand(3000);
-  Serial.println("init");
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
-  
 }
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
@@ -131,10 +116,31 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   if(analogRead(sharp3port)> 270){turn90R();}//if something is too close in front, turn right
   else if(analogRead(sharp1port)> 250){turnSlowR();}
   else if(analogRead(sharp2port)> 350){turnSlowL();}
+  else if(analogRead(sharp1port)<100){//if there is nothing close on left, turn towards opening
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    turn90L();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+  }
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  Serial.println(analogRead(sharp1port)); //for testing
+  Serial.println(analogRead(4)); //for testing
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again

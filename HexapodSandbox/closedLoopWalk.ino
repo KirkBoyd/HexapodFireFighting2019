@@ -160,3 +160,15 @@ void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnSlowR();
   stand(50);
 }
+void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
+  turnSlowL();
+  turnSlowL();
+  turnSlowL();
+  turnSlowL();
+  turnSlowL();
+  turnSlowL();
+  turnSlowL();
+  turnSlowL();
+  turnSlowL();
+  stand(50);
+}
