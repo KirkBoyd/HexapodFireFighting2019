@@ -71,7 +71,7 @@ int dynum;
 /**GAIT CONTROL**/
 #define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 #define timLg 250 //large value of above
-#define turnTim 50
+#define turnTim 100
 #define stepSm 3//DEGREES; smaller value of below for turning
 #define stepSize 5//DEGREES; sets the alpha value for how much to step
 
