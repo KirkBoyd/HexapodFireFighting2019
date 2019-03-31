@@ -148,4 +148,15 @@ void turnSlowL(){//make small steps in place in circle to turn LEFT
   oddsSame();
   //delay(tim);
 }
-
+void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
+  turnSlowR();
+  turnSlowR();
+  turnSlowR();
+  turnSlowR();
+  turnSlowR();
+  turnSlowR();
+  turnSlowR();
+  turnSlowR();
+  turnSlowR();
+  stand(50);
+}

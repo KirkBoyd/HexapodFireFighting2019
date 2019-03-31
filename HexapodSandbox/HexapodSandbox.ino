@@ -29,8 +29,8 @@
 #define mic2port 18 //2nd mic for start sequence
 #define flameSensor1port 3 //ANALOG; port for flame sensor 1, on the left from robot's perspective
 #define flameSensor2port 2 //ANALOG; 2nd flame sensor port, opposite side from above ^
-#define sharp1port 7 //ANALOG; sharp sensor 1 port for navigation
-#define sharp2port 6 //ANALOG; sharp sensor 2 port for navigation
+#define sharp1port 7 //ANALOG; (too close>250)?sharp sensor 1 port for navigation
+#define sharp2port 6 //ANALOG; (too close>350)sharp sensor 2 port for navigation
 #define sharp3port 5 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
 #define uvTronPort 4 //ANALOG; port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
@@ -74,7 +74,7 @@ int dynum;
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
 /**GAIT CONTROL**/
-#define timSm 50 //small value of below
+#define timSm 100 //small value of below
 #define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 #define timLg 250 //large value of above
 #define turnTim 50
@@ -104,8 +104,7 @@ void setup() {
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
-  turnSlowR();
-  turnSlowR();
+  
 }
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
@@ -130,16 +129,18 @@ void joystick(){//control the hexapod via joystick
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
   if(analogRead(sharp3port)> 270){turn90R();}//if something is too close in front, turn right
+  else if(analogRead(sharp1port)> 250){turnSlowR();}
+  else if(analogRead(sharp2port)> 350){turnSlowL();}
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  //Serial.println(analogRead(sharp3port)); //for testing
+  Serial.println(analogRead(sharp1port)); //for testing
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
       /** PUT MAIN CODE HERE**/
-      //navigate();
-      
+      navigate();
+      //joystick();
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
