@@ -53,7 +53,7 @@ boolean flameSeen = false; //boolean for checking if hammamatsu has seen a the r
 boolean babySeen = false;  //boolean for checking if baby was detected with vision
 boolean uvTronDone = false; //boolean for indicating completed use of uvTron
 boolean aimed = false; //this should be true when the nozzle is aimed on center with the candle
-
+boolean didThatOneTurn = false;
 /**TRIG**/
 float alpha = 0;  //RADIANS; angle of deflection from center of circle to default leg position to new angle
 float r = 30.31;  //(in mm) length of coxa from outer circle of base to outside of motor clip
@@ -124,11 +124,54 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
    fwd();
    fwd();
    fwd();
-   fwd();
-   fwd();
-   fwd();
    turn90L();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
+   fwd();
    digitalWrite(videoLEDport, LOW);
+  }
+  else if(analogRead(sharp4port)>110 &&analogRead(sharp4port)<155 && !didThatOneTurn){
+    digitalWrite(soundLEDport, HIGH);
+    digitalWrite(flameLEDport, HIGH);
+    digitalWrite(runningLEDport, HIGH);
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    turn90L();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    turn90L();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    digitalWrite(soundLEDport, LOW);
+    didThatOneTurn = true;
   }
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
