@@ -183,6 +183,7 @@ void loop(){
       /** PUT MAIN CODE HERE**/
       navigate();
       //joystick();
+     // turnSlowR();
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits

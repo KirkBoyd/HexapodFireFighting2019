@@ -128,21 +128,17 @@ void turnSlowR(){//make small steps in place in circle to turn RIGHT
 }
 void turnSlowL(){//make small steps in place in circle to turn LEFT
   evensUp();//femurs up
-  //delay(tim);
   evensSameRev();//
   delay(turnTim);
   evensDown();//femurs down
   delay(turnTim);
   oddsUp();
-  //delay(tim);
   evensSame();//with contact, move to pull itself 
-  //delay(tim);
   oddsSameRev();
   delay(turnTim);
   oddsDown();
   delay(turnTim);
   oddsSame();
-  //delay(tim);
 }
 void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnSlowR();
