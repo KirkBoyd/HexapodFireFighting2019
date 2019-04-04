@@ -22,8 +22,8 @@
 /****SENSORS****/
 #define mic1port 17 //1st mic for start sequence
 #define mic2port 18 //2nd mic for start sequence
-#define flameSensor1port 3 //ANALOG; (GRN)port for flame sensor 1, on the left from robot's perspective
-#define flameSensor2port 2 //ANALOG; (BLU)2nd flame sensor port, opposite side from above ^
+#define flame1port 3 //ANALOG; (GRN)port for flame sensor 1, on the left from robot's perspective
+#define flame2port 2 //ANALOG; (BLU)2nd flame sensor port, opposite side from above ^
 #define sharp1port 7 //ANALOG; (too close>350)?sharp sensor 1 port for navigation
 #define sharp2port 6 //ANALOG; (too close>350)sharp sensor 2 port for navigation
 #define sharp3port 5 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
@@ -87,8 +87,8 @@ void setup() {
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
   pinMode(startButtonPort,INPUT);
-  pinMode(flameSensor1port,INPUT);
-  pinMode(flameSensor2port,INPUT);
+  pinMode(flame1port,INPUT);
+  pinMode(flame2port,INPUT);
   pinMode(uvTronPort,INPUT);
   pinMode(mic1port,INPUT);
   pinMode(mic2port,INPUT);
@@ -181,7 +181,7 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  Serial.println(analogReadPort)); //for testing
+  Serial.println(analogRead(flame1port)); //for testing
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
