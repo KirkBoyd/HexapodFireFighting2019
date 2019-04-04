@@ -112,7 +112,7 @@ void turnFastR(){// make big steps in place in circle to turn RIGHT
 void turnFastL(){//make big steps in place in circle to turn LEFT
   
 }
-void turnSlowR(){//make small steps in place in circle to turn RIGHT
+void turnR(){//make small steps in place in circle to turn RIGHT
   evensUp();//femurs up
   evensSame();//
   delay(turnTim);
@@ -126,7 +126,7 @@ void turnSlowR(){//make small steps in place in circle to turn RIGHT
   delay(turnTim);
   oddsSameRev();
 }
-void turnSlowL(){//make small steps in place in circle to turn LEFT
+void turnL(){//make small steps in place in circle to turn LEFT
   evensUp();//femurs up
   evensSameRev();//
   delay(turnTim);
@@ -141,26 +141,26 @@ void turnSlowL(){//make small steps in place in circle to turn LEFT
   oddsSame();
 }
 void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
-  turnSlowR();
-  turnSlowR();
-  turnSlowR();
-  turnSlowR();
-  turnSlowR();
-  //turnSlowR();
-  //turnSlowR();
-  //turnSlowR();
-  //turnSlowR();
+  turnR();
+  turnR();
+  turnR();
+  turnR();
+  turnR();
+  //turnR();
+  //turnR();
+  //turnR();
+  //turnR();
   stand(50);
 }
 void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
-  turnSlowL();
-  turnSlowL();
-  turnSlowL();
-  turnSlowL();
-  turnSlowL();
-  //turnSlowL();
-  //turnSlowL();
-  //turnSlowL();
-  //turnSlowL();
+  turnL();
+  turnL();
+  turnL();
+  turnL();
+  turnL();
+  //turnL();
+  //turnL();
+  //turnL();
+  //turnL();
   stand(50);
 }

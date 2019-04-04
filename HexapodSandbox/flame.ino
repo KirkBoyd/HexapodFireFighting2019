@@ -40,11 +40,11 @@ boolean secondFlameCheck(){
     return true;
   }
   else if(f1Read() > f2Read()){//reading is higher on the LEFT turn LEFT
-    turnSlowL();
+    turnL();
     return false;
   }
   else{//correct to the RIGHT if previous statement was not triggered
-    turnSlowR();
+    turnR();
     return false;
   }
  }

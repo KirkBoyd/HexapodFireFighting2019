@@ -112,16 +112,16 @@ void joystick(){//control the hexapod via joystick
       back();
   }
   if(analogRead(joyY) >= 1022){
-      turnSlowR();
+      turnR();
   }
   if(analogRead(joyY) <= 0){
-      turnSlowL();
+      turnL();
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
   if(analogRead(sharp3port)> 270){turn90R();}//if something is too close in front, turn right
-  else if(analogRead(sharp1port)> 300){turnSlowR();}
-  else if(analogRead(sharp2port)> 300){turnSlowL();}
+  else if(analogRead(sharp1port)> 300){turnR();}
+  else if(analogRead(sharp2port)> 300){turnL();}
   else if(analogRead(sharp4port)<110){//if there is nothing close on left, turn towards opening
    digitalWrite(videoLEDport, HIGH);
    fwd();
@@ -188,7 +188,7 @@ void loop(){
       /** PUT MAIN CODE HERE**/
       navigate();
       //joystick();
-     // turnSlowR();
+     // turnR();
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
