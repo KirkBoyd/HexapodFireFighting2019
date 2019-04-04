@@ -146,10 +146,6 @@ void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnR();
   turnR();
   turnR();
-  //turnR();
-  //turnR();
-  //turnR();
-  //turnR();
   stand(50);
 }
 void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
@@ -158,9 +154,5 @@ void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnL();
   turnL();
   turnL();
-  //turnL();
-  //turnL();
-  //turnL();
-  //turnL();
   stand(50);
 }
