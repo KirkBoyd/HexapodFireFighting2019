@@ -62,18 +62,5 @@ void printAngles(){
   Serial.println(dynum);
   Serial.println();
 }
-
-              //void setup() { //this can be put into the arduino loop to test an alpha angle of 10 degrees
-              //  Serial.begin(9600);
-              //}
-              //
-              //void loop() {
-              //  alpha = toRad(10);
-              //  getBeta(alpha);
-              //  Serial.println(toDeg(beta));
-              //  delay(5000);
-              //}
 /*************************************************************************/
-/*void (){
-  
-}*/
+
