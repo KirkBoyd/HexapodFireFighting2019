@@ -87,6 +87,11 @@ void setup() {
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
   pinMode(startButtonPort,INPUT);
+  pinMode(flameSensor1port,INPUT);
+  pinMode(flameSensor2port,INPUT);
+  pinMode(uvTronPort,INPUT);
+  pinMode(mic1port,INPUT);
+  pinMode(mic2port,INPUT);
   stand(3000);
       //  while(!soundSystem()){}
       
@@ -176,7 +181,7 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  Serial.println(analogRead(sharp4port)); //for testing
+  Serial.println(analogReadPort)); //for testing
   if(startButton()){//initiates code within loop at button press
     delay(500);//wait a half second to release the button
     while(!startButton()){//continues to execute this code until the button is pressed again
