@@ -156,8 +156,57 @@ void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnL();
   stand(50);
 }
+/******************EXP******SMALLER TURNS***************/
+void turnSmR(){//make smaller steps in place in circle to turn RIGHT
+  evensUp();//femurs up
+  evensSameSm();//
+  delay(timLg);
+  evensDown();//femurs down
+  delay(timLg);
+  oddsUp();
+  evensSameRev();//with contact, move to pull itself 
+  oddsSameSm();
+  delay(timLg);
+  oddsDown();
+  delay(timLg);
+  oddsSameRevSm();
+}
+void turnSmL(){//make smaller steps in place in circle to turn LEFT
+  evensUp();//femurs up
+  evensSameRevSm();//
+  delay(timLg);
+  evensDown();//femurs down
+  delay(timLg);
+  oddsUp();
+  evensSameSm();//with contact, move to pull itself 
+  oddsSameRevSm();
+  delay(timLg);
+  oddsDown();
+  delay(timLg);
+  oddsSameSm();
+}
 
-/******************POSES (OLD)****************/
+void evensSameSm(){
+  SetPosition(CMR,fullTrig(stepSm));
+  SetPosition(CRL,fullTrig(stepSm));
+  SetPosition(CFL,fullTrig(stepSm));
+}
+void evensSameRevSm(){
+  SetPosition(CMR,fullTrig(-stepSm));
+  SetPosition(CRL,fullTrig(-stepSm));
+  SetPosition(CFL,fullTrig(-stepSm));
+}
+void oddsSameSm(){
+  SetPosition(CML,fullTrig(stepSm));
+  SetPosition(CRR,fullTrig(stepSm));
+  SetPosition(CFR,fullTrig(stepSm));
+}
+void oddsSameRevSm(){
+  SetPosition(CML,fullTrig(-stepSm));
+  SetPosition(CRR,fullTrig(-stepSm));
+  SetPosition(CFR,fullTrig(-stepSm));
+}
+/******************POSES(OLD)****************/
 void stand(int t){
   SetPosition(1,512);
   SetPosition(2,512);

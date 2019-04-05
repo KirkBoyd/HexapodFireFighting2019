@@ -31,21 +31,24 @@ boolean firstFlameCheck(){
 /*
  * Logic for aiming at the flame using IR phototransistors
  */
-boolean secondFlameCheck(){
+void secondFlameCheck(){
   if(f1Read()<flameMin){//if the sensors are reading too low, do something [TBD]
-    
+    fwd();
   }
   if(f1Read() == f2Read()){ 
     aimed = true;
-    return true;
   }
   else if(f1Read() > f2Read()){//reading is higher on the LEFT turn LEFT
-    turnL();
-    return false;
+    turnSmL();
   }
-  else{//correct to the RIGHT if previous statement was not triggered
-    turnR();
-    return false;
+  else if(f1Read() < f2Read()){//reading is higher on the RIGHT turn RIGHT
+    turnSmR();
   }
- }
+}
+void versaFire(){
+  digitalWrite(versa, HIGH);
+}
 
+void uvTronCheck(){
+  
+}

@@ -16,8 +16,8 @@
 #define runningLEDport 6 //white LED. indicates the code is running and started
 #define startButtonPort 7 //green button
 #define versa 16//port for versa valve solenoid
-#define joyX 0//(PURP)analog A0 for joystick
-#define joyY 1//(GREY)analog A1 for joystick
+#define joyX 4//(PURP)analog A0 for joystick
+#define joyY 0//(GREY)analog A1 for joystick
 
 /****SENSORS****/
 #define mic1port 17 //1st mic for start sequence
@@ -72,8 +72,16 @@ int dynum;
 #define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 #define timLg 250 //large value of above
 #define turnTim 100
-#define stepSm 3//DEGREES; smaller value of below for turning
+#define stepSm 2//DEGREES; smaller value of below for turning
 #define stepSize 5//DEGREES; sets the alpha value for how much to step
+
+/**UVTRON**/
+unsigned long timeNow = millis();
+unsigned long timeBefore = timeNow;
+unsigned long timeDiff;
+int flameSum = 0;
+int thresh = 90;
+int interval = 500;
 
 /**MAIN**/
 void setup() {
@@ -93,9 +101,11 @@ void setup() {
   pinMode(mic1port,INPUT);
   pinMode(mic2port,INPUT);
   stand(3000);
+  timeBefore = timeNow;
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
+  
 }
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
@@ -112,10 +122,10 @@ void joystick(){//control the hexapod via joystick
       back();
   }
   if(analogRead(joyY) >= 1022){
-      turnR();
+      turnSmR();
   }
   if(analogRead(joyY) <= 0){
-      turnL();
+      turnSmL();
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
@@ -181,16 +191,36 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  Serial.println(analogRead(flame1port)); //for testing
-  if(startButton()){//initiates code within loop at button press
-    delay(500);//wait a half second to release the button
-    while(!startButton()){//continues to execute this code until the button is pressed again
-      /** PUT MAIN CODE HERE**/
-      navigate();
-      //joystick();
-     // turnR();
+  flameSum += analogRead(0);
+  timeNow = millis();
+  timeDiff = timeNow - timeBefore;
+//  Serial.print("timeDiff = ");
+//  Serial.println(timeDiff);
+//  Serial.print("flameSum = ");
+//  Serial.println(flameSum);
+  if(timeDiff >= interval){
+    timeBefore = timeNow;
+//    timeNow = millis();
+    if(flameSum>=3000){
+      Serial.println("Flame Detected");
+      Serial.print("flameSum = ");
+      Serial.println(flameSum);
+      //delay(1000);
     }
-    while(startButton()){}//wait with the button down until it goes back up
-    delay(1000);//if button was pressed again wait to release it so the loop exits
+    
+    flameSum = 0;
   }
+  //Serial.println(analogRead(0)); //for testing
+//  if(startButton()){//initiates code within loop at button press
+//    delay(500);//wait a half second to release the button
+//    while(!startButton()){//continues to execute this code until the button is pressed again
+//      /** PUT MAIN CODE HERE**/
+//      //versaFire();
+//      //navigate();
+//      //joystick();
+//     // turnR();
+//    }
+//    while(startButton()){}//wait with the button down until it goes back up
+//    delay(1000);//if button was pressed again wait to release it so the loop exits
+//  }
 }
