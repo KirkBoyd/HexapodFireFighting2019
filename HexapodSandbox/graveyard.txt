@@ -1,3 +1,24 @@
+/*********UVTRON*****************/
+//  flameSum += analogRead(0);
+//  timeNow = millis();
+//  timeDiff = timeNow - timeBefore;
+////  Serial.print("timeDiff = ");
+////  Serial.println(timeDiff);
+////  Serial.print("flameSum = ");
+////  Serial.println(flameSum);
+//  if(timeDiff >= interval){
+//    timeBefore = timeNow;
+////    timeNow = millis();
+//    if(flameSum>=3000){
+//      Serial.println("Flame Detected");
+//      Serial.print("flameSum = ");
+//      Serial.println(flameSum);
+//      //delay(1000);
+//    }
+//    
+//    flameSum = 0;
+//  }
+/*********************/
 void turn90R(){//make small steps in place in circle to turn RIGHT
   //for(int i=0;i++;i<2){
     evensUp();//femurs up
