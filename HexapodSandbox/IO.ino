@@ -56,4 +56,7 @@ void runningLED(boolean state){ // turns on white LED when passed 'true'
   if (state){digitalWrite(runningLEDport, HIGH);}
   else{digitalWrite(runningLEDport, LOW);}
 }
-
+void pwrLED(boolean state){ // turns on yellow LED when passed 'true'
+  if(state){digitalWrite(pwrLEDport,HIGH);}
+  else{digitalWrite(pwrLEDport,LOW);}
+}

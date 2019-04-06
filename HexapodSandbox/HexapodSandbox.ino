@@ -54,6 +54,7 @@ boolean babySeen = false;  //boolean for checking if baby was detected with visi
 boolean uvTronDone = false; //boolean for indicating completed use of uvTron
 boolean aimed = false; //this should be true when the nozzle is aimed on center with the candle
 boolean didThatOneTurn = false;
+
 /**TRIG**/
 float alpha = 0;  //RADIANS; angle of deflection from center of circle to default leg position to new angle
 float r = 30.31;  //(in mm) length of coxa from outer circle of base to outside of motor clip
@@ -103,7 +104,7 @@ void setup() {
   pinMode(mic1port,INPUT);
   pinMode(mic2port,INPUT);
   stand(3000);
-  timeBefore = timeNow;
+  //timeBefore = timeNow;
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
@@ -199,14 +200,37 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
+  Serial.println(analogRead(flame2port));
   if(startButton()){//initiates code within loop at button press
+    pwrLED(false);
     delay(500);//wait a half second to release the button
+    pwrLED(true);
     while(!startButton()){//continues to execute this code until the button is pressed again
       /** PUT MAIN CODE HERE**/
       //versaFire();
+      /**COMPETITION LOGIC**/
+      firstFlameCheck();
+      if(!flameSeen){//if uvTron has not picked up a flame reading
+        navigate();
+      }
+      else{//uvTron spotted something
+        pwrLED(false);
+        delay(50);
+        pwrLED(true);
+        delay(50);
+        pwrLED(false);
+        delay(50);
+        pwrLED(true);
+        delay(50);
+        pwrLED(false);
+        delay(50);
+        pwrLED(true);
+        delay(50);
+        secondFlameCheck();
+      }
       //navigate();
-      joystick();
-     // turnR();
+      //joystick();
+      // turnR();
     }
     while(startButton()){}//wait with the button down until it goes back up
     delay(1000);//if button was pressed again wait to release it so the loop exits
