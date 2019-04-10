@@ -60,3 +60,19 @@ void pwrLED(boolean state){ // turns on yellow LED when passed 'true'
   if(state){digitalWrite(pwrLEDport,HIGH);}
   else{digitalWrite(pwrLEDport,LOW);}
 }
+void blinkLED(int LEDid){ //makes LED blink. LED stays on when finished
+  digitalWrite(LEDid, HIGH);
+  delay(50);
+  digitalWrite(LEDid, LOW);
+  delay(50);
+  digitalWrite(LEDid, HIGH);
+  delay(50);
+  digitalWrite(LEDid, LOW);
+  delay(50);
+  digitalWrite(LEDid, HIGH);
+  delay(50);
+  digitalWrite(LEDid, LOW);
+  delay(50);
+  digitalWrite(LEDid, HIGH);
+  delay(50);
+}

@@ -9,14 +9,12 @@ void fwd(){
   delay(tim); //needed
   oddsFwd();
   evensBack();
-      //delay(tim); dont think we need a delay here
   oddsDown();
   delay(tim);  //short as possible so feet are on the ground at all times
   evensUp();
   delay(tim);  //needed
   evensFwd();
   oddsBack();
-      //delay(tim);  dont think we need a delay here
   evensDown();
   delay(tim);  //short as possible so feet are on the ground at all times
 }
@@ -25,14 +23,12 @@ void back(){
   delay(tim); //needed
   oddsBack();
   evensFwd();
-      //delay(tim); dont think we need a delay here
   oddsDown();
   delay(tim);  //short as possible so feet are on the ground at all times
   evensUp();
   delay(tim);  //needed
   evensBack();
   oddsFwd();
-      //delay(tim);  dont think we need a delay here
   evensDown();
   delay(tim);  //short as possible so feet are on the ground at all times
 }
@@ -156,33 +152,47 @@ void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnL();
   stand(50);
 }
-/******************EXP******SMALLER TURNS***************/
+/******************EXP******SMALLER MOVES***************/
+void fwdSm(){
+  oddsUp();
+  delay(tim); //needed
+  oddsFwdSm();
+  evensBackSm();
+  oddsDown();
+  delay(tim);  //short as possible so feet are on the ground at all times
+  evensUp();
+  delay(tim);  //needed
+  evensFwdSm();
+  oddsBackSm();
+  evensDown();
+  delay(tim);  //short as possible so feet are on the ground at all times
+}
 void turnSmR(){//make smaller steps in place in circle to turn RIGHT
   evensUp();//femurs up
   evensSameSm();//
-  delay(timLg);
+  delay(tim);
   evensDown();//femurs down
-  delay(timLg);
+  delay(tim);
   oddsUp();
   evensSameRev();//with contact, move to pull itself 
   oddsSameSm();
-  delay(timLg);
+  delay(tim);
   oddsDown();
-  delay(timLg);
+  delay(tim);
   oddsSameRevSm();
 }
 void turnSmL(){//make smaller steps in place in circle to turn LEFT
   evensUp();//femurs up
   evensSameRevSm();//
-  delay(timLg);
+  delay(tim);
   evensDown();//femurs down
-  delay(timLg);
+  delay(tim);
   oddsUp();
   evensSameSm();//with contact, move to pull itself 
   oddsSameRevSm();
-  delay(timLg);
+  delay(tim);
   oddsDown();
-  delay(timLg);
+  delay(tim);
   oddsSameSm();
 }
 
@@ -205,6 +215,26 @@ void oddsSameRevSm(){
   SetPosition(CML,fullTrig(-stepSm));
   SetPosition(CRR,fullTrig(-stepSm));
   SetPosition(CFR,fullTrig(-stepSm));
+}
+void oddsFwdSm(){
+  SetPosition(CML,fullTrig(stepSm));
+  SetPosition(CRR,fullTrig(-stepSm));
+  SetPosition(CFR,fullTrig(-stepSm));
+}
+void oddsBackSm(){
+  SetPosition(CML,fullTrig(-stepSm));
+  SetPosition(CRR,fullTrig(stepSm));
+  SetPosition(CFR,fullTrig(stepSm));
+}
+void evensFwdSm(){
+  SetPosition(CMR,fullTrig(-stepSm));
+  SetPosition(CRL,fullTrig(stepSm));
+  SetPosition(CFL,fullTrig(stepSm));
+}
+void evensBackSm(){
+  SetPosition(CMR,fullTrig(stepSm));
+  SetPosition(CRL,fullTrig(-stepSm));
+  SetPosition(CFL,fullTrig(-stepSm));
 }
 /******************POSES(OLD)****************/
 void stand(int t){

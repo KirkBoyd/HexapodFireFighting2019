@@ -1,0 +1,415 @@
+/************ Aimed right at the Candle at close range ********/
+f1 : 652     f2 : 881
+943
+flameSeen : 1
+f1 : 638     f2 : 882
+948
+flameSeen : 1
+f1 : 642     f2 : 888
+949
+flameSeen : 1
+f1 : 661     f2 : 863
+944
+flameSeen : 1
+f1 : 654     f2 : 870
+940
+flameSeen : 1
+f1 : 650     f2 : 878
+948
+flameSeen : 1
+f1 : 653     f2 : 877
+943
+flameSeen : 1
+f1 : 643     f2 : 886
+947
+flameSeen : 1
+f1 : 623     f2 : 890
+947
+flameSeen : 1
+f1 : 577     f2 : 912
+947
+flameSeen : 1
+f1 : 537     f2 : 928
+945
+flameSeen : 1
+f1 : 547     f2 : 925
+955
+flameSeen : 1
+f1 : 538     f2 : 919
+949
+flameSeen : 1
+f1 : 532     f2 : 905
+944
+flameSeen : 1
+f1 : 554     f2 : 901
+943
+flameSeen : 1
+f1 : 570     f2 : 896
+946
+flameSeen : 1
+f1 : 550     f2 : 897
+943
+flameSeen : 1
+f1 : 562     f2 : 901
+943
+flameSeen : 1
+f1 : 572     f2 : 898
+949
+flameSeen : 1
+f1 : 565     f2 : 902
+948
+flameSeen : 1
+f1 : 566     f2 : 898
+945
+flameSeen : 1
+f1 : 574     f2 : 901
+952
+flameSeen : 1
+f1 : 578     f2 : 904
+945
+flameSeen : 1
+f1 : 567     f2 : 900
+945
+flameSeen : 1
+f1 : 561     f2 : 897
+951
+flameSeen : 1
+f1 : 552     f2 : 897
+941
+flameSeen : 1
+f1 : 560     f2 : 891
+942
+flameSeen : 1
+f1 : 718     f2 : 842
+944
+flameSeen : 1
+f1 : 884     f2 : 774
+941
+flameSeen : 1
+f1 : 887     f2 : 768
+948
+flameSeen : 1
+f1 : 882     f2 : 772
+948
+flameSeen : 1
+f1 : 888     f2 : 760
+941
+flameSeen : 1
+f1 : 886     f2 : 775
+944
+flameSeen : 1
+f1 : 881     f2 : 779
+949
+flameSeen : 1
+f1 : 871     f2 : 784
+945
+flameSeen : 1
+f1 : 871     f2 : 789
+946
+flameSeen : 1
+f1 : 875     f2 : 784
+949
+flameSeen : 1
+f1 : 859     f2 : 784
+943
+flameSeen : 1
+f1 : 877     f2 : 781
+945
+flameSeen : 1
+f1 : 883     f2 : 769
+948
+flameSeen : 1
+f1 : 869     f2 : 781
+943
+flameSeen : 1
+f1 : 887     f2 : 755
+943
+flameSeen : 1
+f1 : 875     f2 : 753
+939
+flameSeen : 1
+f1 : 879     f2 : 722
+936
+flameSeen : 1
+f1 : 874     f2 : 731
+941
+flameSeen : 1
+f1 : 863     f2 : 755
+936
+flameSeen : 1
+f1 : 875     f2 : 807
+937
+flameSeen : 1
+f1 : 875     f2 : 785
+943
+flameSeen : 1
+f1 : 886     f2 : 804
+947
+flameSeen : 1
+f1 : 889     f2 : 795
+960
+flameSeen : 1
+f1 : 876     f2 : 788
+943
+flameSeen : 1
+f1 : 852     f2 : 768
+938
+flameSeen : 1
+f1 : 791     f2 : 817
+930
+flameSeen : 1
+f1 : 762     f2 : 839
+925
+flameSeen : 1
+f1 : 670     f2 : 856
+940
+flameSeen : 1
+f1 : 843     f2 : 799
+939
+flameSeen : 1
+f1 : 879     f2 : 772
+936
+flameSeen : 1
+f1 : 906     f2 : 754
+938
+flameSeen : 1
+f1 : 863     f2 : 777
+941
+flameSeen : 1
+f1 : 891     f2 : 782
+931
+flameSeen : 1
+f1 : 915     f2 : 802
+926
+flameSeen : 1
+f1 : 897     f2 : 815
+937
+flameSeen : 1
+f1 : 878     f2 : 819
+939
+flameSeen : 1
+f1 : 883     f2 : 814
+938
+flameSeen : 1
+f1 : 878     f2 : 811
+938
+flameSeen : 1
+f1 : 873     f2 : 822
+941
+flameSeen : 1
+f1 : 865     f2 : 815
+940
+flameSeen : 1
+f1 : 856     f2 : 811
+931
+flameSeen : 1
+f1 : 861     f2 : 807
+943
+flameSeen : 1
+f1 : 851     f2 : 807
+934
+flameSeen : 1
+f1 : 860     f2 : 822
+939
+flameSeen : 1
+f1 : 853     f2 : 831
+938
+flameSeen : 1
+f1 : 693     f2 : 876
+942
+flameSeen : 1
+f1 : 698     f2 : 839
+939
+flameSeen : 1
+f1 : 703     f2 : 834
+928
+flameSeen : 1
+f1 : 556     f2 : 884
+930
+flameSeen : 1
+f1 : 574     f2 : 872
+926
+flameSeen : 1
+f1 : 767     f2 : 806
+924
+flameSeen : 1
+f1 : 656     f2 : 842
+926
+flameSeen : 1
+f1 : 680     f2 : 832
+930
+flameSeen : 1
+f1 : 712     f2 : 831
+930
+flameSeen : 1
+f1 : 577     f2 : 877
+931
+flameSeen : 1
+f1 : 600     f2 : 876
+933
+flameSeen : 1
+f1 : 614     f2 : 874
+936
+flameSeen : 1
+f1 : 631     f2 : 857
+929
+flameSeen : 1
+f1 : 698     f2 : 830
+932
+flameSeen : 1
+f1 : 717     f2 : 824
+932
+flameSeen : 1
+f1 : 774     f2 : 812
+927
+flameSeen : 1
+f1 : 764     f2 : 808
+928
+flameSeen : 1
+f1 : 770     f2 : 807
+927
+flameSeen : 1
+f1 : 770     f2 : 819
+936
+flameSeen : 1
+f1 : 779     f2 : 837
+933
+flameSeen : 1
+f1 : 812     f2 : 815
+936
+flameSeen : 1
+f1 : 821     f2 : 820
+940
+flameSeen : 1
+f1 : 843     f2 : 781
+935
+flameSeen : 1
+f1 : 834     f2 : 744
+929
+flameSeen : 1
+f1 : 849     f2 : 729
+936
+flameSeen : 1
+f1 : 830     f2 : 732
+923
+flameSeen : 1
+f1 : 811     f2 : 750
+924
+flameSeen : 1
+f1 : 829     f2 : 763
+934
+flameSeen : 1
+f1 : 837     f2 : 724
+923
+flameSeen : 1
+f1 : 838     f2 : 718
+922
+flameSeen : 1
+f1 : 829     f2 : 725
+924
+flameSeen : 1
+f1 : 817     f2 : 751
+924
+flameSeen : 1
+f1 : 807     f2 : 767
+924
+flameSeen : 1
+f1 : 799     f2 : 772
+927
+flameSeen : 1
+f1 : 791     f2 : 765
+923
+flameSeen : 1
+f1 : 779     f2 : 790
+931
+flameSeen : 1
+f1 : 769     f2 : 791
+926
+flameSeen : 1
+f1 : 774     f2 : 779
+925
+flameSeen : 1
+f1 : 758     f2 : 776
+923
+flameSeen : 1
+f1 : 766     f2 : 795
+927
+flameSeen : 1
+f1 : 762     f2 : 785
+922
+flameSeen : 1
+f1 : 766     f2 : 772
+928
+flameSeen : 1
+f1 : 753     f2 : 785
+917
+flameSeen : 1
+f1 : 753     f2 : 804
+924
+flameSeen : 1
+f1 : 728     f2 : 802
+925
+flameSeen : 1
+f1 : 751     f2 : 797
+925
+flameSeen : 1
+f1 : 724     f2 : 778
+931
+flameSeen : 1
+f1 : 765     f2 : 828
+919
+flameSeen : 1
+f1 : 687     f2 : 770
+922
+flameSeen : 1
+f1 : 771     f2 : 847
+930
+flameSeen : 1
+f1 : 745     f2 : 821
+927
+flameSeen : 1
+f1 : 717     f2 : 820
+928
+flameSeen : 1
+f1 : 719     f2 : 822
+935
+flameSeen : 1
+f1 : 738     f2 : 816
+929
+flameSeen : 1
+f1 : 736     f2 : 810
+928
+flameSeen : 1
+f1 : 739     f2 : 813
+926
+flameSeen : 1
+f1 : 743     f2 : 817
+929
+flameSeen : 1
+f1 : 748     f2 : 816
+934
+flameSeen : 1
+f1 : 753     f2 : 818
+931
+flameSeen : 1
+f1 : 750     f2 : 820
+930
+flameSeen : 1
+f1 : 743     f2 : 821
+929
+flameSeen : 1
+f1 : 746     f2 : 816
+929
+flameSeen : 1
+f1 : 751     f2 : 806
+928
+flameSeen : 1
+f1 : 753     f2 : 803
+928
+flameSeen : 1
+f1 : 753     f2 : 810
+928
+flameSeen : 1
+f1 : 751     f2 : 815
+934
+flameSeen : 1

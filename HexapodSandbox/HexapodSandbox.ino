@@ -9,11 +9,11 @@
 #include <math.h> //extra functions like inverse trig needed
 
 /****I/O****/
-#define soundLEDport 2 //blue LED
-#define flameLEDport 3 //red LED
-#define videoLEDport 4 //green LED
-#define pwrLEDport 5 //yellow LED
-#define runningLEDport 6 //white LED. indicates the code is running and started
+#define soundLEDport 1 //blue LED
+#define flameLEDport 4 //red LED
+#define videoLEDport 3 //green LED
+#define pwrLEDport 6 //yellow LED
+#define runningLEDport 5 //white LED. indicates the code is running and started
 #define startButtonPort 7 //green button
 #define versa 16//port for versa valve solenoid
 #define joyX 4//(PURP)analog A0 for joystick
@@ -22,15 +22,22 @@
 /****SENSORS****/
 #define mic1port 17 //1st mic for start sequence
 #define mic2port 18 //2nd mic for start sequence
-#define flame1port 3 //ANALOG; (GRN)port for flame sensor 1, on the left from robot's perspective
-#define flame2port 2 //ANALOG; (BLU)2nd flame sensor port, opposite side from above ^
-#define sharp1port 7 //ANALOG; (too close>350)?sharp sensor 1 port for navigation
-#define sharp2port 6 //ANALOG; (too close>350)sharp sensor 2 port for navigation
-#define sharp3port 5 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
-#define sharp4port 1 //ANALOG; 
-#define uvTronPort 4 //ANALOG; (YLW)port for Hammamatsu UVtron sensor
+#define flame1port 5 //ANALOG; (GRN)port for flame sensor 1, on the left from robot's perspective
+#define flame2port 6 //ANALOG; (BLU)2nd flame sensor port, opposite side from above ^
+#define flame3port 7 //Analog;
+#define sharp1port 1 //ANALOG; (too close>350)?sharp sensor 1 port for navigation
+#define sharp2port 2 //ANALOG; (too close>350)sharp sensor 2 port for navigation
+#define sharp3port 3 //ANALOG; (too close>300)straight forward facing sharp sensor 3 port for navigation
+#define sharp4port 4 //ANALOG; 
+#define uvTronPort 7 //ANALOG; (YLW)port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
-
+/****VISION****/
+#define sharp1max 300
+#define sharp2max 300
+#define sharp3max 270
+#define sharp4max 500//this is a guess, we aren't using it yet
+#define sharp4nothingThereLo 110
+#define sharp4nothingThereHi 155
 /****JOINTS****/
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
 #define CMR 2 //ID num for Coxa Middle Right Dynamixel AX12-A Servo
@@ -51,7 +58,7 @@
 boolean started = false; //boolean for keeping an LED on while code is running
 boolean flameSeen = false; //boolean for checking if hammamatsu has seen a the room with the flame in it
 boolean babySeen = false;  //boolean for checking if baby was detected with vision
-boolean uvTronDone = false; //boolean for indicating completed use of uvTron
+boolean f3Done = false; //boolean for indicating completed use of uvTron
 boolean aimed = false; //this should be true when the nozzle is aimed on center with the candle
 boolean didThatOneTurn = false;
 
@@ -70,7 +77,7 @@ int dynum;
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
 /**GAIT CONTROL**/
-#define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
+#define tim 350 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 #define timLg 250 //large value of above
 #define turnTim 100
 #define stepSm 2//DEGREES; smaller value of below for turning
@@ -103,12 +110,14 @@ void setup() {
   pinMode(uvTronPort,INPUT);
   pinMode(mic1port,INPUT);
   pinMode(mic2port,INPUT);
-  stand(3000);
+  pinMode(versa,OUTPUT);
+  stand(500);
   //timeBefore = timeNow;
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
-  
+  //versaFire();
+  flameLED(true);
 }
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
@@ -123,25 +132,31 @@ void joystick(){//control the hexapod via joystick
   Serial.print("y = ");
   Serial.println(joyY);
   if(analogRead(joyX) >= 1022){
-      fwd();
+      fwdSm();
   }
   if(analogRead(joyX) <= 1){
       back();
   }
   if(analogRead(joyY) >= 1022){
-    turnR();  
-    //turnSmR();
+    //turnR();  
+    turnSmR();
   }
   if(analogRead(joyY) <= 0){
-    turnL();
-    //turnSmL();
+    //turnL();
+    turnSmL();
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
-  if(analogRead(sharp3port)> 270){turn90R();}//if something is too close in front, turn right
-  else if(analogRead(sharp1port)> 300){turnR();}
-  else if(analogRead(sharp2port)> 300){turnL();}
-  else if(analogRead(sharp4port)<110){//if there is nothing close on left, turn towards opening
+  if(analogRead(sharp3port)>= sharp3max){//if something is too close in front, turn right
+    turn90R();
+  }
+  else if(analogRead(sharp1port)> sharp1max){
+    turnR();
+  }
+  else if(analogRead(sharp2port)> sharp2max){
+    turnL();
+  }
+  else if(analogRead(sharp4port)<sharp4nothingThereLo){//if there is nothing close on left, turn towards opening
    digitalWrite(videoLEDport, HIGH);
    fwd();
    fwd();
@@ -160,7 +175,7 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
    fwd();
    digitalWrite(videoLEDport, LOW);
   }
-  else if(analogRead(sharp4port)>110 &&analogRead(sharp4port)<155 && !didThatOneTurn){
+  else if(analogRead(sharp4port)>sharp4nothingThereLo &&analogRead(sharp4port)<sharp4nothingThereHi && !didThatOneTurn){
     digitalWrite(soundLEDport, HIGH);
     digitalWrite(flameLEDport, HIGH);
     digitalWrite(runningLEDport, HIGH);
@@ -200,7 +215,7 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  Serial.println(analogRead(flame2port));
+  Serial.println(analogRead(flame1port));
   if(startButton()){//initiates code within loop at button press
     pwrLED(false);
     delay(500);//wait a half second to release the button
@@ -209,25 +224,17 @@ void loop(){
       /** PUT MAIN CODE HERE**/
       //versaFire();
       /**COMPETITION LOGIC**/
-      firstFlameCheck();
-      if(!flameSeen){//if uvTron has not picked up a flame reading
-        navigate();
-      }
-      else{//uvTron spotted something
-        pwrLED(false);
-        delay(50);
-        pwrLED(true);
-        delay(50);
-        pwrLED(false);
-        delay(50);
-        pwrLED(true);
-        delay(50);
-        pwrLED(false);
-        delay(50);
-        pwrLED(true);
-        delay(50);
-        secondFlameCheck();
-      }
+          firstFlameCheck();
+          if(!flameSeen){//if uvTron has not picked up a flame reading
+            navigate();
+          }
+          else{//uvTron spotted something
+            
+            secondFlameCheck();
+            if(aimed){
+              versaFire();
+            }
+          }
       //navigate();
       //joystick();
       // turnR();
