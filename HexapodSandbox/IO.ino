@@ -15,7 +15,13 @@
 //   return false;
 // }
 //}
-
+boolean startButton(){ // returns true when green start button is depressed
+  if(digitalRead(startButtonPort) == LOW){ 
+    started = true;
+    return true;
+  }
+  else{return false;}
+}
 /** lightCheck() checks status of the system. Turns LED's on/off accordingly **/
 void lightCheck(){
   /*if(started == true){
@@ -55,6 +61,17 @@ void printSensors(){
   Serial.print(s4());
   Serial.print(" | f1: ");
   Serial.print(f1());
+  Serial.print(" | f2: ");
+  Serial.print(f2());
+  Serial.print(" | f3: ");
+  Serial.println(f3());
+}
+void printMics(){
+  Serial.print("mic1: ");
+  Serial.print(mic1());
+  Serial.print(" | mic2: ");
+  Serial.println(mic2());
+}
 /***********************SENSORS**********************************/
 int s1(){//shorter call for sharp1 reading
   return analogRead(sharp1port);
@@ -76,6 +93,12 @@ int f2(){ //shortening the call to read one flame sensor
 }
 int f3(){ //shortening the call to read one flame sensor
   return analogRead(flame3port); //returns int analog value from flame sensor 2
+}
+int mic1(){
+  return digitalRead(mic1port);
+}
+int mic2(){
+  return digitalRead(mic2port);
 }
 /*************************LED************************************/
 void soundLED(boolean state){ // turns on blue LED when passed 'true'

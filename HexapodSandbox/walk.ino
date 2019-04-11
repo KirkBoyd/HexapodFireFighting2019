@@ -56,7 +56,7 @@ void fwdSm(){//moves forward in smaller increments//
   delay(timSm); //needed
   oddsFwdSm();
   evensBackSm();
-  delay(timSm
+  delay(timSm);
   oddsDown();
   delay(timSm);  //short as possible so feet are on the ground at all times
   evensUp();
