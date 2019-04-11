@@ -157,70 +157,70 @@ void joystick(){//control the hexapod via joystick
   }
 }
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
-  if(analogRead(sharp3port)>= sharp3max){//if something is too close in front, turn right
+  if(s3()>= sharp3max){//if something is too close in front, turn right
     turn90R();
   }
-  else if(analogRead(sharp1port)> sharp1max){
+  else if(s1()> sharp1max){
     diagRfwd();
   }
-  else if(analogRead(sharp2port)> sharp2max){
+  else if(s2()> sharp2max){
     diagLfwd();
   }
-  else if(analogRead(sharp4port)<sharp4nothingThereLo){//if there is nothing close on left, turn towards opening
-   digitalWrite(videoLEDport, HIGH);
-   fwd();
-   fwd();
-   fwd();
-   fwd();
-   fwd();
-   turn90L();
-   fwd();
-   fwd();
-   fwd();
-   fwd();
-   fwd();
-   fwd();
-   fwd();
-   fwd();
-   fwd();
-   digitalWrite(videoLEDport, LOW);
-  }
-  else if(analogRead(sharp4port)>sharp4nothingThereLo &&analogRead(sharp4port)<sharp4nothingThereHi && !didThatOneTurn){
-    digitalWrite(soundLEDport, HIGH);
-    digitalWrite(flameLEDport, HIGH);
-    digitalWrite(runningLEDport, HIGH);
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    turn90L();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    turn90L();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    fwd();
-    digitalWrite(soundLEDport, LOW);
-    didThatOneTurn = true;
+//  else if(s4()<sharp4nothingThereLo){//if there is nothing close on left, turn towards opening
+//   digitalWrite(videoLEDport, HIGH);
+//   fwd();
+//   fwd();
+//   fwd();
+//   fwd();
+//   fwd();
+//   turn90L();
+//   fwd();
+//   fwd();
+//   fwd();
+//   fwd();
+//   fwd();
+//   fwd();
+//   fwd();
+//   fwd();
+//   fwd();
+//   digitalWrite(videoLEDport, LOW);
+//  }
+//  else if(s4()>sharp4nothingThereLo &&s4()<sharp4nothingThereHi && !didThatOneTurn){
+//    digitalWrite(soundLEDport, HIGH);
+//    digitalWrite(flameLEDport, HIGH);
+//    digitalWrite(runningLEDport, HIGH);
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    turn90L();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    turn90L();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    fwd();
+//    digitalWrite(soundLEDport, LOW);
+//    didThatOneTurn = true;
   }
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
@@ -228,8 +228,8 @@ void loop(){
 //  Serial.print("f1 : ");
 //  Serial.print(f1Read());
 //  Serial.print("     f2 : ");
-//  Serial.println(f2Read());
-  Serial.println(f3Read());
+//  Serial.println(f2());
+  Serial.println(f3());
   if(startButton()){//initiates code within loop at button press
     pwrLED(false);
     delay(500);//wait a half second to release the button

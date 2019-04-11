@@ -44,6 +44,39 @@ void buzz(){
   delay(250);
   digitalWrite(buzzer,HIGH);
 }
+void printSensors(){
+  Serial.print("s1: ");
+  Serial.print(s1());
+  Serial.print(" | s2: ");
+  Serial.print(s2());
+  Serial.print(" | s3: ");
+  Serial.print(s3());
+  Serial.print(" | s4: ");
+  Serial.print(s4());
+  Serial.print(" | f1: ");
+  Serial.print(f1());
+/***********************SENSORS**********************************/
+int s1(){//shorter call for sharp1 reading
+  return analogRead(sharp1port);
+}
+int s2(){//shorter call for sharp2 reading
+  return analogRead(sharp2port);
+}
+int s3(){//shorter call for sharp3 reading
+  return analogRead(sharp3port);
+}
+int s4(){//shorter call for sharp4 reading
+  return analogRead(sharp4port);
+}
+int f1(){ //shortening the call to read one flame sensor
+  return analogRead(flame1port);//returns int analog value from flame sensor 2
+}
+int f2(){ //shortening the call to read one flame sensor
+  return analogRead(flame2port); //returns int analog value from flame sensor 2
+}
+int f3(){ //shortening the call to read one flame sensor
+  return analogRead(flame3port); //returns int analog value from flame sensor 2
+}
 /*************************LED************************************/
 void soundLED(boolean state){ // turns on blue LED when passed 'true'
   if (state){digitalWrite (soundLEDport, HIGH);}

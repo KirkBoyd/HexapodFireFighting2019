@@ -16,43 +16,35 @@ int f3Now;
 int f3CheckR;
 int f3CheckL;
 
-int f1Read(){ //shortening the call to read one flame sensor
-  return analogRead(flame1port);//returns int analog value from flame sensor 2
-}
-int f2Read(){ //shortening the call to read one flame sensor
-  return analogRead(flame2port); //returns int analog value from flame sensor 2
-}
-int f3Read(){ //shortening the call to read one flame sensor
-  return analogRead(flame3port); //returns int analog value from flame sensor 2
-}
+
 
 /*
  * Logic for checking for the flame with the Hammamatsu uvTron
  */
 void firstFlameCheck(){
-  if(f3Read() <= f3Max && !flameSeen){//if the flame has not been detected yet, and the readings show that a flame is now present, store the fact that a flame has been seen.
+  if(f3() <= f3Max && !flameSeen){//if the flame has not been detected yet, and the readings show that a flame is now present, store the fact that a flame has been seen.
     flameSeen = true;
     flameLED(true);
     runningLED(true);
   }
-  if(flameSeen && !f3Done && f3Read()>=f3Min){
-    if(f3Then==0){f3Then = f3Read();}
+  if(flameSeen && !f3Done && f3()>=f3Min){
+    if(f3Then==0){f3Then = f3();}
     if(f3Now==0){
       turnSmR();
     }
-    f3Now = f3Read();
+    f3Now = f3();
     if(f3Then<f3Now){
       diagLfwd();
-      f3Then = f3Read();
+      f3Then = f3();
     }
     else{
       diagRfwd();
-      f3Then = f3Read();
+      f3Then = f3();
     }
 //    if(f3CheckL > f3Max && f3CheckR > f3Max){//TOO FAR? if neither side is showing flame values less than a detected flame, turn 90deg and check again
 //      turn90R();
 //    }
-    if(f3Read()<=f3Min){//TOO CLOSE TO FLAME?
+    if(f3()<=f3Min){//TOO CLOSE TO FLAME?
       f3Done = true;//you're at the candle. STOP
     }
 //    else if(f3CheckR < f3CheckL){//CLOSER ON RIGHT?
@@ -74,7 +66,7 @@ void firstFlameCheck(){
   }
   else{ f3Done = true;}
   //this just prints if the cable is plugged in for debugging
-  Serial.println(f3Read());
+  Serial.println(f3());
   Serial.print("flameSeen : ");
   Serial.println(flameSeen);
 }
@@ -84,17 +76,17 @@ void firstFlameCheck(){
  */
 void secondFlameCheck(){
   Serial.print("f1 : ");
-  Serial.print(f1Read());
+  Serial.print(f1());
   Serial.print("     f2 : ");
-  Serial.println(f2Read());
-  if(f1Read() > f2Read()){//reading is higher on the LEFT turn LEFT //////analogRead(sharp2port)>sharp2max
+  Serial.println(f2());
+  if(f1() > f2()){//reading is higher on the LEFT turn LEFT //////analogRead(sharp2port)>sharp2max
     turnSmL();
   }
-  else if(f1Read() < f2Read()){//reading is higher on the RIGHT turn RIGHT/////// || analogRead(sharp1port)>sharp1max
+  else if(f1() < f2()){//reading is higher on the RIGHT turn RIGHT/////// || analogRead(sharp1port)>sharp1max
     turnSmR();
   }
-  else if((f1Read() <= f2Read()+del)&&(f1Read() >= f2Read()-del)){//if f1 and f2 are within a tolerance of 50 integers apart
-    if(f1Read() <= f1Max && f2Read() <= f2Max){// if they are both below our chosen saturation value as close enough
+  else if((f1() <= f2()+del)&&(f1() >= f2()-del)){//if f1 and f2 are within a tolerance of 50 integers apart
+    if(f1() <= f1Max && f2() <= f2Max){// if they are both below our chosen saturation value as close enough
       aimed = true;
       blinkLED(soundLEDport);
     }
