@@ -1,20 +1,13 @@
-//boolean startButton(){ // returns true when green start button is depressed
-//  if(digitalRead(startButtonPort) == LOW){ 
-//    started = true;
-//    return true;
-//  }
-//  else{return false;}
-//}
-//boolean soundSystem(){ // returns true when blue LED sound thingy is lit
-// if((digitalRead (mic1port) == HIGH)||(digitalRead (mic2port) == HIGH)){ 
-//   digitalWrite(soundLED, HIGH);
-//   return true;
-// }
-// else{
-//   digitalWrite(soundLED, LOW);
-//   return false;
-// }
-//}
+boolean soundStart(){ // returns true when blue LED sound thingy is lit
+ if(mic1()==0||mic2()==0){ 
+   soundLED(true);
+   return true;
+ }
+ else{
+   soundLED(false);
+   return false;
+ }
+}
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
     started = true;

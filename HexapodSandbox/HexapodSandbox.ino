@@ -20,8 +20,8 @@
 #define joyY 0//(GREY)analog A1 for joystick
 #define buzzer 22
 /****SENSORS****/
-#define mic1port 17 //1st mic for start sequence
-#define mic2port 18 //2nd mic for start sequence
+#define mic1port 20 //1st mic for start sequence
+#define mic2port 21 //2nd mic for start sequence
 #define flame1port 5 //ANALOG; (GRN)port for flame sensor 1, on the left from robot's perspective
 #define flame2port 6 //ANALOG; (BLU)2nd flame sensor port, opposite side from above ^
 #define flame3port 7 //Analog;
@@ -122,34 +122,42 @@ void setup() {
 }
 
 void loop(){
-  printMics();
-  //printSensors();
-  if(startButton()){//initiates code within loop at button press
+  Serial.println(soundStart());
+  /**SENSOR TESTS**/
+      //    printMics();
+      //    printSensors();
+  /** PUT LOOP TEST CODE HERE**/
+  
+  /******COMPETITION CODE*******/
+  if(soundStart()){//initiates code within loop at button press
     pwrLED(false);
     delay(500);//wait a half second to release the button
     pwrLED(true);
-    while(!startButton()){//continues to execute this code until the button is pressed again
-      /** PUT MAIN CODE HERE**/
-      //versaFire();
+    while(!soundStart()){//continues to execute this code until the button is pressed again
       /**COMPETITION LOGIC**/
           firstFlameCheck();
-          if(!flameSeen){//if uvTron has not picked up a flame reading
+          if(!flameSeen){//if f3 has not picked up a flame reading
             navigate();
           }
           else if(f3Done){
             buzz();
             secondFlameCheck();
-            //fetal(100000);
           }            
           if(aimed){
              versaFire();
-             
           }
      }
-      //navigate();
-      //joystick();
-      // turnR();
-      while(startButton()){}//wait with the button down until it goes back up
-      delay(1000);//if button was pressed again wait to release it so the loop exits
-  }
-}
+     while(soundStart()){}//wait with the button down until it goes back up
+     delay(1000);//if button was pressed again wait to release it so the loop exits
+  }//end if(sound)
+  if(startButton()){
+    pwrLED(false);
+    delay(500);
+    pwrLED(true);
+    while(!startButton()){
+      /****TEST CODE ACTIVATED BY START BUTTON BELOW****/
+      buzz();
+    }
+    while(startButton()){delay(500);}
+  }//end if(startButton)()){
+}//end void loop()
