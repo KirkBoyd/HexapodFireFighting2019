@@ -1,12 +1,40 @@
 boolean fwdLast;
 boolean backLast;
+boolean turnRlast;
+boolean turnLlast;
+boolean diagRfwdLast;
+boolean diagLfwdLast;
+const int homTim = 50;
+void resetAngChecks(){
+  fwdLast = false;
+  backLast = false;
+  turnRlast = false;
+  turnLlast = false;
+  diagRfwdLast = false;
+  diagLfwdLast = false;
+}
 void closedGoTo(int motor,int ang){//WIP WIP try to just write a system where the motors move on a closed loop
   while(GetPosition(motor) != fullTrig(ang)){
     SetPosition(1,fullTrig(3));
   }
 }
-
+void backHome(){//picks up feet and moves back home
+  oddsUp();
+  delay(homTim);
+  oddsCenter();
+  delay(homTim);
+  oddsDown();
+  delay(homTim);
+  evensUp();
+  delay(homTim);
+  evensCenter();
+  delay(homTim);
+  evensDown();
+  delay(homTim);
+  resetAngChecks();
+}
 void fwd(){
+  if(!fwdLast){backHome();}
   oddsUp();
   delay(tim); //needed
   oddsFwd();
@@ -19,8 +47,10 @@ void fwd(){
   oddsBack();
   evensDown();
   delay(tim);  //short as possible so feet are on the ground at all times
+  fwdLast = true;
 }
 void back(){
+  if(!backLast){backHome();}
   oddsUp();
   delay(tim); //needed
   oddsBack();
@@ -33,8 +63,10 @@ void back(){
   oddsFwd();
   evensDown();
   delay(tim);  //short as possible so feet are on the ground at all times
+  backLast = true;
 }
 void turnR(){//make small steps in place in circle to turn RIGHT
+  if(!turnRlast){backHome();}
   evensUp();//femurs up
   evensSame();//
   delay(turnTim);
@@ -47,8 +79,10 @@ void turnR(){//make small steps in place in circle to turn RIGHT
   oddsDown();
   delay(turnTim);
   oddsSameRev();
+  turnRlast = true;
 }
 void turnL(){//make small steps in place in circle to turn LEFT
+  if(!turnLlast){backHome();}
   evensUp();//femurs up
   evensSameRev();//
   delay(turnTim);
@@ -61,6 +95,7 @@ void turnL(){//make small steps in place in circle to turn LEFT
   oddsDown();
   delay(turnTim);
   oddsSame();
+  turnLlast = true;
 }
 void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnR();
@@ -77,6 +112,71 @@ void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnL();
   turnL();
   stand(50);
+}
+void diagRfwd(){
+  if(!diagRfwdLast){backHome();}
+  evensCenter();
+  oddsCenter();
+  delay(timSm);
+  SetPosition(FFL,fUp);
+  SetPosition(FML,fUp);
+  SetPosition(FMR,fUp);
+  SetPosition(FRR,fUp);
+  delay(timSm);
+  SetPosition(CFL,fullTrig(stepSize));
+  SetPosition(CML,fullTrig(stepSize));
+  SetPosition(CMR,fullTrig(-stepSize));
+  SetPosition(CRR,fullTrig(-stepSize));
+  //delay(timSm);
+  SetPosition(FFL,fDown);
+  SetPosition(FML,fDown);
+  SetPosition(FMR,fDown);
+  SetPosition(FRR,fDown);
+  delay(timSm);
+  SetPosition(FFR,fUp);
+  SetPosition(FRL,fUp);
+  delay(timSm);
+  SetPosition(CFL,fullTrig(-stepSize));
+  SetPosition(CML,fullTrig(-stepSize));
+  SetPosition(CMR,fullTrig(stepSize));
+  SetPosition(CRR,fullTrig(stepSize));
+  delay(timSm);
+  SetPosition(FFR,fDown);
+  SetPosition(FRL,fDown);
+  delay(timSm);
+  diagRfwdLast = true;
+}
+void diagLfwd(){
+  if(!diagLfwdLast){backHome();}
+  evensCenter();
+  oddsCenter();
+  delay(timSm);
+  SetPosition(FFR,fUp);
+  SetPosition(FML,fUp);
+  SetPosition(FMR,fUp);
+  SetPosition(FRL,fUp);
+  delay(timSm);
+  SetPosition(CFR,fullTrig(-stepSize));
+  SetPosition(CML,fullTrig(stepSize));
+  SetPosition(CMR,fullTrig(-stepSize));
+  SetPosition(CRL,fullTrig(stepSize));
+  SetPosition(FFR,fDown);
+  SetPosition(FML,fDown);
+  SetPosition(FMR,fDown);
+  SetPosition(FRL,fDown);
+  delay(timSm);
+  SetPosition(FFL,fUp);
+  SetPosition(FRR,fUp);
+  delay(timSm);
+  SetPosition(CFR,fullTrig(stepSize));
+  SetPosition(CML,fullTrig(-stepSize));
+  SetPosition(CMR,fullTrig(stepSize));
+  SetPosition(CRL,fullTrig(-stepSize));
+  delay(timSm);
+  SetPosition(FFL,fDown);
+  SetPosition(FRR,fDown);
+  delay(timSm);
+  diagRfwdLast = true;
 }
 /********************GROUPED POSITIONS********/
 void evensFwd(){
@@ -242,67 +342,7 @@ void evensBackSm(){
   SetPosition(CRL,fullTrig(-stepSm));
   SetPosition(CFL,fullTrig(-stepSm));
 }
-void diagRfwd(){
-  evensCenter();
-  oddsCenter();
-  delay(timSm);
-  SetPosition(FFL,fUp);
-  SetPosition(FML,fUp);
-  SetPosition(FMR,fUp);
-  SetPosition(FRR,fUp);
-  delay(timSm);
-  SetPosition(CFL,fullTrig(stepSize));
-  SetPosition(CML,fullTrig(stepSize));
-  SetPosition(CMR,fullTrig(-stepSize));
-  SetPosition(CRR,fullTrig(-stepSize));
-  //delay(timSm);
-  SetPosition(FFL,fDown);
-  SetPosition(FML,fDown);
-  SetPosition(FMR,fDown);
-  SetPosition(FRR,fDown);
-  delay(timSm);
-  SetPosition(FFR,fUp);
-  SetPosition(FRL,fUp);
-  delay(timSm);
-  SetPosition(CFL,fullTrig(-stepSize));
-  SetPosition(CML,fullTrig(-stepSize));
-  SetPosition(CMR,fullTrig(stepSize));
-  SetPosition(CRR,fullTrig(stepSize));
-  delay(timSm)
-  SetPosition(FFR,fDown);
-  SetPosition(FRL,fDown);
-  delay(timSm);
-}
-void diagLfwd(){
-  evensCenter();
-  oddsCenter();
-  delay(timSm);
-  SetPosition(FFR,fUp);
-  SetPosition(FML,fUp);
-  SetPosition(FMR,fUp);
-  SetPosition(FRL,fUp);
-  delay(timSm);
-  SetPosition(CFR,fullTrig(-stepSize));
-  SetPosition(CML,fullTrig(stepSize));
-  SetPosition(CMR,fullTrig(-stepSize));
-  SetPosition(CRL,fullTrig(stepSize));
-  SetPosition(FFR,fDown);
-  SetPosition(FML,fDown);
-  SetPosition(FMR,fDown);
-  SetPosition(FRL,fDown);
-  delay(timSm);
-  SetPosition(FFL,fUp);
-  SetPosition(FRR,fUp);
-  delay(timSm);
-  SetPosition(CFR,fullTrig(stepSize));
-  SetPosition(CML,fullTrig(-stepSize));
-  SetPosition(CMR,fullTrig(stepSize));
-  SetPosition(CRL,fullTrig(-stepSize));
-  delay(timSm);
-  SetPosition(FFL,fDown);
-  SetPosition(FRR,fDown);
-  delay(timSm);
-}
+
 /******************POSES(OLD)****************/
 void stand(int t){
   SetPosition(1,512);
@@ -342,6 +382,21 @@ void walkStance(int t){
   SetPosition(4,690);
   SetPosition(5,512);
   SetPosition(6,350);
+  SetPosition(7,680);
+  SetPosition(8,680);
+  SetPosition(9,680);
+  SetPosition(10,680);
+  SetPosition(11,680);
+  SetPosition(12,680);
+  delay(t);
+}
+void standRand(int t){
+  SetPosition(1,400);
+  SetPosition(2,700);
+  SetPosition(3,400);
+  SetPosition(4,400);
+  SetPosition(5,700);
+  SetPosition(6,700);
   SetPosition(7,680);
   SetPosition(8,680);
   SetPosition(9,680);
