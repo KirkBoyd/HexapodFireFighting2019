@@ -2,7 +2,7 @@
 #define f1Max 500  //furthest a small IR phototransistor should be to extinguish the flame
 #define f2Min 200 //closest a small IR phototransistor can be for consistent reading
 #define f2Max 500  //furthest a small IR phototransistor should be to extinguish the flame
-#define f3Min 700//closest a small IR phototransistor can be for consistent reading
+#define f3Min 500//closest a small IR phototransistor can be for consistent reading
 #define f3Max 1015   //furthest a small IR phototransistor should be to extinguish the flame
 /** NOTE ^^^ for above values, high == far away. low == very close. **/
 #define del 50
@@ -93,9 +93,6 @@ void secondFlameCheck(){
   else if(f1Read() < f2Read()){//reading is higher on the RIGHT turn RIGHT/////// || analogRead(sharp1port)>sharp1max
     turnSmR();
   }
-  else if(f1Read()<f1Min && f2Read()<f2Min){//if the sensors are reading too low, do something [TBD]
-    fwdSm();
-  }
   else if((f1Read() <= f2Read()+del)&&(f1Read() >= f2Read()-del)){//if f1 and f2 are within a tolerance of 50 integers apart
     if(f1Read() <= f1Max && f2Read() <= f2Max){// if they are both below our chosen saturation value as close enough
       aimed = true;
@@ -105,6 +102,8 @@ void secondFlameCheck(){
   }
   else{
     //if it gets here, it is probably bad news
+    back();
+    back();
     back();
   }
 }

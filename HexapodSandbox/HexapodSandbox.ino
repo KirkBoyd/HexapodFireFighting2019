@@ -239,19 +239,16 @@ void loop(){
             buzz();
             secondFlameCheck();
             //fetal(100000);
+          }            
+          if(aimed){
+             versaFire();
+             
           }
-          else{//uvTron spotted something
-            
-            
-            if(aimed){
-              versaFire();
-            }
-          }
+     }
       //navigate();
       //joystick();
       // turnR();
-    }
-    while(startButton()){}//wait with the button down until it goes back up
-    delay(1000);//if button was pressed again wait to release it so the loop exits
+      while(startButton()){}//wait with the button down until it goes back up
+      delay(1000);//if button was pressed again wait to release it so the loop exits
   }
 }
