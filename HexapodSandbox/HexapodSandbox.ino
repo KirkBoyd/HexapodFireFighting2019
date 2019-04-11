@@ -119,7 +119,7 @@ void setup() {
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
-  diagLfwd();
+  //diagLfwd();
   
 }
 boolean startButton(){ // returns true when green start button is depressed
@@ -154,10 +154,10 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
     turn90R();
   }
   else if(analogRead(sharp1port)> sharp1max){
-    turnR();
+    diagRfwd();
   }
   else if(analogRead(sharp2port)> sharp2max){
-    turnL();
+    diagLfwd();
   }
   else if(analogRead(sharp4port)<sharp4nothingThereLo){//if there is nothing close on left, turn towards opening
    digitalWrite(videoLEDport, HIGH);

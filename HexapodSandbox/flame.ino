@@ -11,6 +11,8 @@
 //#define uvTronMin 1010 //smallest value that we can say uvtron has seen the flame
 //#define uvTronMax 0  //oversaturated value for uvTron
 
+int f3Then;
+int f3Now;
 int f3CheckR;
 int f3CheckL;
 
@@ -34,38 +36,41 @@ void firstFlameCheck(){
     runningLED(true);
   }
   if(flameSeen && !f3Done && f3Read()>=f3Min){
-    turnSmR();
-    delay(50);
-    f3CheckR = f3Read();
-    turnSmL();
-    turnSmL();
-    delay(50);
-    f3CheckL = f3Read();
-    turnSmR();
-    if(f3CheckL > f3Max && f3CheckR > f3Max){//TOO FAR? if neither side is showing flame values less than a detected flame, turn 90deg and check again
-      turn90R();
+    if(f3Then==0){f3Then = f3Read();}
+    if(f3Now==0){
+      turnSmR();
     }
-    else if(f3Read()<=f3Min){//TOO CLOSE TO FLAME?
+    f3Now = f3Read();
+    if(f3Then<f3Now){
+      diagLfwd();
+      f3Then = f3Read();
+    }
+    else{
+      diagRfwd();
+      f3Then = f3Read();
+    }
+//    if(f3CheckL > f3Max && f3CheckR > f3Max){//TOO FAR? if neither side is showing flame values less than a detected flame, turn 90deg and check again
+//      turn90R();
+//    }
+    if(f3Read()<=f3Min){//TOO CLOSE TO FLAME?
       f3Done = true;//you're at the candle. STOP
     }
-    else if(f3CheckR < f3CheckL){//CLOSER ON RIGHT?
-      turnSmR();
-      fwd();
-    }
-    else if(f3CheckL < f3CheckR){//CLOSER ON LEFT?
-      turnSmL();
-      fwd();
-    }
-    else{//if somehow left and right read the same and it wasn't too far, go fwd i guess
-      //this would mean somehow that both sides read the same values, but it wasn't too far from the flame
-      //because we already checked for that first
-      //fwd();
-      blinkLED(soundLEDport);
-      blinkLED(soundLEDport);//u screwed up
-      blinkLED(soundLEDport);
-      blinkLED(soundLEDport);
-      blinkLED(soundLEDport);
-    }
+//    else if(f3CheckR < f3CheckL){//CLOSER ON RIGHT?
+//      diagLfwd();
+//    }
+//    else if(f3CheckL < f3CheckR){//CLOSER ON LEFT?
+//      diagRfwd();
+//    }
+//    else{//if somehow left and right read the same and it wasn't too far, go fwd i guess
+//      //this would mean somehow that both sides read the same values, but it wasn't too far from the flame
+//      //because we already checked for that first
+//      //fwd();
+//      blinkLED(soundLEDport);
+//      blinkLED(soundLEDport);//u screwed up
+//      blinkLED(soundLEDport);
+//      blinkLED(soundLEDport);
+//      blinkLED(soundLEDport);
+//    }
   }
   else{ f3Done = true;}
   //this just prints if the cable is plugged in for debugging

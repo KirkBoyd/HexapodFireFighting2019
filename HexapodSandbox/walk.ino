@@ -246,6 +246,9 @@ void evensBackSm(){
   SetPosition(CFL,fullTrig(-stepSm));
 }
 void diagRfwd(){
+  evensCenter();
+  oddsCenter();
+  delay(timSm);
   SetPosition(FFL,fUp);
   SetPosition(FML,fUp);
   SetPosition(FMR,fUp);
@@ -268,11 +271,15 @@ void diagRfwd(){
   SetPosition(CML,fullTrig(-stepSize));
   SetPosition(CMR,fullTrig(stepSize));
   SetPosition(CRR,fullTrig(stepSize));
-  delay(50);
+  delay(timSm);
   SetPosition(FFR,fDown);
   SetPosition(FRL,fDown);
+  delay(timSm);
 }
 void diagLfwd(){
+  evensCenter();
+  oddsCenter();
+  delay(timSm);
   SetPosition(FFR,fUp);
   SetPosition(FML,fUp);
   SetPosition(FMR,fUp);
@@ -282,7 +289,6 @@ void diagLfwd(){
   SetPosition(CML,fullTrig(stepSize));
   SetPosition(CMR,fullTrig(-stepSize));
   SetPosition(CRL,fullTrig(stepSize));
-  //delay(timSm);
   SetPosition(FFR,fDown);
   SetPosition(FML,fDown);
   SetPosition(FMR,fDown);
@@ -295,9 +301,10 @@ void diagLfwd(){
   SetPosition(CML,fullTrig(-stepSize));
   SetPosition(CMR,fullTrig(stepSize));
   SetPosition(CRL,fullTrig(-stepSize));
-  delay(50);
+  delay(timSm);
   SetPosition(FFL,fDown);
   SetPosition(FRR,fDown);
+  delay(timSm);
 }
 /******************POSES(OLD)****************/
 void stand(int t){
