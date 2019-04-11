@@ -119,7 +119,7 @@ void setup() {
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
-  diagRfwd();
+  diagLfwd();
   
 }
 boolean startButton(){ // returns true when green start button is depressed

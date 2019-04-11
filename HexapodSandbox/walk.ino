@@ -272,6 +272,33 @@ void diagRfwd(){
   SetPosition(FFR,fDown);
   SetPosition(FRL,fDown);
 }
+void diagLfwd(){
+  SetPosition(FFR,fUp);
+  SetPosition(FML,fUp);
+  SetPosition(FMR,fUp);
+  SetPosition(FRL,fUp);
+  delay(timSm);
+  SetPosition(CFR,fullTrig(-stepSize));
+  SetPosition(CML,fullTrig(stepSize));
+  SetPosition(CMR,fullTrig(-stepSize));
+  SetPosition(CRL,fullTrig(stepSize));
+  //delay(timSm);
+  SetPosition(FFR,fDown);
+  SetPosition(FML,fDown);
+  SetPosition(FMR,fDown);
+  SetPosition(FRL,fDown);
+  delay(timSm);
+  SetPosition(FFL,fUp);
+  SetPosition(FRR,fUp);
+  delay(timSm);
+  SetPosition(CFR,fullTrig(stepSize));
+  SetPosition(CML,fullTrig(-stepSize));
+  SetPosition(CMR,fullTrig(stepSize));
+  SetPosition(CRL,fullTrig(-stepSize));
+  delay(50);
+  SetPosition(FFL,fDown);
+  SetPosition(FRR,fDown);
+}
 /******************POSES(OLD)****************/
 void stand(int t){
   SetPosition(1,512);
