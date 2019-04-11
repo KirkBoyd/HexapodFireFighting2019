@@ -1,3 +1,5 @@
+boolean fwdLast;
+boolean backLast;
 void closedGoTo(int motor,int ang){//WIP WIP try to just write a system where the motors move on a closed loop
   while(GetPosition(motor) != fullTrig(ang)){
     SetPosition(1,fullTrig(3));
@@ -32,8 +34,51 @@ void back(){
   evensDown();
   delay(tim);  //short as possible so feet are on the ground at all times
 }
-
-
+void turnR(){//make small steps in place in circle to turn RIGHT
+  evensUp();//femurs up
+  evensSame();//
+  delay(turnTim);
+  evensDown();//femurs down
+  delay(turnTim);
+  oddsUp();
+  evensSameRev();//with contact, move to pull itself 
+  oddsSame();
+  delay(turnTim);
+  oddsDown();
+  delay(turnTim);
+  oddsSameRev();
+}
+void turnL(){//make small steps in place in circle to turn LEFT
+  evensUp();//femurs up
+  evensSameRev();//
+  delay(turnTim);
+  evensDown();//femurs down
+  delay(turnTim);
+  oddsUp();
+  evensSame();//with contact, move to pull itself 
+  oddsSameRev();
+  delay(turnTim);
+  oddsDown();
+  delay(turnTim);
+  oddsSame();
+}
+void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
+  turnR();
+  turnR();
+  turnR();
+  turnR();
+  turnR();
+  stand(50);
+}
+void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
+  turnL();
+  turnL();
+  turnL();
+  turnL();
+  turnL();
+  stand(50);
+}
+/********************GROUPED POSITIONS********/
 void evensFwd(){
   SetPosition(CMR,fullTrig(-stepSize));
   SetPosition(CRL,fullTrig(stepSize));
@@ -82,76 +127,37 @@ void oddsDown(){//puts even numbered femurs up
     SetPosition(FFR,fDown);
   //}
 }
-void evensSame(){
+void evensCenter(){//HOMES ALL EVEN COXA
+  SetPosition(CMR,fullTrig(0));
+  SetPosition(CRL,fullTrig(0));
+  SetPosition(CFL,fullTrig(0));
+}
+void oddsCenter(){//HOMES ALL ODD COXA
+  SetPosition(CML,fullTrig(0));
+  SetPosition(CRR,fullTrig(0));
+  SetPosition(CFR,fullTrig(0));
+}
+void evensSame(){//moves even coxa clockwise (from above)
   SetPosition(CMR,fullTrig(stepSize));
   SetPosition(CRL,fullTrig(stepSize));
   SetPosition(CFL,fullTrig(stepSize));
 }
-void evensSameRev(){
+void evensSameRev(){//moves even coxa anticlockwise
   SetPosition(CMR,fullTrig(-stepSize));
   SetPosition(CRL,fullTrig(-stepSize));
   SetPosition(CFL,fullTrig(-stepSize));
 }
-void oddsSame(){
+void oddsSame(){//moves odd coxa clockwise
   SetPosition(CML,fullTrig(stepSize));
   SetPosition(CRR,fullTrig(stepSize));
   SetPosition(CFR,fullTrig(stepSize));
 }
-void oddsSameRev(){
+void oddsSameRev(){//moves odd coxa anticlockwise
   SetPosition(CML,fullTrig(-stepSize));
   SetPosition(CRR,fullTrig(-stepSize));
   SetPosition(CFR,fullTrig(-stepSize));
 }
-void turnFastR(){// make big steps in place in circle to turn RIGHT
-  
-}
-void turnFastL(){//make big steps in place in circle to turn LEFT
-  
-}
-void turnR(){//make small steps in place in circle to turn RIGHT
-  evensUp();//femurs up
-  evensSame();//
-  delay(turnTim);
-  evensDown();//femurs down
-  delay(turnTim);
-  oddsUp();
-  evensSameRev();//with contact, move to pull itself 
-  oddsSame();
-  delay(turnTim);
-  oddsDown();
-  delay(turnTim);
-  oddsSameRev();
-}
-void turnL(){//make small steps in place in circle to turn LEFT
-  evensUp();//femurs up
-  evensSameRev();//
-  delay(turnTim);
-  evensDown();//femurs down
-  delay(turnTim);
-  oddsUp();
-  evensSame();//with contact, move to pull itself 
-  oddsSameRev();
-  delay(turnTim);
-  oddsDown();
-  delay(turnTim);
-  oddsSame();
-}
-void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
-  turnR();
-  turnR();
-  turnR();
-  turnR();
-  turnR();
-  stand(50);
-}
-void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
-  turnL();
-  turnL();
-  turnL();
-  turnL();
-  turnL();
-  stand(50);
-}
+
 /******************EXP******SMALLER MOVES***************/
 void fwdSm(){
   oddsUp();
@@ -195,16 +201,7 @@ void turnSmL(){//make smaller steps in place in circle to turn LEFT
   delay(timSm);
   evensCenter();
 }
-void evensCenter(){
-  SetPosition(CMR,fullTrig(0));
-  SetPosition(CRL,fullTrig(0));
-  SetPosition(CFL,fullTrig(0));
-}
-void oddsCenter(){
-  SetPosition(CML,fullTrig(0));
-  SetPosition(CRR,fullTrig(0));
-  SetPosition(CFR,fullTrig(0));
-}
+
 void evensSameSm(){
   SetPosition(CMR,fullTrig(stepSm));
   SetPosition(CRL,fullTrig(stepSm));
@@ -271,7 +268,7 @@ void diagRfwd(){
   SetPosition(CML,fullTrig(-stepSize));
   SetPosition(CMR,fullTrig(stepSize));
   SetPosition(CRR,fullTrig(stepSize));
-  delay(timSm);
+  delay(timSm)
   SetPosition(FFR,fDown);
   SetPosition(FRL,fDown);
   delay(timSm);
