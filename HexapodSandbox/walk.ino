@@ -169,31 +169,31 @@ void fwdSm(){
 }
 void turnSmR(){//make smaller steps in place in circle to turn RIGHT
   evensUp();//femurs up
-  evensSameSm();//
+  evensSame();//
   delay(timSm);
   evensDown();//femurs down
   delay(timSm);
   oddsUp();
   evensCenter();//with contact, move to pull itself 
-  oddsSameSm();
+  oddsSame();
   delay(timSm);
   oddsDown();
   delay(timSm);
   oddsCenter();
 }
 void turnSmL(){//make smaller steps in place in circle to turn LEFT
-  evensUp();//femurs up
-  evensSameRevSm();//
-  delay(tim);
-  evensDown();//femurs down
-  delay(tim);
-  oddsUp();
-  evensSameSm();//with contact, move to pull itself 
-  oddsSameRevSm();
-  delay(tim);
-  oddsDown();
-  delay(tim);
-  oddsSameSm();
+  oddsUp();//femurs up
+  oddsSameRev();//
+  delay(timSm);
+  oddsDown();//femurs down
+  delay(timSm);
+  evensUp();
+  oddsCenter();//with contact, move to pull itself 
+  evensSameRev();
+  delay(timSm);
+  evensDown();
+  delay(timSm);
+  evensCenter();
 }
 void evensCenter(){
   SetPosition(CMR,fullTrig(0));
@@ -244,6 +244,33 @@ void evensBackSm(){
   SetPosition(CMR,fullTrig(stepSm));
   SetPosition(CRL,fullTrig(-stepSm));
   SetPosition(CFL,fullTrig(-stepSm));
+}
+void diagRfwd(){
+  SetPosition(FFL,fUp);
+  SetPosition(FML,fUp);
+  SetPosition(FMR,fUp);
+  SetPosition(FRR,fUp);
+  delay(timSm);
+  SetPosition(CFL,fullTrig(stepSize));
+  SetPosition(CML,fullTrig(stepSize));
+  SetPosition(CMR,fullTrig(-stepSize));
+  SetPosition(CRR,fullTrig(-stepSize));
+  //delay(timSm);
+  SetPosition(FFL,fDown);
+  SetPosition(FML,fDown);
+  SetPosition(FMR,fDown);
+  SetPosition(FRR,fDown);
+  delay(timSm);
+  SetPosition(FFR,fUp);
+  SetPosition(FRL,fUp);
+  delay(timSm);
+  SetPosition(CFL,fullTrig(-stepSize));
+  SetPosition(CML,fullTrig(-stepSize));
+  SetPosition(CMR,fullTrig(stepSize));
+  SetPosition(CRR,fullTrig(stepSize));
+  delay(50);
+  SetPosition(FFR,fDown);
+  SetPosition(FRL,fDown);
 }
 /******************POSES(OLD)****************/
 void stand(int t){
