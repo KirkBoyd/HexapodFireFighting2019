@@ -17,7 +17,6 @@ void resetAngChecks(){
   diagRfwdLast = false;
   diagLfwdLast = false;
 }
-
 void backHome(){//picks up feet and moves back home
   oddsUp();
   delay(homTim);
@@ -40,46 +39,33 @@ void fwd(){//walk straight forward//
   delay(tim); //needed
   oddsFwd();
   evensBack();
+  delay(tim);
   oddsDown();
   delay(tim);  //short as possible so feet are on the ground at all times
   evensUp();
   delay(tim);  //needed
   evensFwd();
   oddsBack();
+  delay(tim);
   evensDown();
   delay(tim);  //short as possible so feet are on the ground at all times
   fwdLast = true;
 }
 void fwdSm(){//moves forward in smaller increments//
   oddsUp();
-  delay(tim); //needed
+  delay(timSm); //needed
   oddsFwdSm();
   evensBackSm();
+  delay(timSm
   oddsDown();
-  delay(tim);  //short as possible so feet are on the ground at all times
+  delay(timSm);  //short as possible so feet are on the ground at all times
   evensUp();
-  delay(tim);  //needed
+  delay(timSm);  //needed
   evensFwdSm();
   oddsBackSm();
+  delay(timSm);
   evensDown();
-  delay(tim);  //short as possible so feet are on the ground at all times
-}
-/***BACKWARD***/
-void back(){//walk straight back//
-  if(!backLast){backHome();}
-  oddsUp();
-  delay(tim); //needed
-  oddsBack();
-  evensFwd();
-  oddsDown();
-  delay(tim);  //short as possible so feet are on the ground at all times
-  evensUp();
-  delay(tim);  //needed
-  evensBack();
-  oddsFwd();
-  evensDown();
-  delay(tim);  //short as possible so feet are on the ground at all times
-  backLast = true;
+  delay(timSm);  //short as possible so feet are on the ground at all times
 }
 /***RIGHT TURNS***/
   void turnR(){//make small steps in place in circle to turn RIGHT
@@ -191,7 +177,6 @@ void diagRfwd(){
 }
 void diagLfwd(){
   if(!diagLfwdLast){backHome();}
-  delay(timSm);
   SetPosition(FFR,fUp);
   SetPosition(FML,fUp);
   SetPosition(FMR,fUp);
@@ -217,7 +202,24 @@ void diagLfwd(){
   SetPosition(FFL,fDown);
   SetPosition(FRR,fDown);
   delay(timSm);
-  diagRfwdLast = true;
+  diagLfwdLast = true;
+}
+/***BACKWARD***/
+void back(){//walk straight back//
+  if(!backLast){backHome();}
+  oddsUp();
+  delay(tim); //needed
+  oddsBack();
+  evensFwd();
+  oddsDown();
+  delay(tim);  //short as possible so feet are on the ground at all times
+  evensUp();
+  delay(tim);  //needed
+  evensBack();
+  oddsFwd();
+  evensDown();
+  delay(tim);  //short as possible so feet are on the ground at all times
+  backLast = true;
 }
 /********************GROUPED POSITIONS********/
 void evensFwd(){
