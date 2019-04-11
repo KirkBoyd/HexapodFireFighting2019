@@ -39,6 +39,11 @@ void lightCheck(){
     videoLED(false);
   }
 }
+void buzz(){
+  digitalWrite(buzzer,LOW);
+  delay(250);
+  digitalWrite(buzzer,HIGH);
+}
 /*************************LED************************************/
 void soundLED(boolean state){ // turns on blue LED when passed 'true'
   if (state){digitalWrite (soundLEDport, HIGH);}

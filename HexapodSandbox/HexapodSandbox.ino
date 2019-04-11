@@ -18,7 +18,7 @@
 #define versa 16//port for versa valve solenoid
 #define joyX 4//(PURP)analog A0 for joystick
 #define joyY 0//(GREY)analog A1 for joystick
-
+#define buzzer 22
 /****SENSORS****/
 #define mic1port 17 //1st mic for start sequence
 #define mic2port 18 //2nd mic for start sequence
@@ -77,7 +77,8 @@ int dynum;
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
 
 /**GAIT CONTROL**/
-#define tim 350 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
+#define timSm 100
+#define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 #define timLg 250 //large value of above
 #define turnTim 100
 #define stepSm 2//DEGREES; smaller value of below for turning
@@ -102,6 +103,8 @@ void setup() {
   digitalWrite(videoLEDport,LOW);
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
+  pinMode(buzzer,OUTPUT);
+  digitalWrite(buzzer,HIGH);
   pinMode(startButtonPort,INPUT);
   pinMode(joyX, INPUT);
   pinMode(joyY, INPUT);
@@ -116,8 +119,7 @@ void setup() {
       //  while(!soundSystem()){}
       
   /*TEST ONE TIME AT INIT*/
-  //versaFire();
-  flameLED(true);
+  turnSmR();
 }
 boolean startButton(){ // returns true when green start button is depressed
   if(digitalRead(startButtonPort) == LOW){ 
@@ -215,7 +217,11 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   else{fwd();}//if none of the sensors read too close, go straight fwd
 }
 void loop(){
-  Serial.println(analogRead(flame1port));
+//  Serial.print("f1 : ");
+//  Serial.print(f1Read());
+//  Serial.print("     f2 : ");
+//  Serial.println(f2Read());
+  Serial.println(f3Read());
   if(startButton()){//initiates code within loop at button press
     pwrLED(false);
     delay(500);//wait a half second to release the button
@@ -228,9 +234,14 @@ void loop(){
           if(!flameSeen){//if uvTron has not picked up a flame reading
             navigate();
           }
+          else if(f3Done){
+            buzz();
+            secondFlameCheck();
+            //fetal(100000);
+          }
           else{//uvTron spotted something
             
-            secondFlameCheck();
+            
             if(aimed){
               versaFire();
             }

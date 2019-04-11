@@ -170,16 +170,16 @@ void fwdSm(){
 void turnSmR(){//make smaller steps in place in circle to turn RIGHT
   evensUp();//femurs up
   evensSameSm();//
-  delay(tim);
+  delay(timSm);
   evensDown();//femurs down
-  delay(tim);
+  delay(timSm);
   oddsUp();
-  evensSameRev();//with contact, move to pull itself 
+  evensCenter();//with contact, move to pull itself 
   oddsSameSm();
-  delay(tim);
+  delay(timSm);
   oddsDown();
-  delay(tim);
-  oddsSameRevSm();
+  delay(timSm);
+  oddsCenter();
 }
 void turnSmL(){//make smaller steps in place in circle to turn LEFT
   evensUp();//femurs up
@@ -195,7 +195,16 @@ void turnSmL(){//make smaller steps in place in circle to turn LEFT
   delay(tim);
   oddsSameSm();
 }
-
+void evensCenter(){
+  SetPosition(CMR,fullTrig(0));
+  SetPosition(CRL,fullTrig(0));
+  SetPosition(CFL,fullTrig(0));
+}
+void oddsCenter(){
+  SetPosition(CML,fullTrig(0));
+  SetPosition(CRR,fullTrig(0));
+  SetPosition(CFR,fullTrig(0));
+}
 void evensSameSm(){
   SetPosition(CMR,fullTrig(stepSm));
   SetPosition(CRL,fullTrig(stepSm));
@@ -260,12 +269,12 @@ void fetal(int t){
   SetPosition(4,512);
   SetPosition(5,512);
   SetPosition(6,512);
-  SetPosition(7,200);
-  SetPosition(8,200);
-  SetPosition(9,200);
-  SetPosition(10,200);
-  SetPosition(11,200);
-  SetPosition(12,200);
+  SetPosition(7,300);
+  SetPosition(8,300);
+  SetPosition(9,300);
+  SetPosition(10,300);
+  SetPosition(11,300);
+  SetPosition(12,300);
   delay(t);
 }
 void walkStance(int t){
