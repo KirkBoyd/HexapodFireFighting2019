@@ -7,6 +7,8 @@ boolean turnRlast;
 boolean turnLlast;
 boolean diagRfwdLast;
 boolean diagLfwdLast;
+boolean strafe60last;
+boolean strafe330last;
 
 const int homTim = 50;
 void resetAngChecks(){
@@ -205,6 +207,7 @@ void diagLfwd(){
   diagLfwdLast = true;
 }
 void strafe60(){///////////////WIP
+  if(!strafe60last){backHome();}
   evensUp();
   delay(timSm);
   //evens forward
@@ -230,9 +233,11 @@ void strafe60(){///////////////WIP
   SetPosition(6,fullTrig(-stepSize));
   delay(timSm);
   oddsDown();
-  delay(timSm);  
+  delay(timSm); 
+  strafe60last = true; 
 }
 void strafe330(){///////////////WIP
+  if(!strafe330last){backHome();}
   evensUp();
   delay(timSm);
   //evens forward
@@ -258,7 +263,8 @@ void strafe330(){///////////////WIP
   SetPosition(6,fullTrig(stepSize));
   delay(timSm);
   oddsDown();
-  delay(timSm);  
+  delay(timSm); 
+  strafe330last = true; 
 }
 /***BACKWARD***/
 void back(){//walk straight back//
