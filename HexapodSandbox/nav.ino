@@ -27,10 +27,10 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   }
   //follow wall on left with sharp sensor if nothing scarier is happening
   else if(s1()>=sharp1c){
-    strafe60();
+    turnR();
   }
   else if(s1()<=sharp1d){
-    strafe330();
+    turnL();
   }
   else{
     fwd();
