@@ -1,6 +1,7 @@
 boolean soundStart(){ // returns true when blue LED sound thingy is lit
  if(mic1()==0||mic2()==0){ 
    soundLED(true);
+   delay(300);
    return true;
  }
  else{
@@ -43,21 +44,19 @@ void buzz(){
   delay(250);
   digitalWrite(buzzer,HIGH);
 }
-void printSensors(){
+void printSharps(){
+  int v1 = s1();
+  int v2 = s2();
+  int v3 = s3();
+  int v4 = s4();
   Serial.print("s1: ");
-  Serial.print(s1());
+  Serial.print(v1);
   Serial.print(" | s2: ");
-  Serial.print(s2());
+  Serial.print(v2);
   Serial.print(" | s3: ");
-  Serial.print(s3());
+  Serial.print(v3);
   Serial.print(" | s4: ");
-  Serial.print(s4());
-  Serial.print(" | f1: ");
-  Serial.print(f1());
-  Serial.print(" | f2: ");
-  Serial.print(f2());
-  Serial.print(" | f3: ");
-  Serial.println(f3());
+  Serial.println(v4);
 }
 void printMics(){
   Serial.print("mic1: ");

@@ -7,7 +7,6 @@
 /**LIBRARIES**/
 #include <ax12.h> //library for controlling Dynamixel AX12-A Servo
 #include <math.h> //extra functions like inverse trig needed
-
 /****I/O****/
 #define soundLEDport 1 //blue LED
 #define flameLEDport 4 //red LED
@@ -31,13 +30,7 @@
 #define sharp4port 4 //ANALOG; 
 #define uvTronPort 7 //ANALOG; (YLW)port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
-/****VISION****/
-#define sharp1max 300
-#define sharp2max 300
-#define sharp3max 270
-#define sharp4max 500//this is a guess, we aren't using it yet
-#define sharp4nothingThereLo 110
-#define sharp4nothingThereHi 155
+
 /****JOINTS****/
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
 #define CMR 2 //ID num for Coxa Middle Right Dynamixel AX12-A Servo
@@ -53,7 +46,6 @@
 #define FFL 12 //ID num for Femur Front Left Dynamixel AX12-A Servo
 #define fDown 680 //femur down to support weight servo value
 #define fUp 600  //femur up to move coxa, servo value
-
 /**CHECKS**/
 boolean started = false; //boolean for keeping an LED on while code is running
 boolean flameSeen = false; //boolean for checking if hammamatsu has seen a the room with the flame in it
@@ -61,7 +53,6 @@ boolean babySeen = false;  //boolean for checking if baby was detected with visi
 boolean f3Done = false; //boolean for indicating completed use of uvTron
 boolean aimed = false; //this should be true when the nozzle is aimed on center with the candle
 boolean didThatOneTurn = false;
-
 /**TRIG**/
 float alpha = 0;  //RADIANS; angle of deflection from center of circle to default leg position to new angle
 float r = 30.31;  //(in mm) length of coxa from outer circle of base to outside of motor clip
@@ -75,11 +66,10 @@ int dynum;
 #define centered 512  //centered position of AX-12A
 #define dynaMax 804 //maximum allowed position of AX-12A for current Hexapod
 #define dynaMin 292 //minimum allowed position of AX-12A for current Hexapod
-
 /**GAIT CONTROL**/
-#define timSm 500
-#define tim 150 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
-#define timLg 250 //large value of above
+#define timSm 100
+#define tim 100 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
+#define timStrafe 150 //large value of above
 #define turnTim 100
 #define stepSm 2//DEGREES; smaller value of below for turning
 #define stepSize 5//DEGREES; sets the alpha value for how much to step
@@ -116,48 +106,43 @@ void setup() {
   pinMode(versa,OUTPUT);
   stand(500);
   //timeBefore = timeNow;
-      //  while(!soundSystem()){}
-      
+  while(!soundStart()){
+    printSharps();
+  }  
   /*TEST ONE TIME AT INIT*/
 }
 
 void loop(){
-  Serial.println(soundStart());
   /**SENSOR TESTS**/
       //    printMics();
-      //    printSensors();
+          //printSensors();
   /** PUT LOOP TEST CODE HERE**/
   
   /******COMPETITION CODE*******/
-  if(soundStart()){//initiates code within loop at button press
-    pwrLED(false);
-    delay(500);//wait a half second to release the button
-    pwrLED(true);
-    while(!soundStart()){//continues to execute this code until the button is pressed again
-      /**COMPETITION LOGIC**/
-          firstFlameCheck();
-          if(!flameSeen){//if f3 has not picked up a flame reading
-            navigate();
-          }
-          else if(f3Done){
-            buzz();
-            secondFlameCheck();
-          }            
-          if(aimed){
-             versaFire();
-          }
-     }
-     while(soundStart()){}//wait with the button down until it goes back up
-     delay(1000);//if button was pressed again wait to release it so the loop exits
-  }//end if(sound)
-  if(startButton()){
-    pwrLED(false);
-    delay(500);
-    pwrLED(true);
-    while(!startButton()){
-      /****TEST CODE ACTIVATED BY START BUTTON BELOW****/
-      buzz();
-    }
-    while(startButton()){delay(500);}
-  }//end if(startButton)()){
+  while(!soundStart()){//continues to execute this code until the button is pressed again
+    /**COMPETITION LOGIC**/
+        firstFlameCheck();
+        if(!flameSeen){//if f3 has not picked up a flame reading
+          navigate();
+        }
+        else if(f3Done){
+          blinkLED(soundLEDport);
+          secondFlameCheck();
+        }            
+        if(aimed){
+           versaFire();
+        }
+  }//end while(!soundStart())
+  while(soundStart()){}
+  //delay(1000);//if button was pressed again wait to release it so the loop exits
+//  if(startButton()){
+//    pwrLED(false);
+//    delay(500);
+//    pwrLED(true);
+//    while(!startButton()){
+//      /****TEST CODE ACTIVATED BY START BUTTON BELOW****/
+//      buzz();
+//    }
+//    while(startButton()){delay(500);}
+//  }//end if(startButton)()){
 }//end void loop()

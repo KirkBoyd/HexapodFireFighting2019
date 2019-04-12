@@ -3,7 +3,7 @@
 #define f2Min 200 //closest a small IR phototransistor can be for consistent reading
 #define f2Max 500  //furthest a small IR phototransistor should be to extinguish the flame
 #define f3Min 500//closest a small IR phototransistor can be for consistent reading
-#define f3Max 1015   //furthest a small IR phototransistor should be to extinguish the flame
+#define f3Max 1005   //furthest a small IR phototransistor should be to extinguish the flame
 /** NOTE ^^^ for above values, high == far away. low == very close. **/
 #define del 50
 #define versaPulseTimHi  1500//how long the delay should be for versa to pulse properly

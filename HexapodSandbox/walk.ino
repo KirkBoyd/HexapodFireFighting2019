@@ -18,58 +18,58 @@ void resetAngChecks(){
   diagLfwdLast = false;
 }
 void backHome(){//picks up feet and moves back home
-  oddsUp();
-  delay(homTim);
-  oddsCenter();
-  delay(homTim);
-  oddsDown();
-  delay(homTim);
   evensUp();
   delay(homTim);
   evensCenter();
   delay(homTim);
   evensDown();
   delay(homTim);
+  oddsUp();
+  delay(homTim);
+  oddsCenter();
+  delay(homTim);
+  oddsDown();
+  delay(homTim);
   resetAngChecks();
 }
 /***FORWARD***/
 void fwd(){//walk straight forward//
-  if(!fwdLast){backHome();}
-  oddsUp();
-  delay(tim); //needed
-  oddsFwd();
-  evensBack();
-  delay(tim);
-  oddsDown();
-  delay(tim);  //short as possible so feet are on the ground at all times
+  //if(!fwdLast){backHome();}
   evensUp();
-  delay(tim);  //needed
+  delay(tim); //needed
   evensFwd();
   oddsBack();
   delay(tim);
   evensDown();
   delay(tim);  //short as possible so feet are on the ground at all times
+  oddsUp();
+  delay(tim);  //needed
+  oddsFwd();
+  evensBack();
+  delay(tim);
+  oddsDown();
+  delay(tim);  //short as possible so feet are on the ground at all times
   fwdLast = true;
 }
 void fwdSm(){//moves forward in smaller increments//
-  oddsUp();
-  delay(timSm); //needed
-  oddsFwdSm();
-  evensBackSm();
-  delay(timSm);
-  oddsDown();
-  delay(timSm);  //short as possible so feet are on the ground at all times
   evensUp();
-  delay(timSm);  //needed
+  delay(timSm); //needed
   evensFwdSm();
   oddsBackSm();
   delay(timSm);
   evensDown();
   delay(timSm);  //short as possible so feet are on the ground at all times
+  oddsUp();
+  delay(timSm);  //needed
+  oddsFwdSm();
+  evensBackSm();
+  delay(timSm);
+  oddsDown();
+  delay(timSm);  //short as possible so feet are on the ground at all times
 }
 /***RIGHT TURNS***/
-  void turnR(){//make small steps in place in circle to turn RIGHT
-  if(!turnRlast){backHome();}
+void turnR(){//make small steps in place in circle to turn RIGHT
+//  if(!turnRlast){backHome();}
   evensUp();//femurs up
   evensSame();//
   delay(turnTim);
@@ -108,7 +108,7 @@ void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
 }
 /***LEFT TURNS***/
 void turnL(){//make small steps in place in circle to turn LEFT
-  if(!turnLlast){backHome();}
+//  if(!turnLlast){backHome();}
   evensUp();//femurs up
   evensSameRev();//
   delay(turnTim);
@@ -124,18 +124,18 @@ void turnL(){//make small steps in place in circle to turn LEFT
   turnLlast = true;
 }
 void turnSmL(){//make smaller steps in place in circle to turn LEFT
-  oddsUp();//femurs up
-  oddsSameRev();//
+  evensUp();//femurs up
+  evensSameRev();//
   delay(timSm);
-  oddsDown();//femurs down
+  evensDown();//femurs down
   delay(timSm);
-  evensUp();
-  oddsCenter();//with contact, move to pull itself 
-  evensSameRev();
+  oddsUp();
+  evensCenter();//with contact, move to pull itself 
+  oddsSameRev();
   delay(timSm);
-  evensDown();
+  oddsDown();
   delay(timSm);
-  evensCenter();
+  oddsCenter();
 }
 void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnL();
@@ -146,13 +146,13 @@ void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   stand(50);
 }
 /***STRAFE***/
-void diagRfwd(){
-  if(!diagRfwdLast){backHome();}
+void diagRfwd(){ /*****************MAKE SURE EVENS MOVE FIRST**/
+  if(!diagRfwdLast){backHome();} 
   SetPosition(FFL,fUp);
   SetPosition(FML,fUp);
   SetPosition(FMR,fUp);
   SetPosition(FRR,fUp);
-  delay(timSm);
+  delay(timStrafe);
   SetPosition(CFL,fullTrig(stepSize));
   SetPosition(CML,fullTrig(stepSize));
   SetPosition(CMR,fullTrig(-stepSize));
@@ -161,27 +161,27 @@ void diagRfwd(){
   SetPosition(FML,fDown);
   SetPosition(FMR,fDown);
   SetPosition(FRR,fDown);
-  delay(timSm);
+  delay(timStrafe);
   SetPosition(FFR,fUp);
   SetPosition(FRL,fUp);
-  delay(timSm);
+  delay(timStrafe);
   SetPosition(CFL,fullTrig(-stepSize));
   SetPosition(CML,fullTrig(-stepSize));
   SetPosition(CMR,fullTrig(stepSize));
   SetPosition(CRR,fullTrig(stepSize));
-  delay(timSm);
+  delay(timStrafe);
   SetPosition(FFR,fDown);
   SetPosition(FRL,fDown);
-  delay(timSm);
+  delay(timStrafe);
   diagRfwdLast = true;
 }
 void diagLfwd(){
-  if(!diagLfwdLast){backHome();}
+//  if(!diagLfwdLast){backHome();}
   SetPosition(FFR,fUp);
   SetPosition(FML,fUp);
   SetPosition(FMR,fUp);
   SetPosition(FRL,fUp);
-  delay(timSm);
+  delay(timStrafe);
   SetPosition(CFR,fullTrig(-stepSize));
   SetPosition(CML,fullTrig(stepSize));
   SetPosition(CMR,fullTrig(-stepSize));
@@ -190,19 +190,75 @@ void diagLfwd(){
   SetPosition(FML,fDown);
   SetPosition(FMR,fDown);
   SetPosition(FRL,fDown);
-  delay(timSm);
+  delay(timStrafe);
   SetPosition(FFL,fUp);
   SetPosition(FRR,fUp);
-  delay(timSm);
+  delay(timStrafe);
   SetPosition(CFR,fullTrig(stepSize));
   SetPosition(CML,fullTrig(-stepSize));
   SetPosition(CMR,fullTrig(stepSize));
   SetPosition(CRL,fullTrig(-stepSize));
-  delay(timSm);
+  delay(timStrafe);
   SetPosition(FFL,fDown);
   SetPosition(FRR,fDown);
-  delay(timSm);
+  delay(timStrafe);
   diagLfwdLast = true;
+}
+void strafe60(){///////////////WIP
+  evensUp();
+  delay(timSm);
+  //evens forward
+  SetPosition(2,fullTrig(-stepSize));
+  SetPosition(4,fullTrig(-stepSize));
+  SetPosition(6,fullTrig(stepSize));
+  //odds back
+  SetPosition(1,fullTrig(-stepSize));
+  SetPosition(3,fullTrig(stepSize));
+  SetPosition(5,fullTrig(-stepSize));
+  delay(timSm);
+  evensDown();
+  delay(timSm);
+  oddsUp();
+  delay(timSm);
+  //odds forward
+  SetPosition(1,fullTrig(stepSize));
+  SetPosition(3,fullTrig(-stepSize));
+  SetPosition(5,fullTrig(stepSize));
+  //evens back
+  SetPosition(2,fullTrig(stepSize));
+  SetPosition(4,fullTrig(stepSize));
+  SetPosition(6,fullTrig(-stepSize));
+  delay(timSm);
+  oddsDown();
+  delay(timSm);  
+}
+void strafe330(){///////////////WIP
+  evensUp();
+  delay(timSm);
+  //evens forward
+  SetPosition(2,fullTrig(-stepSize));
+  SetPosition(4,fullTrig(stepSize));
+  SetPosition(6,fullTrig(-stepSize));
+  //odds back
+  SetPosition(1,fullTrig(stepSize));
+  SetPosition(3,fullTrig(-stepSize));
+  SetPosition(5,fullTrig(-stepSize));
+  delay(timSm);
+  evensDown();
+  delay(timSm);
+  oddsUp();
+  delay(timSm);
+  //odds forward
+  SetPosition(1,fullTrig(-stepSize));
+  SetPosition(3,fullTrig(stepSize));
+  SetPosition(5,fullTrig(stepSize));
+  //evens back
+  SetPosition(2,fullTrig(stepSize));
+  SetPosition(4,fullTrig(-stepSize));
+  SetPosition(6,fullTrig(stepSize));
+  delay(timSm);
+  oddsDown();
+  delay(timSm);  
 }
 /***BACKWARD***/
 void back(){//walk straight back//
