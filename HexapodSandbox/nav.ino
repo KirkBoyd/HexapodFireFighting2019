@@ -2,8 +2,8 @@
 #define sharp1max 230//updated 04/11/19 9pm
 #define sharp1a  285//(plusminus 7) closest it can be to the wall (on it's left)while parallel
 #define sharp1b 632//(plusminus 10) closest it could ever be to the wall, sharp 1 right in front
-#define sharp1c 240//(delta )almost too close to the wall on the left
-#define sharp1d 130//(delta )almost too far from the wall on the left
+#define sharp1c 250//(delta )almost too close to the wall on the left
+#define sharp1d 120//(delta )almost too far from the wall on the left
 #define sharp1e 149//good distance from wall on left
 #define sharp1delta 9//average variance of sharp 1
 #define sharp2max 260//updated 04/11/19 9pm
