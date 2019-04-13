@@ -71,6 +71,7 @@ int dynum;
 #define tim 100 //this is the time delay (ms) between servo moves. we want it as low as possible so it moves the fastest
 #define timStrafe 150 //large value of above
 #define turnTim 100
+#define turnTimSm 200
 #define stepSm 2//DEGREES; smaller value of below for turning
 #define stepSize 5//DEGREES; sets the alpha value for how much to step
 
@@ -108,7 +109,6 @@ void setup() {
   stand(500);
   //timeBefore = timeNow;
   while(!soundStart()){
-    turnSmR();
   }  
   /*TEST ONE TIME AT INIT*/
 }

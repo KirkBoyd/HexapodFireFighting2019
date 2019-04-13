@@ -88,17 +88,21 @@ void turnR(){//make small steps in place in circle to turn RIGHT
 }
 void turnSmR(){//make smaller steps in place in circle to turn RIGHT
   evensUp();//femurs up
-  evensSame();//
-  delay(timSm);
-  evensDown();//femurs down
-  delay(timSm);
-  oddsUp();
-  evensCenter();//with contact, move to pull itself 
-  oddsSame();
-  delay(timSm);
-  oddsDown();
-  delay(timSm);
+  delay(turnTimSm);
   oddsCenter();
+  delay(turnTimSm);
+  evensSame();//
+  delay(turnTimSm);
+  evensDown();//femurs down
+  delay(turnTimSm);
+  oddsUp();
+  delay(turnTimSm);
+  evensCenter();//with contact, move to pull itself 
+  delay(turnTimSm);
+  oddsSame();
+  delay(turnTimSm);
+  oddsDown();
+  delay(turnTimSm);
 }
 void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnR();
@@ -127,17 +131,21 @@ void turnL(){//make small steps in place in circle to turn LEFT
 }
 void turnSmL(){//make smaller steps in place in circle to turn LEFT
   evensUp();//femurs up
-  evensSameRev();//
-  delay(timSm);
-  evensDown();//femurs down
-  delay(timSm);
-  oddsUp();
-  evensCenter();//with contact, move to pull itself 
-  oddsSameRev();
-  delay(timSm);
-  oddsDown();
-  delay(timSm);
+  delay(turnTimSm);
   oddsCenter();
+  delay(turnTimSm);
+  evensSameRev();//
+  delay(turnTimSm);
+  evensDown();//femurs down
+  delay(turnTimSm);
+  oddsUp();
+  delay(turnTimSm);
+  evensCenter();//with contact, move to pull itself 
+  delay(turnTimSm);
+  oddsSameRev();
+  delay(turnTimSm);
+  oddsDown();
+  delay(turnTimSm);
 }
 void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnL();
