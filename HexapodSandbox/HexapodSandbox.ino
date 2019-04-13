@@ -72,6 +72,7 @@ int dynum;
 #define timStrafe 150 //large value of above
 #define turnTim 100
 #define turnTimSm 200
+#define timLg 500//large time for testing
 #define stepSm 2//DEGREES; smaller value of below for turning
 #define stepSize 5//DEGREES; sets the alpha value for how much to step
 
@@ -82,6 +83,8 @@ unsigned long timeDiff;
 int flameSum = 0;
 int thresh = 90;
 int interval = 500;
+
+int strCount;
 
 /**MAIN**/
 void setup() {
@@ -109,6 +112,7 @@ void setup() {
   stand(500);
   //timeBefore = timeNow;
   while(!soundStart()){
+    printFlames();
   }  
   /*TEST ONE TIME AT INIT*/
 }
@@ -127,11 +131,11 @@ void loop(){
           navigate();
         }
         else if(f3Done){
-          blinkLED(soundLEDport);
           secondFlameCheck();
         }            
         if(aimed){
-           versaFire();
+          blinkLED(videoLEDport);
+          versaFire();
         }
   }//end while(!soundStart())
   while(soundStart()){}
@@ -147,3 +151,7 @@ void loop(){
 //    while(startButton()){delay(500);}
 //  }//end if(startButton)()){
 }//end void loop()
+void strip(){
+  Serial.println("trig");
+  strCount++;
+}

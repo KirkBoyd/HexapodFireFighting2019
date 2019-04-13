@@ -106,11 +106,15 @@ void turnSmR(){//make smaller steps in place in circle to turn RIGHT
 }
 void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnR();
+  fireCheck();
   turnR();
+  fireCheck();
   turnR();
+  fireCheck();
   turnR();
+  fireCheck();
   turnR();
-  stand(50);
+  fireCheck();
 }
 /***LEFT TURNS***/
 void turnL(){//make small steps in place in circle to turn LEFT
@@ -149,11 +153,15 @@ void turnSmL(){//make smaller steps in place in circle to turn LEFT
 }
 void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnL();
+  fireCheck();
   turnL();
+  fireCheck();
   turnL();
+  fireCheck();
   turnL();
+  fireCheck();
   turnL();
-  stand(50);
+  fireCheck();
 }
 /***STRAFE***/
 void diagRfwd(){ /*****************MAKE SURE EVENS MOVE FIRST**/
@@ -213,6 +221,7 @@ void diagLfwd(){
   SetPosition(FRR,fDown);
   delay(timStrafe);
   diagLfwdLast = true;
+  
 }
 void strafe60(){///////////////WIP
   if(!strafe60last){backHome();}
@@ -277,17 +286,21 @@ void strafe330(){///////////////WIP
 /***BACKWARD***/
 void back(){//walk straight back//
   if(!backLast){backHome();}
-  oddsUp();
-  delay(tim); //needed
-  oddsBack();
-  evensFwd();
-  oddsDown();
-  delay(tim);  //short as possible so feet are on the ground at all times
   evensUp();
   delay(tim);  //needed
   evensBack();
+  delay(tim);
   oddsFwd();
+  delay(tim);
   evensDown();
+  delay(tim);  //short as possible so feet are on the ground at all times
+  oddsUp();
+  delay(tim); //needed
+  oddsBack();
+  delay(tim);
+  evensFwd();
+  delay(tim);
+  oddsDown();
   delay(tim);  //short as possible so feet are on the ground at all times
   backLast = true;
 }

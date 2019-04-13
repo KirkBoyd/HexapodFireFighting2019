@@ -21,13 +21,13 @@ int val1;
 int val2;
 int val3;
 int val4;
-int strCount;
 
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
   val1 = s1();
   val2 = s2();
   val3 = s3();
   val4 = s4();
+  roomCheck();
   if(val3>= sharp3max){//if something is too close in front, turn right
     turn90R();
   }
@@ -87,16 +87,45 @@ void leftWallEnd(){
   soundLED(false);  
 }
 boolean inRoom(){
-  if(str()){strCount++;}
-  if(strCount%2!=0){return true;}
+  if(str()){
+    strCount++;
+    return true;
+  }
   else return false;
 }
 void roomCheck(){
-  if(inRoom){
-    fwd();
-    fwd();
-    fwd();
-    turnSmR();
+  Serial.print("strCount: ");
+  Serial.print(strCount);
+  Serial.print("inRoom: ");
+  Serial.println(inRoom());
+  if(str()){
+    turn90R();
+    turn90L();
+    if(!flameSeen){
+      turn90R();
+      if(!flameSeen){
+        turn90R();//when performed in succession it isn't really 90...
+        if(!flameSeen){
+          turn90R();
+          fwd();
+          fwd();
+          fwd();
+          fwd();
+          fwd();
+          fwd();
+          fwd();
+          fwd();
+          fwd();
+          turn90L();
+          fwd();
+          fwd();
+          fwd();
+          fwd();
+          fwd();
+          fwd();
+        }
+      }
+    }
   }
 }
 ///**GRAVEYARD**/

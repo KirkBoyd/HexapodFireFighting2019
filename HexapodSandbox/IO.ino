@@ -62,6 +62,17 @@ void printSharps(){
   Serial.print(" | s4: ");
   Serial.println(v4);
 }
+void printFlames(){
+  int z1 = f1();
+  int z2 = f2();
+  int z3 = f3();
+  Serial.print("f1: ");
+  Serial.print(z1);
+  Serial.print(" | f2: ");
+  Serial.print(z2);
+  Serial.print(" | f3: ");
+  Serial.println(z3);
+}
 void printMics(){
   Serial.print("mic1: ");
   Serial.print(mic1());

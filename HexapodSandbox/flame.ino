@@ -2,69 +2,47 @@
 #define f1Max 500  //furthest a small IR phototransistor should be to extinguish the flame
 #define f2Min 200 //closest a small IR phototransistor can be for consistent reading
 #define f2Max 500  //furthest a small IR phototransistor should be to extinguish the flame
-#define f3Min 500//closest a small IR phototransistor can be for consistent reading
+#define f3Min 800//closest a small IR phototransistor can be for consistent reading
 #define f3Max 1005   //furthest a small IR phototransistor should be to extinguish the flame
 /** NOTE ^^^ for above values, high == far away. low == very close. **/
 #define del 50
 #define versaPulseTimHi  1500//how long the delay should be for versa to pulse properly
 #define versaPulseTimLo  2000//how long the delay should be for versa to pulse properly
-//#define uvTronMin 1010 //smallest value that we can say uvtron has seen the flame
-//#define uvTronMax 0  //oversaturated value for uvTron
-
 int f3Then;
 int f3Now;
 int f3CheckR;
 int f3CheckL;
-
-
-
 /*
  * Logic for checking for the flame with the Hammamatsu uvTron
  */
-void firstFlameCheck(){
-  if(f3() <= f3Max && !flameSeen){//if the flame has not been detected yet, and the readings show that a flame is now present, store the fact that a flame has been seen.
+void fireCheck(){
+  if(f3() <= f3Max&&!flameSeen){//if the flame has not been detected yet, and the readings show that a flame is now present, store the fact that a flame has been seen.
     flameSeen = true;
     flameLED(true);
-    runningLED(true);
   }
+}
+void firstFlameCheck(){
+  
+  fireCheck();
   if(flameSeen && !f3Done && f3()>=f3Min){
+    secondFlameCheck();
     if(f3Then==0){f3Then = f3();}
     if(f3Now==0){
       turnSmR();
     }
     f3Now = f3();
     if(f3Then<f3Now){
-      diagLfwd();
+      strafe330();
       f3Then = f3();
     }
     else{
-      diagRfwd();
+      strafe60();
       f3Then = f3();
     }
-//    if(f3CheckL > f3Max && f3CheckR > f3Max){//TOO FAR? if neither side is showing flame values less than a detected flame, turn 90deg and check again
-//      turn90R();
-//    }
     if(f3()<=f3Min){//TOO CLOSE TO FLAME?
       f3Done = true;//you're at the candle. STOP
     }
-//    else if(f3CheckR < f3CheckL){//CLOSER ON RIGHT?
-//      diagLfwd();
-//    }
-//    else if(f3CheckL < f3CheckR){//CLOSER ON LEFT?
-//      diagRfwd();
-//    }
-//    else{//if somehow left and right read the same and it wasn't too far, go fwd i guess
-//      //this would mean somehow that both sides read the same values, but it wasn't too far from the flame
-//      //because we already checked for that first
-//      //fwd();
-//      blinkLED(soundLEDport);
-//      blinkLED(soundLEDport);//u screwed up
-//      blinkLED(soundLEDport);
-//      blinkLED(soundLEDport);
-//      blinkLED(soundLEDport);
-//    }
   }
-  else{ f3Done = true;}
   //this just prints if the cable is plugged in for debugging
   Serial.println(f3());
   Serial.print("flameSeen : ");
