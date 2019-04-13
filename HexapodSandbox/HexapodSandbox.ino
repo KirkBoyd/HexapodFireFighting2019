@@ -97,30 +97,31 @@ void setup() {
   digitalWrite(videoLEDport,LOW);
   pinMode(pwrLEDport,OUTPUT);
   digitalWrite(pwrLEDport,HIGH);
+  pinMode(runningLEDport,OUTPUT);
+  digitalWrite(runningLEDport,LOW);
   pinMode(buzzer,OUTPUT);
   digitalWrite(buzzer,HIGH);
   pinMode(startButtonPort,INPUT);
   pinMode(joyX, INPUT);
   pinMode(joyY, INPUT);
+  pinMode(sharp1port,INPUT);
+  pinMode(sharp2port,INPUT);
+  pinMode(sharp3port,INPUT);
+  pinMode(sharp4port,INPUT);
   pinMode(flame1port,INPUT);
   pinMode(flame2port,INPUT);
-  pinMode(uvTronPort,INPUT);
+  pinMode(flame3port,INPUT);
   pinMode(mic1port,INPUT);
   pinMode(mic2port,INPUT);
   pinMode(versa,OUTPUT);
   pinMode(stripePort,INPUT);
   stand(500);
-  //timeBefore = timeNow;
   while(!soundStart()){
     printFlames();
   }  
-  /*TEST ONE TIME AT INIT*/
 }
 
 void loop(){
-  /**SENSOR TESTS**/
-      //    printMics();
-          //printSensors();
   /** PUT LOOP TEST CODE HERE**/
   
   /******COMPETITION CODE*******/
@@ -139,17 +140,6 @@ void loop(){
         }
   }//end while(!soundStart())
   while(soundStart()){}
-  //delay(1000);//if button was pressed again wait to release it so the loop exits
-//  if(startButton()){
-//    pwrLED(false);
-//    delay(500);
-//    pwrLED(true);
-//    while(!startButton()){
-//      /****TEST CODE ACTIVATED BY START BUTTON BELOW****/
-//      buzz();
-//    }
-//    while(startButton()){delay(500);}
-//  }//end if(startButton)()){
 }//end void loop()
 void strip(){
   Serial.println("trig");

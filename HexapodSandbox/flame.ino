@@ -12,9 +12,7 @@ int f3Then;
 int f3Now;
 int f3CheckR;
 int f3CheckL;
-/*
- * Logic for checking for the flame with the Hammamatsu uvTron
- */
+
 void fireCheck(){
   if(f3() <= f3Max&&!flameSeen){//if the flame has not been detected yet, and the readings show that a flame is now present, store the fact that a flame has been seen.
     flameSeen = true;
@@ -22,7 +20,6 @@ void fireCheck(){
   }
 }
 void firstFlameCheck(){
-  
   fireCheck();
   if(flameSeen && !f3Done && f3()>=f3Min){
     secondFlameCheck();

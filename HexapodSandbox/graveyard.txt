@@ -1,3 +1,77 @@
+///**nav**/
+//  else if(s1()>= sharp1a){//if it is closer than sharp1a turn right
+//    turnR();
+//  }
+//  else if(s2()>= sharp2a){//if it is closer than sharp2a turn left
+//    turnL();
+//  }
+//  else if(s1()> sharp1c){//if it is kind of close shimmy right
+//    strafe60();
+//  }
+//  else if(s2()>sharp2a){//if it is kind of close shimmy left
+//    strafe330();
+//  }
+//  else if(s4()<sharp4nothingThereLo){//if there is nothing close on left, turn towards opening
+//   buzz();
+//   backHome();
+//   diagLfwd();
+//   diagLfwd();
+//   diagLfwd();
+//   diagLfwd();
+//   diagLfwd();
+//   diagLfwd();
+//   diagLfwd();
+//  }
+////  else if(s4()>sharp4nothingThereLo &&s4()<sharp4nothingThereHi && !didThatOneTurn){
+////    digitalWrite(soundLEDport, HIGH);
+////    digitalWrite(flameLEDport, HIGH);
+////    digitalWrite(runningLEDport, HIGH);
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    turn90L();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    turn90L();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    fwd();
+////    digitalWrite(soundLEDport, LOW);
+////    didThatOneTurn = true;
+////  }
+//  else{fwd();}//if none of the sensors read too close, go straight fwd
+//}
+  //delay(1000);//if button was pressed again wait to release it so the loop exits
+//  if(startButton()){
+//    pwrLED(false);
+//    delay(500);
+//    pwrLED(true);
+//    while(!startButton()){
+//      /****TEST CODE ACTIVATED BY START BUTTON BELOW****/
+//      buzz();
+//    }
+//    while(startButton()){delay(500);}
+//  }//end if(startButton)()){
 /*********UVTRON*****************/
 //  flameSum += analogRead(0);
 //  timeNow = millis();
@@ -15,7 +89,7 @@
 //      Serial.println(flameSum);
 //      //delay(1000);
 //    }
-//    
+//
 //    flameSum = 0;
 //  }
 /*********************/
@@ -27,7 +101,7 @@ void turn90R(){//make small steps in place in circle to turn RIGHT
     evensDown();//femurs down
     delay(tim);
     oddsUp();
-    evensSameRevSlow();//with contact, move to pull itself 
+    evensSameRevSlow();//with contact, move to pull itself
     oddsSameSlow();
     delay(tim);
     oddsDown();

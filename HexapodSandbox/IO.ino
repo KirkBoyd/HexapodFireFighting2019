@@ -16,32 +16,11 @@ boolean startButton(){ // returns true when green start button is depressed
   }
   else{return false;}
 }
-boolean str(){//returns true when stripe sensor sees a line (white)
-  if(digitalRead(stripePort)==0){return true;}
-  else return false;
-}
-/** lightCheck() checks status of the system. Turns LED's on/off accordingly **/
-void lightCheck(){
-  /*if(started == true){
-   *  digitalWrite(runningLED,HIGH);
-   *}
-   *else{
-   *  digitalWrite(runningLED,LOW);
-   *}
-   */
-  if(flameSeen){
-    flameLED(true);
-  }
-  else{
-    flameLED(false);
-  }
-  
-  if(babySeen){
-    videoLED(true);
-  }
-  else{
-    videoLED(false);
-  }
+void lightCheck(){//unused. checks some LEDs
+  if(flameSeen){flameLED(true);}
+  else{flameLED(false);}
+  if(babySeen){videoLED(true);}
+  else{videoLED(false);}
 }
 void buzz(){
   digitalWrite(buzzer,LOW);
@@ -80,32 +59,22 @@ void printMics(){
   Serial.println(mic2());
 }
 /***********************SENSORS**********************************/
-int s1(){//shorter call for sharp1 reading
-  return analogRead(sharp1port);
-}
-int s2(){//shorter call for sharp2 reading
-  return analogRead(sharp2port);
-}
-int s3(){//shorter call for sharp3 reading
-  return analogRead(sharp3port);
-}
-int s4(){//shorter call for sharp4 reading
-  return analogRead(sharp4port);
-}
-int f1(){ //shortening the call to read one flame sensor
-  return analogRead(flame1port);//returns int analog value from flame sensor 2
-}
-int f2(){ //shortening the call to read one flame sensor
-  return analogRead(flame2port); //returns int analog value from flame sensor 2
-}
-int f3(){ //shortening the call to read one flame sensor
-  return analogRead(flame3port); //returns int analog value from flame sensor 2
-}
-int mic1(){
-  return digitalRead(mic1port);
-}
-int mic2(){
-  return digitalRead(mic2port);
+//shorter call for sharp readings
+int s1(){return analogRead(sharp1port);}
+int s2(){return analogRead(sharp2port);}
+int s3(){return analogRead(sharp3port);}
+int s4(){return analogRead(sharp4port);}
+//shortening the call to read flame sensors
+int f1(){return analogRead(flame1port);}
+int f2(){return analogRead(flame2port);}
+int f3(){return analogRead(flame3port);}
+//shorten other sensor calls
+int mic1(){return digitalRead(mic1port);}
+int mic2(){return digitalRead(mic2port);}
+
+boolean str(){//returns true when stripe sensor sees a line (white)
+  if(digitalRead(stripePort)==0){return true;}
+  else{return false;}
 }
 /*************************LED************************************/
 void soundLED(boolean state){ // turns on blue LED when passed 'true'

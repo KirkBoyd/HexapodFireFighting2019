@@ -48,26 +48,7 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
     fwd();
   }
 }
-void joystick(){//control the hexapod via joystick
-  Serial.print("x = ");
-  Serial.println(joyX);
-  Serial.print("y = ");
-  Serial.println(joyY);
-  if(analogRead(joyX) >= 1022){
-      fwdSm();
-  }
-  if(analogRead(joyX) <= 1){
-      back();
-  }
-  if(analogRead(joyY) >= 1022){
-    //turnR();  
-    turnSmR();
-  }
-  if(analogRead(joyY) <= 0){
-    //turnL();
-    turnSmL();
-  }
-}
+
 void leftWallEnd(){
   soundLED(true);
   while(val4>300&&val1<120){//while s1 sees open space, but s4 still sees a wall
@@ -91,7 +72,7 @@ boolean inRoom(){
     strCount++;
     return true;
   }
-  else return false;
+  else{return false;}
 }
 void roomCheck(){
   Serial.print("strCount: ");
@@ -128,66 +109,13 @@ void roomCheck(){
     }
   }
 }
-///**GRAVEYARD**/
-//  else if(s1()>= sharp1a){//if it is closer than sharp1a turn right
-//    turnR();
-//  }
-//  else if(s2()>= sharp2a){//if it is closer than sharp2a turn left
-//    turnL();
-//  }
-//  else if(s1()> sharp1c){//if it is kind of close shimmy right
-//    strafe60();
-//  }
-//  else if(s2()>sharp2a){//if it is kind of close shimmy left
-//    strafe330();
-//  }
-//  else if(s4()<sharp4nothingThereLo){//if there is nothing close on left, turn towards opening
-//   buzz();
-//   backHome();
-//   diagLfwd();
-//   diagLfwd();
-//   diagLfwd();
-//   diagLfwd();
-//   diagLfwd();
-//   diagLfwd();
-//   diagLfwd();
-//  }
-////  else if(s4()>sharp4nothingThereLo &&s4()<sharp4nothingThereHi && !didThatOneTurn){
-////    digitalWrite(soundLEDport, HIGH);
-////    digitalWrite(flameLEDport, HIGH);
-////    digitalWrite(runningLEDport, HIGH);
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    turn90L();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    turn90L();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    fwd();
-////    digitalWrite(soundLEDport, LOW);
-////    didThatOneTurn = true;
-////  }
-//  else{fwd();}//if none of the sensors read too close, go straight fwd
-//}
+void joystick(){//control the hexapod via joystick
+  Serial.print("x = ");
+  Serial.println(joyX);
+  Serial.print("y = ");
+  Serial.println(joyY);
+  if(analogRead(joyX) >= 1022){fwdSm();}
+  if(analogRead(joyX) <= 1){ back();}
+  if(analogRead(joyY) >= 1022){turnSmR();}
+  if(analogRead(joyY) <= 0){turnSmL();}
+}
