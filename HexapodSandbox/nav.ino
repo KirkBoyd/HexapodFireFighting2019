@@ -21,40 +21,28 @@ int val1;
 int val2;
 int val3;
 int val4;
+int strCount;
 
 void navigate(){//use the sharp sensors to search the maze by avoiding walls 
   val1 = s1();
   val2 = s2();
   val3 = s3();
   val4 = s4();
-  if(s3()>= sharp3max){//if something is too close in front, turn right
+  if(val3>= sharp3max){//if something is too close in front, turn right
     turn90R();
   }
-  else if(s2()>sharp2a){//if really close to right sharp, turn left
+  else if(val2>sharp2a){//if really close to right sharp, turn left
     turnL();
+  }
+  else if((val1<115)&&(500<val4&&val4<600)&&val2<sharp2d){//when approaching a wall that ends on the left side
+      leftWallEnd();
   }
   //follow wall on left with sharp sensor if nothing scarier is happening
-  else if(s1()>=sharp1c){
+  else if(val1>=sharp1c){
     turnR();
   }
-  else if(s1()<=sharp1d){
+  else if(val1<=sharp1d){
     turnL();
-  }
-  //the if statement below basically checks for the specific condition in the top left room where the wall ends
-  else if((55<s2()&&s2()<155)&&(105<s3()&&s3()<165)&&(300<s4()&&s4()<600)){//when approaching a wall that ends on the left side
-    blinkLED(runningLEDport);
-    while(s3()<210){
-      if(s1()>=sharp1c){turnR();}
-      else if(s4()>=450){turnR();}
-      else{fwd();fwd();}
-    }
-    turn90L();
-    fwd();
-    fwd();
-    turn90L();
-    while(s4()<290){
-      fwd();
-    }    
   }
   else{
     fwd();
@@ -78,6 +66,37 @@ void joystick(){//control the hexapod via joystick
   if(analogRead(joyY) <= 0){
     //turnL();
     turnSmL();
+  }
+}
+void leftWallEnd(){
+  soundLED(true);
+  while(val4>300&&val1<120){//while s1 sees open space, but s4 still sees a wall
+      val1 = s1();
+      val4 = s4();
+      if(s1()>=sharp1c){turnR();}
+      else if(s4()>=500){turnR();}
+      else{fwd();}
+    }
+    turn90L();
+    fwd();
+    fwd();
+    turn90L();
+    while(s4()<290){
+      fwd();
+    }
+  soundLED(false);  
+}
+boolean inRoom(){
+  if(str()){strCount++;}
+  if(strCount%2!=0){return true;}
+  else return false;
+}
+void roomCheck(){
+  if(inRoom){
+    fwd();
+    fwd();
+    fwd();
+    turnSmR();
   }
 }
 ///**GRAVEYARD**/

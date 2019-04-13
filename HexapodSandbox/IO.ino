@@ -16,6 +16,10 @@ boolean startButton(){ // returns true when green start button is depressed
   }
   else{return false;}
 }
+boolean str(){//returns true when stripe sensor sees a line (white)
+  if(digitalRead(stripePort)==0){return true;}
+  else return false;
+}
 /** lightCheck() checks status of the system. Turns LED's on/off accordingly **/
 void lightCheck(){
   /*if(started == true){

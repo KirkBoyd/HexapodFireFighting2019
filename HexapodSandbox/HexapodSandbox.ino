@@ -14,7 +14,7 @@
 #define pwrLEDport 6 //yellow LED
 #define runningLEDport 5 //white LED. indicates the code is running and started
 #define startButtonPort 7 //green button
-#define versa 16//port for versa valve solenoid
+#define versa 19//port for versa valve solenoid
 #define joyX 4//(PURP)analog A0 for joystick
 #define joyY 0//(GREY)analog A1 for joystick
 #define buzzer 22
@@ -30,7 +30,7 @@
 #define sharp4port 4 //ANALOG; 
 #define uvTronPort 7 //ANALOG; (YLW)port for Hammamatsu UVtron sensor
 #define vidPort 12 //for now unused port, but dedicated to the video detection for later
-
+#define stripePort 18 //DIGITAL; stripe sensor for tracking rooms
 /****JOINTS****/
 #define CFR 1 //ID num for Coxa Front Right Dynamixel AX12-A Servo
 #define CMR 2 //ID num for Coxa Middle Right Dynamixel AX12-A Servo
@@ -104,10 +104,11 @@ void setup() {
   pinMode(mic1port,INPUT);
   pinMode(mic2port,INPUT);
   pinMode(versa,OUTPUT);
+  pinMode(stripePort,INPUT);
   stand(500);
   //timeBefore = timeNow;
   while(!soundStart()){
-    printSharps();
+    turnSmR();
   }  
   /*TEST ONE TIME AT INIT*/
 }
