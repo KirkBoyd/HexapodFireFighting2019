@@ -106,15 +106,15 @@ void turnSmR(){//make smaller steps in place in circle to turn RIGHT
 }
 void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnR();
-  fireCheck();
+  flameCheck();
   turnR();
-  fireCheck();
+  flameCheck();
   turnR();
-  fireCheck();
+  flameCheck();
   turnR();
-  fireCheck();
+  flameCheck();
   turnR();
-  fireCheck();
+  flameCheck();
 }
 /***LEFT TURNS***/
 void turnL(){//make small steps in place in circle to turn LEFT
@@ -153,15 +153,15 @@ void turnSmL(){//make smaller steps in place in circle to turn LEFT
 }
 void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
   turnL();
-  fireCheck();
+  flameCheck();
   turnL();
-  fireCheck();
+  flameCheck();
   turnL();
-  fireCheck();
+  flameCheck();
   turnL();
-  fireCheck();
+  flameCheck();
   turnL();
-  fireCheck();
+  flameCheck();
 }
 /***STRAFE***/
 void diagRfwd(){ /*****************MAKE SURE EVENS MOVE FIRST**/

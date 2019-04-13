@@ -80,6 +80,7 @@ void roomCheck(){
   Serial.print("inRoom: ");
   Serial.println(inRoom());
   if(str()){
+    numRooms++;
     turn90R();
     turn90L();
     if(!flameSeen){

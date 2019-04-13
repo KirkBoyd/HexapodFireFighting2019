@@ -13,65 +13,37 @@ int f3Now;
 int f3CheckR;
 int f3CheckL;
 
-void fireCheck(){
+void flameCheck(){
   if(f3() <= f3Max&&!flameSeen){//if the flame has not been detected yet, and the readings show that a flame is now present, store the fact that a flame has been seen.
     flameSeen = true;
     flameLED(true);
   }
 }
-void firstFlameCheck(){
-  fireCheck();
-  if(flameSeen && !f3Done && f3()>=f3Min){
-    secondFlameCheck();
-    if(f3Then==0){f3Then = f3();}
-    if(f3Now==0){
-      turnSmR();
+void aim(){
+  if(flameSeen){//found flame but not ready to fire
+    if(f3()>=f3Max){//not very close to flame because the most sensitive sensor is not saturated
+      if(f3()>=f3Min){turn90R();}//if the flame isn't seen anymore, turn right till its found again
+      else if(f1()<f2() && f1()>f1Min && f2()>f2Min){//if f1 is farther and they both arent close enough
+        turnSmR();
+        fwd();
+      }
+      else if(f1()>f2() && f1()>f1Min && f2()>f2Min){//if f2 is farther and they both arent close enough
+        turnSmL();
+        fwd();
+      }
+      else if(f1()<f2()){//if one is saturated, take a shot then turn to try and even them out
+        versaFire();
+        turnSmR();
+      }
+      else if(f1()>f2()){//if one is saturated, take a shot then turn to try and even them out
+        versaFire();
+        turnSmL();
+      }
+      else{
+        versaFire();
+        fwd();
+      }
     }
-    f3Now = f3();
-    if(f3Then<f3Now){
-      strafe330();
-      f3Then = f3();
-    }
-    else{
-      strafe60();
-      f3Then = f3();
-    }
-    if(f3()<=f3Min){//TOO CLOSE TO FLAME?
-      f3Done = true;//you're at the candle. STOP
-    }
-  }
-  //this just prints if the cable is plugged in for debugging
-  Serial.println(f3());
-  Serial.print("flameSeen : ");
-  Serial.println(flameSeen);
-}
-
-/*
- * Logic for aiming at the flame using front two small IR phototransistors
- */
-void secondFlameCheck(){
-  Serial.print("f1 : ");
-  Serial.print(f1());
-  Serial.print("     f2 : ");
-  Serial.println(f2());
-  if(f1() > f2()){//reading is higher on the LEFT turn LEFT //////analogRead(sharp2port)>sharp2max
-    turnSmL();
-  }
-  else if(f1() < f2()){//reading is higher on the RIGHT turn RIGHT/////// || analogRead(sharp1port)>sharp1max
-    turnSmR();
-  }
-  else if((f1() <= f2()+del)&&(f1() >= f2()-del)){//if f1 and f2 are within a tolerance of 50 integers apart
-    if(f1() <= f1Max && f2() <= f2Max){// if they are both below our chosen saturation value as close enough
-      aimed = true;
-      blinkLED(soundLEDport);
-    }
-    else{fwdSm();}
-  }
-  else{
-    //if it gets here, it is probably bad news
-    back();
-    back();
-    back();
   }
 }
 void versaFire(){

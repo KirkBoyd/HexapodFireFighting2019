@@ -53,6 +53,7 @@ boolean babySeen = false;  //boolean for checking if baby was detected with visi
 boolean f3Done = false; //boolean for indicating completed use of uvTron
 boolean aimed = false; //this should be true when the nozzle is aimed on center with the candle
 boolean didThatOneTurn = false;
+int numRooms;
 /**TRIG**/
 float alpha = 0;  //RADIANS; angle of deflection from center of circle to default leg position to new angle
 float r = 30.31;  //(in mm) length of coxa from outer circle of base to outside of motor clip
@@ -127,16 +128,12 @@ void loop(){
   /******COMPETITION CODE*******/
   while(!soundStart()){//continues to execute this code until the button is pressed again
     /**COMPETITION LOGIC**/
-        firstFlameCheck();
+        flameCheck();
         if(!flameSeen){//if f3 has not picked up a flame reading
           navigate();
         }
-        else if(f3Done){
-          secondFlameCheck();
-        }            
-        if(aimed){
-          blinkLED(videoLEDport);
-          versaFire();
+        else{
+          aim();
         }
   }//end while(!soundStart())
   while(soundStart()){}
