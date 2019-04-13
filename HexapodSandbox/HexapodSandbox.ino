@@ -84,6 +84,13 @@ unsigned long timeDiff;
 int flameSum = 0;
 int thresh = 90;
 int interval = 500;
+/**flame**/
+#define f1Min 800 //closest a small IR phototransistor can be for consistent reading
+#define f1Max 500  //furthest a small IR phototransistor should be to extinguish the flame
+#define f2Min 800 //closest a small IR phototransistor can be for consistent reading
+#define f2Max 500  //furthest a small IR phototransistor should be to extinguish the flame
+#define f3Min 800//closest a small IR phototransistor can be for consistent reading
+#define f3Max 1000   //furthest a small IR phototransistor should be to extinguish the flame
 
 int strCount;
 
@@ -116,9 +123,11 @@ void setup() {
   pinMode(mic2port,INPUT);
   pinMode(versa,OUTPUT);
   pinMode(stripePort,INPUT);
+  flameSeen = false;
   stand(500);
   while(!soundStart()){
-    printFlames();
+    //Serial.println(str());
+    //printFlames();
   }  
 }
 
@@ -128,8 +137,12 @@ void loop(){
   /******COMPETITION CODE*******/
   while(!soundStart()){//continues to execute this code until the button is pressed again
     /**COMPETITION LOGIC**/
+        Serial.println("flameCheck... ");
         flameCheck();
+        Serial.print("flameSeen: ");
+        Serial.println(flameSeen);
         if(!flameSeen){//if f3 has not picked up a flame reading
+          Serial.println("navigating");
           navigate();
         }
         else{

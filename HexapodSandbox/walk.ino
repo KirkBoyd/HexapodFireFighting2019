@@ -105,15 +105,17 @@ void turnSmR(){//make smaller steps in place in circle to turn RIGHT
   delay(turnTimSm);
 }
 void turn90R(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
-  turnR();
+  if(!flameSeen){turnR();}
   flameCheck();
-  turnR();
+  if(!flameSeen){turnR();}
   flameCheck();
-  turnR();
+  if(!flameSeen){turnR();}
   flameCheck();
-  turnR();
+  if(!flameSeen){turnR();}
   flameCheck();
-  turnR();
+  if(!flameSeen){turnR();}
+  flameCheck();
+  if(!flameSeen){turnR();}
   flameCheck();
 }
 /***LEFT TURNS***/
@@ -152,15 +154,17 @@ void turnSmL(){//make smaller steps in place in circle to turn LEFT
   delay(turnTimSm);
 }
 void turn90L(){//turns ~90 degrees to the right ON COMPETITION FLOOR SURFACE
-  turnL();
+  if(!flameSeen){turnL();}
   flameCheck();
-  turnL();
+  if(!flameSeen){turnL();}
   flameCheck();
-  turnL();
+  if(!flameSeen){turnL();}
   flameCheck();
-  turnL();
+  if(!flameSeen){turnL();}
   flameCheck();
-  turnL();
+  if(!flameSeen){turnL();}
+  flameCheck();
+  if(!flameSeen){turnL();}
   flameCheck();
 }
 /***STRAFE***/

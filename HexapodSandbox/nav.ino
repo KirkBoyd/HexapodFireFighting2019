@@ -15,6 +15,7 @@
 #define sharp2delta 17//average variance of sharp 2
 #define sharp3max 300//updated 04/11/19 9pm
 #define sharp4max 500//
+#define sharp4min 300
 #define sharp4nothingThereLo 110
 #define sharp4nothingThereHi 155
 int val1;
@@ -27,6 +28,7 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   val2 = s2();
   val3 = s3();
   val4 = s4();
+  flameCheck();
   roomCheck();
   if(val3>= sharp3max){//if something is too close in front, turn right
     turn90R();
@@ -47,6 +49,7 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   else{
     fwd();
   }
+  flameCheck();
 }
 
 void leftWallEnd(){
@@ -58,10 +61,12 @@ void leftWallEnd(){
       else if(s4()>=500){turnR();}
       else{fwd();}
     }
-    turn90L();
-    fwd();
-    fwd();
-    turn90L();
+    if(val1<120&&val4<300){
+      turn90L();
+      fwd();
+      fwd();
+      turn90L();
+    }
     while(s4()<290){
       fwd();
     }
@@ -79,14 +84,24 @@ void roomCheck(){
   Serial.print(strCount);
   Serial.print("inRoom: ");
   Serial.println(inRoom());
-  if(str()){
+  if(inRoom()){
     numRooms++;
-    turn90R();
-    turn90L();
+    fwd();
+    fwd();
+    fwd();
+    fwd();
+    flameCheck();
     if(!flameSeen){
       turn90R();
-      if(!flameSeen){
-        turn90R();//when performed in succession it isn't really 90...
+      flameCheck();
+    }
+    if(!flameSeen){
+      turn90L();
+      flameCheck();
+    }
+    if(!flameSeen){
+      turn90R();
+      flameCheck();
         if(!flameSeen){
           turn90R();
           fwd();
@@ -98,16 +113,18 @@ void roomCheck(){
           fwd();
           fwd();
           fwd();
-          turn90L();
+          turnL();
+          turnL();
+          turnL();
           fwd();
           fwd();
           fwd();
           fwd();
           fwd();
           fwd();
-        }
-      }
-    }
+        }//end if(!flameSeen)
+        
+    }//end if(!flameSeen)
   }
 }
 void joystick(){//control the hexapod via joystick
