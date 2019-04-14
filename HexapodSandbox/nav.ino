@@ -23,36 +23,23 @@ int val2;
 int val3;
 int val4;
 
-void navigate(){//use the sharp sensors to search the maze by avoiding walls 
+void navigate(){//use the sharp sensors to search the maze by avoiding walls
   val1 = s1();
   val2 = s2();
   val3 = s3();
   val4 = s4();
   flameCheck();
   roomCheck();
-  if(val3>= sharp3max){//if something is too close in front, turn right
-    turn90R();
+  if(val3>= sharp3max){//if something is too close in front, check sides
+    if(val4<=sharp4min){turn90L();}//something in front, nothing on left
+
+    else{turn90R();}//something in front, something on left
   }
-  else if(val2>sharp2a){//if really close to right sharp, turn left
-    turnL();
-  }
-  else if((val1<115)&&(500<val4&&val4<600)&&val2<sharp2d){//when approaching a wall that ends on the left side
-      leftWallEnd();
-  }
-  //follow wall on left with sharp sensor if nothing scarier is happening
-  else if(val1>=sharp1c){
-    turnR();
-  }
-//  else if(val1<sharp1d&&val2<sharp2d&&val3<145){//newest
-//    fwd();      
-//  }//needs more work
-  else if(val1<=sharp1d){
-    turnL();
-  }
-  else{
-    fwd();
-  }
-  flameCheck();
+  else if(val4>=sharp4max){turnR();}//too close to wall
+
+  else if(val4<=sharp4min){turnL();}//too far from wall
+
+  else{fwd();}//nothing is wrong, go straight
 }
 
 void leftWallEnd(){
@@ -73,7 +60,7 @@ void leftWallEnd(){
   while(s4()<290){
       fwd();
   }
-  soundLED(false);  
+  soundLED(false);
 }
 boolean inRoom(){
   if(str()){
