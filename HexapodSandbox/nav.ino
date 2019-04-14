@@ -1,4 +1,5 @@
 /****VISION****/
+      /**not in use**/
 #define sharp1max 230//updated 04/11/19 9pm
 #define sharp1a  285//(plusminus 7) closest it can be to the wall (on it's left)while parallel
 #define sharp1b 632//(plusminus 10) closest it could ever be to the wall, sharp 1 right in front
@@ -13,12 +14,15 @@
 #define sharp2d 145//(delta )almost too far from the wall on the right (parallel
 #define sharp2e 189//good distance from wall on right
 #define sharp2delta 17//average variance of sharp 2
-#define sharp3max 300//updated 04/11/19 9pm
-#define sharp4max 450//
-#define sharp4b 240//straying from wall
-#define sharp4min 150//open space on the left
 #define sharp4nothingThereLo 110
 #define sharp4nothingThereHi 155
+
+    /**in use**/
+    #define sharp3max 270//updated 04/11/19 9pm
+    #define sharp4min 120//open space on the left
+    #define sharp4b 312//farthest from wall we want to be
+    #define sharp4max 450//
+    
 int val1;
 int val2;
 int val3;
@@ -32,8 +36,12 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   flameCheck();
   //roomCheck();
   /**left wall follow**/
-  if(val4<=sharp4b){turnL();}
-  else if(val4>=sharp4max){turnR();}//too close to wall
+  if(val4<=sharp4b){//too far from left wall
+    while(s4()<sharp4b){turnL();}
+  }
+  else if(val4>=sharp4max){//too close to left wall
+    while(s4()>=sharp4max){turnR();}
+  }//too close to wall
   
   /**check in front**/
   if(val3>= sharp3max){//if something is too close in front, check sides
@@ -42,8 +50,10 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
     /**no space, go right**/
     else{turn90R();}//something in front, something on left
   }
+  /**if this doesn't work add forward as an else if(){}**/
   
   /**now you can walk**/
+  
   fwd();
 }
 
