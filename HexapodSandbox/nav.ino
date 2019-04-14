@@ -15,6 +15,7 @@
 #define sharp2delta 17//average variance of sharp 2
 #define sharp3max 300//updated 04/11/19 9pm
 #define sharp4max 450//
+#define sharp4b 240//straying from wall
 #define sharp4min 150//open space on the left
 #define sharp4nothingThereLo 110
 #define sharp4nothingThereHi 155
@@ -30,18 +31,20 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   val4 = s4();
   flameCheck();
   //roomCheck();
-  if(val4<=sharp4min){//if space left, move a bit further to clear obstacles then turn left
-    for(int i=0;i<7 && s3()<sharp3max;i++){fwd();}
-    turn90L();
-  }
-  else if(val3>= sharp3max){//if something is too close in front, check sides
+  /**left wall follow**/
+  if(val4<=sharp4b){turnL();}
+  else if(val4>=sharp4max){turnR();}//too close to wall
+  
+  /**check in front**/
+  if(val3>= sharp3max){//if something is too close in front, check sides
+    /**seek open space to the left.**/
     if(val4<=sharp4min){turn90L();}//something in front, nothing on left
-
+    /**no space, go right**/
     else{turn90R();}//something in front, something on left
   }
-  else if(val4>=sharp4max){turnR();}//too close to wall
-
-  else{fwd();}//nothing is wrong, go straight
+  
+  /**now you can walk**/
+  fwd();
 }
 
 void leftWallEnd(){
