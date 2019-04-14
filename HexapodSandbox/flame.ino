@@ -1,7 +1,7 @@
 /** NOTE ^^^ for above values, high == far away. low == very close. **/
 #define del 50
-#define versaPulseTimHi  1500//how long the delay should be for versa to pulse properly
-#define versaPulseTimLo  2000//how long the delay should be for versa to pulse properly
+#define versaPulseTimHi  1000//how long the delay should be for versa to pulse properly
+#define versaPulseTimLo  1000//how long the delay should be for versa to pulse properly
 int f3Then;
 int f3Now;
 int f3CheckR;
@@ -24,34 +24,31 @@ void aim(){
     q2 = f2();
     q3 = f3();
       if(f3()>=f3Max){turnR();}//if the flame isn't seen anymore, turn right till its found again
-      else if(f1()<f2() && f1()>f1Min && f2()>f2Min){//if f1 is farther and they both arent close enough
-        turnSmR();
-        fwd();
-        fwd();
-        fwd();
-        fwd();
-      }
-      else if(f1()>f2() && f1()>f1Min && f2()>f2Min){//if f2 is farther and they both arent close enough
-        turnSmL();
-        fwd();
-        fwd();
-        fwd();
-        fwd();
-      }
-      else if(f1()>f2()){//if one is saturated, take a shot then turn to try and even them out
-        versaFire();
-        turnL();
-      }
-      else if(f1()<f2()){//if one is saturated, take a shot then turn to try and even them out
-        versaFire();
-        turnR();
-      }
-      else{
-        versaFire();
-        fwd();
-        fwd();
-      }
-    
+      if(f3()<f1()&&f3()<f2()&&f3()<950){fwd();}
+      else if(f3()<1000){
+        if(f1()>1000&&f2()>1000){
+          Serial.println("case1");
+          if(f1()>f2()){turnSmR();}
+          else if(f1()<f2()){turnSmL();}
+        }
+        else if(f3()<775){
+          Serial.println("case2");
+          versaFire();
+          if(f1()>f2()-10){turnSmR();}
+          else if(f1()<f2()+10){turnSmR();}
+        }
+        else if(f2()>f1() && f2()>f3()){
+           Serial.println("case3");
+           versaFire();
+           turnSmL();
+        }
+        else if(f1()>f2() && f1()>f3()){
+           Serial.println("case4");
+           versaFire();
+           turnSmR();
+        }
+      }    
+      else{fwd();}
   }
 }
 void versaFire(){
@@ -59,12 +56,8 @@ void versaFire(){
   delay(versaPulseTimHi);
   digitalWrite(versa, LOW);
   delay(versaPulseTimLo);
-  digitalWrite(versa, HIGH);
-  delay(versaPulseTimHi);
-  digitalWrite(versa, LOW);
-  delay(versaPulseTimLo);
-  digitalWrite(versa, HIGH);
-  delay(versaPulseTimHi);
-  digitalWrite(versa, LOW);
-  delay(versaPulseTimLo);
+//  digitalWrite(versa, HIGH);
+//  delay(versaPulseTimHi);
+//  digitalWrite(versa, LOW);
+//  delay(versaPulseTimLo);
 }

@@ -9,7 +9,6 @@ boolean diagRfwdLast;
 boolean diagLfwdLast;
 boolean strafe60last;
 boolean strafe330last;
-
 const int homTim = 50;
 void resetAngChecks(){
   fwdLast = false;
@@ -18,6 +17,24 @@ void resetAngChecks(){
   turnLlast = false;
   diagRfwdLast = false;
   diagLfwdLast = false;
+}
+void resetTurnCounts(){
+  numRights = 0;
+  numLefts = 0;
+  numFwds = 0;
+}
+void checkRepeat(){
+  if(numRights>2){
+    if(numLefts>2){
+      if(numFwds<2){
+        resetTurnCounts();
+        turn90L();
+      }
+      else{resetTurnCounts();}
+    }
+    else{resetTurnCounts();}
+  }
+  
 }
 void backHome(){//picks up feet and moves back home
   evensUp();

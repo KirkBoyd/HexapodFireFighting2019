@@ -93,6 +93,9 @@ int interval = 500;
 #define f3Max 1000   //furthest a small IR phototransistor should be to extinguish the flame
 
 int strCount;
+int numRights;
+int numLefts;
+int numFwds;
 
 /**MAIN**/
 void setup() {
@@ -128,6 +131,7 @@ void setup() {
   while(!soundStart()){
     //Serial.println(str());
     //printFlames();
+    printSharps();
   }  
 }
 
