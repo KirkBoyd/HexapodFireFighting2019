@@ -14,8 +14,8 @@
 #define sharp2e 189//good distance from wall on right
 #define sharp2delta 17//average variance of sharp 2
 #define sharp3max 300//updated 04/11/19 9pm
-#define sharp4max 500//
-#define sharp4min 300
+#define sharp4max 450//
+#define sharp4min 150//open space on the left
 #define sharp4nothingThereLo 110
 #define sharp4nothingThereHi 155
 int val1;
@@ -29,7 +29,7 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   val3 = s3();
   val4 = s4();
   flameCheck();
-  roomCheck();
+  //roomCheck();
   if(val3>= sharp3max){//if something is too close in front, check sides
     if(val4<=sharp4min){turn90L();}//something in front, nothing on left
 
