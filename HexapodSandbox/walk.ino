@@ -52,6 +52,7 @@ void backHome(){//picks up feet and moves back home
   resetAngChecks();
 }
 /***FORWARD***/
+//fwd 14 times moves one full robot length
 void fwd(){//walk straight forward//
   //if(!fwdLast){backHome();}
   evensUp();

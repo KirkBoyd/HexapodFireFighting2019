@@ -30,14 +30,16 @@ void navigate(){//use the sharp sensors to search the maze by avoiding walls
   val4 = s4();
   flameCheck();
   //roomCheck();
-  if(val3>= sharp3max){//if something is too close in front, check sides
+  if(val4<=sharp4min){//if space left, move a bit further to clear obstacles then turn left
+    for(int i=0;i<7 && s3()<sharp3max;i++){fwd();}
+    turn90L();
+  }
+  else if(val3>= sharp3max){//if something is too close in front, check sides
     if(val4<=sharp4min){turn90L();}//something in front, nothing on left
 
     else{turn90R();}//something in front, something on left
   }
   else if(val4>=sharp4max){turnR();}//too close to wall
-
-  else if(val4<=sharp4min){turnL();}//too far from wall
 
   else{fwd();}//nothing is wrong, go straight
 }
@@ -115,6 +117,10 @@ void roomCheck(){
         if(numRooms>5){numRooms = 0;}
     }//end if(!flameSeen)
   }
+}
+void avoid(){//dodges walls if something else is going on
+  if(s4()>sharp4max){turnR();}
+  if(s1()>sharp1c){turnR();}
 }
 void joystick(){//control the hexapod via joystick
   Serial.print("x = ");
