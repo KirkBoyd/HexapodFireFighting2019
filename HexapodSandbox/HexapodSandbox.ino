@@ -132,6 +132,7 @@ void setup() {
     //Serial.println(str());
     //printFlames();
     printSharps();
+   // versaFire();
   }  
 }
 

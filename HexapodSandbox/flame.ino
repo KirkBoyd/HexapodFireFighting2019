@@ -1,7 +1,7 @@
 /** NOTE ^^^ for above values, high == far away. low == very close. **/
 #define del 50
-#define versaPulseTimHi  1000//how long the delay should be for versa to pulse properly
-#define versaPulseTimLo  1000//how long the delay should be for versa to pulse properly
+#define versaPulseTimHi  500//how long the delay should be for versa to pulse properly
+#define versaPulseTimLo  500//how long the delay should be for versa to pulse properly
 int f3Then;
 int f3Now;
 int f3CheckR;
